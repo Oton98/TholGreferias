@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  text-decoration: none;
+}
+
+html {
+  height: 100%;
+}
+
+.button-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #585858;
+  color: #fefeff;
+  min-width: 164px;
+  min-height: 25px;
+}
+
+.button-secondary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #888988;
+  color: #fefeff;
+  min-width: 164px;
+  min-height: 25px;
+}
+
+.footer {
+  background-color: #B3B2B2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+  flex-wrap: wrap;
+  column-gap: 64px;
+}
+.footer-container-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  column-gap: 48px;
+  flex-wrap: wrap;
+  padding: 24px 0px;
+}
+.footer-container-nav-section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+.footer-copyright {
+  padding-bottom: 24px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #fefeff;
+}
+.navbar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-logo img {
+  height: 64px;
+}
+.navbar-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  color: #424342;
+}
+.navbar-items-item-searcher {
+  border: 2px solid black;
+  border-radius: 2px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro {
+  height: 80vh;
+  background-image: url(../../img/26042021105833.png);
+  background-size: cover;
+  color: #fefeff;
+}
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  padding-top: 128px;
+  padding-left: 128px;
+  width: 400px;
+}
+.intro-container-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+.intro-container-text-buttons {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 24px;
+}
+
+/*# sourceMappingURL=style.css.map */
