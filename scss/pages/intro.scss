@@ -32,3 +32,85 @@
         }
     }
 }
+
+.featured-product{
+    margin: 30px 20vh;
+    display: flex;
+    flex-direction: column;
+
+    &-title{
+        margin: 40px 0px;
+    }
+
+    &-cards{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 30vh;
+        margin-bottom: 200px;
+        
+        
+    }
+}
+
+.customized-products {
+    background-color: $color-septenary;
+    color: #ffffff;
+    
+    &-title {
+        padding: 30px 20vh;
+    }
+
+    & > div:nth-child(2) { 
+        img {
+            width: 100%;
+            height: 70vh;
+            object-fit: cover; 
+        }
+    }
+
+    &-logos {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 20vh;
+
+        &-logo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 16px;
+        }
+    }
+}
+
+.partnership {
+    background-color: $color-octonary;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+
+    &-text{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 48px;
+        width: 50%;
+        row-gap: 24px;
+    }
+
+
+    &-photo {
+        width: 60%; /* Ocupa el 50% del ancho del contenedor padre */
+        img {
+            width: 100%;
+            height:100%; /* Mantiene la proporción original de la imagen */
+            object-fit: cover;
+        }
+    }
+}
