@@ -38,3 +38,46 @@
     }
 
 }
+
+.footer2{
+
+    background-color: $color-novenary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    &-container{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: baseline;
+        flex-wrap: wrap;
+        column-gap: 64px;
+        
+
+        &-logo{
+            padding-top: 32px;
+            width: auto;
+        }
+
+        &-nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            column-gap: 48px;
+            flex-wrap: wrap;
+            padding: 24px 0px;
+            &-section{
+                display: flex;
+                flex-direction: column;
+                row-gap: 8px;
+            }
+        }
+    }
+
+    &-copyright{
+        padding-bottom: 24px;;
+    }
+}

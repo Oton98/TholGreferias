@@ -1,0 +1,50 @@
+.distributor-list {
+    background-color: $color-decenary;
+    
+
+    &-banner {
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 32px;
+        padding: 30px 20vh;
+
+        &-title {
+            text-align: start;
+        }
+
+        &-finder {
+            display: flex;
+            flex-direction: row;
+            column-gap: 32px;
+            height: 600px;
+
+            &-maps {
+                flex: 1; // Hacer que ocupe el espacio restante
+                max-width: 60%; // Limitar el ancho al 60% del contenedor
+
+                iframe {
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                }
+            }
+
+            &-partnership-locations {
+                flex: 1; // Hacer que ocupe el espacio restante
+                max-width: 40%; // Limitar el ancho al 40% del contenedor
+                display: flex;
+                flex-direction: column;
+                row-gap: 32px;
+            }
+        }
+    }
+}

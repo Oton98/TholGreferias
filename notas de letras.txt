@@ -1,0 +1,7 @@
+subtitulos raleway bold 700
+
+raleway semibold 600
+
+raleway regular 400
+
+raleway light 300

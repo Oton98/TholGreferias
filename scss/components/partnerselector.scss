@@ -1,0 +1,31 @@
+.partnership-locations-regions {
+    display: flex;
+    flex-direction: column;
+
+    row-gap: 8px;
+
+    &-cityTitle {
+        background-color: $color-undenary;
+        padding: 8px;
+    }
+
+    &-companys {
+        display: flex;
+        flex-direction: column;
+        background-color: $color-primary;
+        row-gap: 16px;
+
+        &-company {
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+            padding: 8px 8px;
+            // display: none; //Tengo un problema con como empuja esto
+
+        }
+    }
+
+}
+
+
+        
