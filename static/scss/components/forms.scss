@@ -1,0 +1,81 @@
+.consultation-menu-form {
+    .form {
+        background-color: $color-tricenary;
+
+        &-inputs {
+            display: flex;
+            flex-direction: column;
+            padding: 24px 32px;
+            row-gap: 16px;
+
+            &-input,
+            &-box textarea {
+                background-color: transparent;
+                color: $color-primary;
+                padding-bottom: 8px;
+
+                &::placeholder {
+                    color: $color-quinary;
+                }
+            }
+
+            &-input {
+                border-bottom: 2px solid $color-quinary;
+                padding: 8px;
+            }
+
+            &-box {
+                border: 2px solid $color-quinary;
+                padding: 8px;
+
+                textarea {
+                    height: 20vh; // Ajusta según sea necesario
+                    resize: none;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                }
+            }
+        }
+    }
+}
+
+.login {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        border-radius: 10px;
+        padding: 24px;
+        row-gap: 32px;
+        width: 20%;
+        height: 20%;
+
+        &-inputs {
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+
+            &-input {
+                display: flex;
+                justify-content: space-between;
+                column-gap: 16px;
+            }
+
+        }
+
+        &-buttons {
+            display: flex;
+            flex-direction: row;
+            column-gap: 8px;
+        }
+    }
+
+}

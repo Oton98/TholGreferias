@@ -1,0 +1,27 @@
+.interfaceProducts{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-box{
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+        background-color: black;
+        padding: 100px;
+        &-tittle{
+            display: flex;
+            justify-content: center;
+            color: white;
+        }
+        &-buttons{
+            display: flex;
+            flex-direction: row;
+            column-gap: 8px;
+        }
+        &-unloggin{
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}
