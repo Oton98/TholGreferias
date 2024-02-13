@@ -44,114 +44,28 @@
 
     <section class="control">
         <div class="control-tablebox">
+            <div class="control-tablebox-tittle">
+                <h3>Gestor de Colecciones</h3>
+            </div>
             <table class=" table table-dark table-hover table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Banner 2#</th>
-                        <th scope="col">Descripcion 1#</th>
-                        <th scope="col">Descripcion 2#</th>
-                        <th scope="col">Link Manual</th>
-                        <th scope="col">Link Coleccion</th>
-                        <th scope="col">Es destacado</th>
-                        <th scope="col">Esta Disponible</th>
-                        <th scope="col">Operaciones</th>
+                        <th scope="col">Cantidad de Productos</th>
+                        <th scope="col">Productos</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="table-group-divider">
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
+                <tbody class="table-group-divider" id="tbodyCollections">
+                   
                 </tbody>
             </table>
-        </div>
-        <div class="control-panelbox">
-            <div class="control-panelbox-tittle">
-                <h3>Gestor de Colecciones</h3>
-            </div>
-            <div class="control-panelbox-form">
-                <div class="control-panelbox-form-inputs">
-
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="collectionName">Nombre de Producto</label>
-                        <input type="text" name="collectionName" id="collectionName" placeholder="Nombre de Coleccion">
-                    </div>
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="collectionImage">Imagen de Producto</label>
-                        <input type="text" name="collectionImage" id="collectionImage" placeholder="Imagen">
-                    </div>
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="descriptionCollection1">Descripcion de Coleccion 1#</label>
-                        <input type="text" name="descriptionCollection1" id="descriptionCollection1" placeholder="Descripción 1°">
-                    </div>
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="descriptionCollection2">Descripcion de Coleccion 2#</label>
-                        <input type="text" name="descriptionCollection2" id="descriptionCollection2" placeholder="Descripción 2°">
-                    </div>
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="collectionBanner">Imagen de Banner</label>
-                        <input type="text" name="collectionBanner" id="collectionBanner" placeholder="Banner">
-                    </div>
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="collectionManualDetails">Link Manual de Detalles</label>
-                        <input type="text" name="collectionManualDetails" id="collectionManualDetails" placeholder="Link Manual de detalles">
-                    </div>
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="collectionManualInstalation">Link Manual de Instalacion</label>
-                        <input type="text" name="collectionName" id="collectionName" placeholder="Link Manual de Instalacion">
-                    </div>
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="isFeaturedProducto">¿Es Destacado?</label>
-                        <input type="checkbox" name="isFeaturedProducto" id="isFeaturedProducto">
-                    </div>
-                    <div class="control-panelbox-form-inputs-input">
-                        <label for="isAvailable">¿Está disponible?</label>
-                        <input type="checkbox" name="collectionName" id="collectionName">
-                    </div>
-
-                </div>
-            </div>
-            <div class="control-panelbox-buttons">
-                <a href=""><button>Volver</button></a>
-                <a href=""><button>Crear</button></a>
+            <div class="control-tablebox-title-buttons">
+                <a href="./interfaceProducts.html"><button>Volver</button></a>
+                <a href="./createCollection.html"><button>Crear</button></a>
             </div>
         </div>
+        
 
     </section>
 
@@ -207,6 +121,7 @@
         </div>
     </footer>
 
+    <script type="module" src="../js/tables/cargarTablaColecciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
