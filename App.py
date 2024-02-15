@@ -2,6 +2,7 @@ from flask import Flask, send_from_directory, request, redirect, url_for, render
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import event
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -64,6 +65,74 @@ event.listen(Coleccion, 'before_update', actualizar_cantidad_productos)
 with app.app_context():
     db.create_all()
 
+#Redirect al update
+@app.route('/redirectProduct/<int:id>', methods=['GET'])
+def get_update_page(id):
+    try:
+        producto = db.session.get(Producto, id)
+
+        if not producto:
+            return jsonify({"error": "Producto no encontrado"}), 404
+
+        # Obtén la ruta completa del archivo update.html
+        file_path = os.path.join(app.root_path, 'static', 'admin')
+
+        # Imprime información de depuración
+        print(f'File Path: {file_path}')
+        print(f'Requested URL: {request.url}')
+
+
+        # Envía el archivo desde el directorio
+        return send_from_directory(file_path, 'update.html')
+
+    except Exception as e:
+        return jsonify({"error": f"Error en la aplicación: {str(e)}"}), 500
+
+#Metodo Put para 1 Producto
+@app.route('/updateProduct/<int:id>', methods=['PUT'])
+def update_producto(id):
+    try:
+        producto = Producto.query.get(id) 
+
+        if not producto:
+            return jsonify({"error": "Producto no encontrado"}), 404
+
+        data = request.get_json()
+
+        producto.nombre = data.get('productName', producto.nombre)
+        producto.tipo = data.get('productType', producto.tipo)
+        producto.codigo = data.get('productCode', producto.codigo)
+        producto.descripcion = data.get('descriptionProduct', producto.descripcion)
+        producto.imagen = data.get('productImage', producto.imagen)
+        producto.colores = data.get('productColores', producto.colores)
+        producto.manual = data.get('collectionManualInstalation', producto.manual)
+        producto.medidas = data.get('collectionManualDetails', producto.medidas)
+        producto.estaDisponible = data.get('isFeaturedProducto', producto.estaDisponible)
+        producto.esDestacado = data.get('isAvailable', producto.esDestacado)
+
+        nueva_coleccion_id = data.get('collection')
+        if nueva_coleccion_id:
+            nueva_coleccion = Coleccion.query.get(nueva_coleccion_id)
+            if not nueva_coleccion:
+                return jsonify({"error": "Colección no encontrada"}), 404
+
+            # Actualizar la relación con la nueva colección
+            producto.coleccion = nueva_coleccion
+
+        db.session.commit()
+
+        return jsonify({"message": "Producto actualizado exitosamente"}), 200
+    
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+    
+#Metodo Put para 1 Coleccion
+    
+#Metodo Delete para 1 Producto
+    
+#Metodo Delete para 1 Coleccion
+    
 #Metodo Get para Accesorios
 @app.route('/getAllAccesories', methods=['GET'])    
 def get_all_accesories():
@@ -113,6 +182,62 @@ def get_all_collections():
     ]
 
     return jsonify(colecciones_json)
+
+#Metodo Get para 1 Producto en particular
+@app.route('/getProduct/<int:id>', methods=['GET'])
+def get_producto(id):
+    try:
+        producto = Producto.query.get(id)
+
+        if not producto:
+            return jsonify({"error": "Producto no encontrado"}), 404
+
+        producto_data = {
+            "id": producto.id,
+            "nombre": producto.nombre,
+            "tipo": producto.tipo,
+            "codigo": producto.codigo,
+            "descripcion": producto.descripcion,
+            "imagen": producto.imagen,
+            "colores": producto.colores,
+            "manual": producto.manual,
+            "medidas": producto.medidas,
+            "estaDisponible": producto.estaDisponible,
+            "esDestacado": producto.esDestacado,
+            "coleccion_id": producto.coleccion_id
+        }
+
+        return jsonify(producto_data), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+#Metodo Get para 1 Coleccion en particular
+@app.route('/getCollection/<int:id>', methods=['GET'])
+def get_coleccion(id):
+    try:
+        coleccion = Coleccion.query.get(id)
+        if not coleccion:
+            return jsonify({"error": "Coleccion no encontrado"}), 404
+        coleccion_data ={
+            'id': coleccion.id,
+            'nombre': coleccion.nombre,
+            'cantidad_Productos': coleccion.cantidad_Productos,
+            'productos': [
+                {   
+                    'id': producto.id,
+                    'nombre_producto': producto.nombre,
+                }
+                for producto in coleccion.productos
+            ]
+
+        }
+
+        return jsonify(coleccion_data), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 #Metodo Post para Productos    
 @app.route('/createProduct', methods=['POST'])

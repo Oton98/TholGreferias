@@ -1,3 +1,5 @@
+import { crearBotonActualizar, crearBotonBorrar } from "./crearBotonesAdm.js";
+
 export function crearTableData(valor, fila){
     var td = document.createElement("td");
     td.innerText = valor; 
@@ -13,4 +15,17 @@ export function crearTableDataProductos(productos, fila) {
             }
         }
     }
+}
+
+export function crearCeldaBotones(id) {
+    const celda = document.createElement("td");
+
+    // Crear y agregar botones
+    const botonBorrar = crearBotonBorrar(id);
+    const botonActualizar = crearBotonActualizar(id);
+
+    celda.appendChild(botonActualizar);
+    celda.appendChild(botonBorrar);
+
+    return celda;
 }
