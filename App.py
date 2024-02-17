@@ -70,9 +70,31 @@ event.listen(Coleccion, 'before_update', actualizar_cantidad_productos)
 with app.app_context():
     db.create_all()
 
-#Redirect al update
+#Redirect al update de Colecciones
+@app.route('/redirectCollection/<int:id>', methods=['GET'])
+def get_update_collection_page(id):
+    try:
+        coleccion = db.session.get(Coleccion, id)
+
+        if not coleccion:
+            return jsonify({"error": "Coleccion no encontrado"}), 404
+
+        # Obtén la ruta completa del archivo update.html
+        file_path = os.path.join(app.root_path, 'static', 'admin')
+
+        # Imprime información de depuración
+        print(f'File Path: {file_path}')
+        print(f'Requested URL: {request.url}')
+
+        # Envía el archivo desde el directorio
+        return send_from_directory(file_path, 'updateCollection.html')
+
+    except Exception as e:
+        return jsonify({"error": f"Error en la aplicación: {str(e)}"}), 500
+    
+#Redirect al update de Productos
 @app.route('/redirectProduct/<int:id>', methods=['GET'])
-def get_update_page(id):
+def get_update_product_page(id):
     try:
         producto = db.session.get(Producto, id)
 
@@ -88,7 +110,7 @@ def get_update_page(id):
 
 
         # Envía el archivo desde el directorio
-        return send_from_directory(file_path, 'update.html')
+        return send_from_directory(file_path, 'updateProduct.html')
 
     except Exception as e:
         return jsonify({"error": f"Error en la aplicación: {str(e)}"}), 500
@@ -150,7 +172,7 @@ def update_producto(id):
 
         if nombre_nueva_coleccion is not None:
             # Buscar la colección por nombre
-            nueva_coleccion = Coleccion.query.filter_by(nombre=nombre_nueva_coleccion).first()
+            nueva_coleccion = Coleccion.query.filter_by(nombre=nombre_nueva_coleccion, esta_eliminada=False).first()
 
             if not nueva_coleccion:
                 return jsonify({"error": "Colección no encontrada"}), 404
@@ -183,6 +205,19 @@ def update_producto(id):
         return jsonify({"error": str(e)}), 500
     
 #Metodo Put para 1 Coleccion
+@app.route('/updateCollection/<int:id>', methods=['PUT'])
+def update_collection(id):
+    try:
+        coleccion = Coleccion.query.get(id)
+        if not coleccion:
+            return jsonify({"error": "Producto no encontrado"}), 404
+
+
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
     
 #Metodo Delete para 1 Coleccion
 @app.route('/deleteCollection/<int:id>', methods=['DELETE'])
@@ -329,7 +364,7 @@ def add_product():
     esta_disponible = request.form.get('isAvailable') == 'on'
     coleccion = request.form.get('collection')
 
-    coleccion_obj = Coleccion.query.filter_by(nombre=coleccion).first()
+    coleccion_obj = Coleccion.query.filter_by(nombre=coleccion, esta_eliminada=False).first()
 
     if coleccion_obj is None:
         return "La colección especificada no existe", 404
