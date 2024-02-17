@@ -24,6 +24,7 @@ export async function traerColleciones() {
         }
 
         const data = await response.json();
+        
         return data;
 
     } catch (error) {

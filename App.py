@@ -1,5 +1,7 @@
 from flask import Flask, send_from_directory, request, redirect, url_for, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import Session
+from sqlalchemy import not_
 from sqlalchemy import event
 from flask_cors import CORS
 import os
@@ -43,19 +45,22 @@ class Producto(db.Model):
 class Coleccion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(255), nullable=False)
-    cantidad_Productos = db.Column(db.Integer, default=0)
+    cantidad_productos = db.Column(db.Integer, default=0)
+    esta_eliminada = db.Column(db.Boolean, default=False)
     productos = db.relationship('Producto', back_populates='coleccion')
 
-    def __init__(self, nombre):
+    def __init__(self, nombre, cantidad_productos=0, esta_eliminada=False): 
         self.nombre = nombre
-        
+        self.cantidad_productos = cantidad_productos
+        self.esta_eliminada = esta_eliminada
+
     def obtener_productos(self):
         # Método para obtener todos los productos vinculados a la colección
         return Producto.query.filter_by(coleccion=self).all()
-
+    
 # Función para actualizar la cantidad de productos antes de cada commit
 def actualizar_cantidad_productos(mapper, connection, target):
-    target.cantidad_Productos = len(target.productos)
+    target.cantidad_productos = len(target.productos)
 
 # Asociar el evento a la clase Coleccion
 event.listen(Coleccion, 'before_insert', actualizar_cantidad_productos)
@@ -88,50 +93,117 @@ def get_update_page(id):
     except Exception as e:
         return jsonify({"error": f"Error en la aplicación: {str(e)}"}), 500
 
+
+#Metodo delete para 1 Producto
+@app.route('/deleteProduct/<int:id>', methods=['DELETE'])
+def delete_producto(id):
+    try:
+        producto = Producto.query.get(id)
+        print(producto)
+        if not producto:
+            return jsonify({"error": "Producto no encontrado"}), 404
+
+        # Obtén la colección asociada al producto
+        coleccion = producto.coleccion
+        print(coleccion)
+
+        # Decrementa la columna cantidad_Productos en uno
+        if coleccion:
+            if coleccion.cantidad_productos > 0:
+                coleccion.cantidad_productos -= 1
+
+        # Elimina el producto
+        db.session.delete(producto)
+        db.session.commit()
+
+        return jsonify({"message": "Producto eliminado exitosamente"}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
 #Metodo Put para 1 Producto
 @app.route('/updateProduct/<int:id>', methods=['PUT'])
 def update_producto(id):
     try:
-        producto = Producto.query.get(id) 
+        producto = Producto.query.get(id)
 
         if not producto:
             return jsonify({"error": "Producto no encontrado"}), 404
 
-        data = request.get_json()
+        data = request.json
 
-        producto.nombre = data.get('productName', producto.nombre)
-        producto.tipo = data.get('productType', producto.tipo)
-        producto.codigo = data.get('productCode', producto.codigo)
-        producto.descripcion = data.get('descriptionProduct', producto.descripcion)
-        producto.imagen = data.get('productImage', producto.imagen)
-        producto.colores = data.get('productColores', producto.colores)
-        producto.manual = data.get('collectionManualInstalation', producto.manual)
-        producto.medidas = data.get('collectionManualDetails', producto.medidas)
-        producto.estaDisponible = data.get('isFeaturedProducto', producto.estaDisponible)
-        producto.esDestacado = data.get('isAvailable', producto.esDestacado)
+        nombre = data.get('nombre', producto.nombre)
+        tipo = data.get('tipo', producto.tipo)
+        codigo = data.get('codigo', producto.codigo)
+        descripcion = data.get('descripcion', producto.descripcion)
+        imagen = data.get('imagen', producto.imagen)
+        colores = data.get('colores', producto.colores)
+        manual = data.get('manual', producto.manual)
+        medidas = data.get('medidas', producto.medidas)
+        estaDisponible = data.get('estaDisponible', producto.estaDisponible)
+        esDestacado = data.get('esDestacado', producto.esDestacado)
 
-        nueva_coleccion_id = data.get('collection')
-        if nueva_coleccion_id:
-            nueva_coleccion = Coleccion.query.get(nueva_coleccion_id)
+       # Obtener el nombre de la nueva colección desde los datos recibidos
+        nombre_nueva_coleccion = data.get('coleccion')
+
+        if nombre_nueva_coleccion is not None:
+            # Buscar la colección por nombre
+            nueva_coleccion = Coleccion.query.filter_by(nombre=nombre_nueva_coleccion).first()
+
             if not nueva_coleccion:
                 return jsonify({"error": "Colección no encontrada"}), 404
 
-            # Actualizar la relación con la nueva colección
+            # Actualizar la cantidad de productos en la colección actual
+            if producto.coleccion:
+                producto.coleccion.cantidad_productos -= 1
+
+            # Asignar la nueva colección al producto
             producto.coleccion = nueva_coleccion
+            nueva_coleccion.cantidad_productos += 1
+
+        producto.nombre = nombre
+        producto.tipo = tipo
+        producto.codigo = codigo
+        producto.descripcion = descripcion
+        producto.imagen = imagen
+        producto.colores = colores
+        producto.manual = manual
+        producto.medidas = medidas
+        producto.estaDisponible = estaDisponible
+        producto.esDestacado = esDestacado
 
         db.session.commit()
 
-        return jsonify({"message": "Producto actualizado exitosamente"}), 200
-    
+        return "producto subido exitosamente"
+
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
     
 #Metodo Put para 1 Coleccion
     
-#Metodo Delete para 1 Producto
-    
 #Metodo Delete para 1 Coleccion
+@app.route('/deleteCollection/<int:id>', methods=['DELETE'])
+def delete_collection(id):
+    try:
+        coleccion = Coleccion.query.get(id)
+
+        if not coleccion:
+            return jsonify({"error": "Producto no encontrado"}), 404 
+        
+        if coleccion:
+            coleccion.esta_eliminada = 1
+
+        db.session.commit()
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+    
+    return jsonify({"message": "Colección borrada exitosamente"}), 200
     
 #Metodo Get para Accesorios
 @app.route('/getAllAccesories', methods=['GET'])    
@@ -165,18 +237,19 @@ def get_all_faucets():
 @app.route('/getAllCollection', methods=['GET'])
 def get_all_collections():
 
-    colecciones = Coleccion.query.all()
-
+    colecciones = Coleccion.query.filter(not_(Coleccion.esta_eliminada)).all()
+    print(colecciones)
     colecciones_json = [
         {
             'nombre': coleccion.nombre,
-            'cant_Products': coleccion.cantidad_Productos,
+            'cant_Products': coleccion.cantidad_productos,
+            'id': coleccion.id,
             'productos': [
                 {
                     'nombre_producto': producto.nombre,
                 }
                 for producto in coleccion.productos
-            ]
+            ] 
         }
         for coleccion in colecciones
     ]
@@ -222,7 +295,7 @@ def get_coleccion(id):
         coleccion_data ={
             'id': coleccion.id,
             'nombre': coleccion.nombre,
-            'cantidad_Productos': coleccion.cantidad_Productos,
+            'cantidad_productos': coleccion.cantidad_productos,
             'productos': [
                 {   
                     'id': producto.id,
@@ -282,11 +355,13 @@ def add_product():
 
 #Metodo Post1 para colecciones
 @app.route('/createCollection', methods=['POST'])
-def add_Colecction():
+def add_Coleccion():
     nombre = request.form.get('CollectionName')
 
     nueva_coleccion = Coleccion(
-        nombre = nombre
+        nombre=nombre,
+        cantidad_productos=0,
+        esta_eliminada=False
     )
 
     db.session.add(nueva_coleccion)
@@ -309,6 +384,8 @@ def crear_json_producto(producto):
         'esDestacado': producto.esDestacado,
         'coleccion': producto.coleccion.nombre if producto.coleccion else None
     }
+
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

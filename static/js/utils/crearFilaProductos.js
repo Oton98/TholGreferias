@@ -17,8 +17,8 @@ const ordenColumnasProductos = [
 export function crearTableRowProducts(productos, selectTBody) {
     for (const producto of productos) {
         var fila = document.createElement("tr");
-
-        const celdaBotones = crearCeldaBotones(producto.id);
+        
+        const celdaBotones = crearCeldaBotones(producto.id, "deleteProduct");
         
         for (const clave of ordenColumnasProductos) {
             if (clave !== 'id') {

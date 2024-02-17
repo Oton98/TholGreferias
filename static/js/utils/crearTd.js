@@ -17,12 +17,12 @@ export function crearTableDataProductos(productos, fila) {
     }
 }
 
-export function crearCeldaBotones(id) {
+export function crearCeldaBotones(id, ruta) {
     const celda = document.createElement("td");
 
     // Crear y agregar botones
-    const botonBorrar = crearBotonBorrar(id);
-    const botonActualizar = crearBotonActualizar(id);
+    const botonBorrar = crearBotonBorrar(id, ruta);
+    const botonActualizar = crearBotonActualizar(id, ruta);
 
     celda.appendChild(botonActualizar);
     celda.appendChild(botonBorrar);

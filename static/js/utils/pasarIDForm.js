@@ -16,12 +16,13 @@ async function setFormAction() {
 
         const form = document.querySelector('.control-panelbox-form form');
         const productId = getProductIdFromURL();
+        form.id = productId;
 
         const product = await traerProducto(productId);
         const collection = await traerColeccion(product.coleccion_id);
 
         if (productId) {
-            form.action = `/updateProduct/${productId}`;
+            form.id = productId;
             document.getElementById('productName').value = product.nombre
             document.getElementById('productCode').value = product.codigo
             document.getElementById('productType').value = product.tipo

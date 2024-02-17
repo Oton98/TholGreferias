@@ -48,8 +48,8 @@
                 <h3>Actualizar Producto</h3>
             </div>
             <div class="control-panelbox-form">
-                <form action="/updateProduct/{{id}}" class="control-panelbox-form-inputs" method="POST">
-                    
+
+                <form class="control-panelbox-form-inputs">
                     <div class="control-panelbox-form-inputs-input">
                         <label for="productName">Nombre de Producto</label>
                         <input type="text" name="productName" id="productName" placeholder="Nombre de Producto">
@@ -104,7 +104,7 @@
                         <label for="isAvailable">¿Está disponible?</label>
                         <input type="checkbox" name="isAvailable" id="isAvailable">
                     </div>
-                    <button type="submit">Actualizar Producto</button>
+                    <button type="#" id="updateProduct" >Actualizar Producto</button>
                 </form>
             </div>
             <div class="control-panelbox-buttons">
@@ -166,6 +166,7 @@
         </div>
     </footer>
 
+    <script src="/static/js/modificar.js"></script>
     <script type="module" src="/static/js/utils/pasarIDForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

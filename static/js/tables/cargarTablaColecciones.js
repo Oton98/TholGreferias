@@ -4,10 +4,8 @@ import { crearTableCollections } from "../utils/crearFilaColeccciones.js";
 
 window.addEventListener('DOMContentLoaded', async (event) => {
     try {
-        const complementos = await traerColleciones();
-        crearTableCollections(complementos, selectTBodyCollections);
-        console.log(complementos);
-
+        const colecciones = await traerColleciones();
+        crearTableCollections(colecciones, selectTBodyCollections);
     } catch (error) {
         console.error('Error:', error);
     }

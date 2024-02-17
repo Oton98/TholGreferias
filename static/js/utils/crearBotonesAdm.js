@@ -7,19 +7,20 @@ export function crearBotonActualizar(id) {
     return button;
 }
 
-export function crearBotonBorrar(id) {
+export function crearBotonBorrar(id, ruta) {
     const button = document.createElement('button');
+    
     button.textContent = 'Borrar';
     button.addEventListener('click', () => {
         if (confirm('¿Estás seguro de que deseas borrar este producto?')) {
-            // Enviar solicitud de borrado al backend
-            fetch(`/product/${id}`, {
+           console.log(id)
+            fetch(`/${ruta}/${id}`, {
                 method: 'DELETE',
             })
             .then(response => {
                 if (response.ok) {
                     alert('Producto borrado exitosamente');
-                    window.location.reload(); // Recargar la página después de borrar
+                    window.location.reload();
                 } else {
                     alert('Error al borrar el producto');
                 }
