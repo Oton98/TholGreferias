@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section class="login">
+        <!-- <form action="#" class="login-form">
+            <div class="login-form-inputs">
+                <div class="login-form-inputs-input">
+                    <label for="user">Admin:</label>
+                    <input type="text" name="user" placeholder="Ingrese Admin">
+                </div>
+                <div class="login-form-inputs-input">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" name="password" placeholder="Ingrese Contraseña">
+                </div>
+            </div>
+            <div class="login-form-buttons">
+                <a href="{{url_for('interfaceProducts')}}"><button type="button" class="login-form-button">Ingresar</button></a>
+                <button class="login-form-button">Volver a Index</button>
+            </div>
+
+        </form> -->
+        <div class="login-form-buttons">
+            <a href="{{url_for('interfaceProducts')}}"><button type="button" class="login-form-button">Ingresar</button></a>
+            <button class="login-form-button">Volver a Index</button>
+        </div>
+    </section>
+{% endblock %}

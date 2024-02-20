@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section class="interfaceProducts">
+        <div class="interfaceProducts-box">
+            <div class="interfaceProducts-box-tittle">
+                <h3>Menú Admin</h3>
+            </div>
+            <div class="interfaceProducts-box-buttons">
+                <a href="{{ url_for('collections') }}"><button>Colecciones</button></a>
+                <a href="./faucets.html"><button>Griferías</button></a>
+                <a href="./accesories.html"><button>Accesorios</button></a>
+                <a href="./addons.html"><button>Complementos</button></a>
+            </div>
+            <div class="interfaceProducts-box-unloggin">
+                <button>Cerrar Sesión</button>
+            </div>
+        </div>
+    </section>
+{% endblock %}

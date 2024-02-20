@@ -1,47 +1,29 @@
-class Product:
-    def __init__(self, nombre: str, imageProduct: str, isAvailable: bool, isFeaturedProduct: bool):
+from backend.shared import db
 
+class Producto(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(255), nullable=False)
+    tipo = db.Column(db.String(50))
+    codigo = db.Column(db.Integer)
+    descripcion = db.Column(db.String(1000))
+    imagen = db.Column(db.String(255))
+    colores = db.Column(db.String(255))
+    manual = db.Column(db.String(255))
+    medidas = db.Column(db.String(255))
+    estaDisponible = db.Column(db.Boolean) 
+    esDestacado = db.Column(db.Boolean)
+    coleccion_id = db.Column(db.Integer, db.ForeignKey('coleccion.id'))
+    coleccion = db.relationship('Coleccion', back_populates='productos')
+
+    def __init__(self, nombre, tipo, codigo, descripcion, imagen, colores, manual, medidas, esta_disponible, es_destacado, coleccion):
         self.nombre = nombre
-        self.imageProduct = imageProduct
-        self.isAvailable = isAvailable
-        self.isFeaturedProduct = isFeaturedProduct
-
-    #Getters    
-        
-    @property
-    def nombre(self):
-        return self._nombre
-    
-    @property
-    def imageProduct(self):
-            return self._imageProduct
-    
-    @property
-    def isAvailable(self):
-            return self._isAvailable
-
-    @property
-    def isFeaturedProduct(self):
-        return self._isFeaturedProduct
-    
-    #Setters
-
-    @nombre.setter
-    def nombre(self, nuevo_nombre):
-        self._nombre = nuevo_nombre
-
-    @imageProduct.setter
-    def imageProduct(self, nueva_imagen):
-        self._imageProduct = nueva_imagen
-
-    @isAvailable.setter
-    def isAvailable(self, nuevo_estado):
-        self._isAvailable = nuevo_estado
-
-    @isFeaturedProduct.setter
-    def isFeaturedProduct(self, nuevo_estado_destacado):
-        self._isFeaturedProduct = nuevo_estado_destacado    
-    
-    #Print
-    def __str__(self):
-        return f'{self.nombre} {self.imageProduct} {self.isAvailable} {self.isFeaturedProduct}'
+        self.tipo = tipo
+        self.codigo = codigo
+        self.descripcion = descripcion
+        self.imagen = imagen
+        self.colores = colores
+        self.manual = manual
+        self.medidas = medidas
+        self.estaDisponible = esta_disponible
+        self.esDestacado = es_destacado
+        self.coleccion = coleccion

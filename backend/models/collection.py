@@ -1,59 +1,27 @@
-from product import Producto
+from sqlalchemy import event
+from backend.models.product import Producto
+from backend.shared import db
 
-class Collection(Producto):
+class Coleccion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(255), nullable=False)
+    cantidad_productos = db.Column(db.Integer, default=0)
+    esta_eliminada = db.Column(db.Boolean, default=False)
+    productos = db.relationship('Producto', back_populates='coleccion')
 
-    def __init__(self, nombre: str, imageProduct: str, isAvailable: bool, isFeaturedProduct: bool, descriptionCollection1: str, descriptionCollection2: str, imgBanner: str, linkManualDetails: str, linkManualInstallation: str):
-        super().__init__(nombre, imageProduct, isAvailable, isFeaturedProduct)
+    def __init__(self, nombre, cantidad_productos=0, esta_eliminada=False): 
+        self.nombre = nombre
+        self.cantidad_productos = cantidad_productos
+        self.esta_eliminada = esta_eliminada
 
-        self.descriptionCollection1 = descriptionCollection1
-        self.descriptionCollection2 = descriptionCollection2
-        self.imgBanner = imgBanner
-        self.linkManualDetails = linkManualDetails
-        self.linkManualInstallation = linkManualInstallation
+    def obtener_productos(self):
+        # Método para obtener todos los productos vinculados a la colección
+        return Producto.query.filter_by(coleccion=self).all()
+    
+# Función para actualizar la cantidad de productos antes de cada commit
+def actualizar_cantidad_productos(mapper, connection, target):
+    target.cantidad_productos = len(target.productos)
 
-    # Getters
-    @property
-    def descriptionCollection1(self):
-        return self._descriptionCollection1
-
-    @property
-    def descriptionCollection2(self):
-        return self._descriptionCollection2
-
-    @property
-    def imgBanner(self):
-        return self._imgBanner
-
-    @property
-    def linkManualDetails(self):
-        return self._linkManualDetails
-
-    @property
-    def linkManualInstallation(self):
-        return self._linkManualInstallation
-
-    # Setters
-    @descriptionCollection1.setter
-    def descriptionCollection1(self, nuevo_valor):
-        self._descriptionCollection1 = nuevo_valor
-
-    @descriptionCollection2.setter
-    def descriptionCollection2(self, nuevo_valor):
-        self._descriptionCollection2 = nuevo_valor
-
-    @imgBanner.setter
-    def imgBanner(self, nuevo_valor):
-        self._imgBanner = nuevo_valor
-
-    @linkManualDetails.setter
-    def linkManualDetails(self, nuevo_valor):
-        self._linkManualDetails = nuevo_valor
-
-    @linkManualInstallation.setter
-    def linkManualInstallation(self, nuevo_valor):
-        self._linkManualInstallation = nuevo_valor
-
-    #Printer
-    def __str__(self):
-        return f'{super().__str__()}, {self._descriptionCollection1}, {self._descriptionCollection2}, ' \
-               f'{self._imgBanner}, {self._linkManualDetails}, {self._linkManualInstallation}'
+# Asociar el evento a la clase Coleccion
+event.listen(Coleccion, 'before_insert', actualizar_cantidad_productos)
+event.listen(Coleccion, 'before_update', actualizar_cantidad_productos)

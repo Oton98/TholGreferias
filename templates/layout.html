@@ -5,44 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thol</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    {% block extra_scripts %}{% endblock %}
 </head>
 
 <body>
+
     <nav class="navbar">
         <div class="navbar-logo">
-            <img src="./img/thol.png" alt="logo_thol">
+            <img src="/static/img/thol.png" alt="logo_thol">
         </div>
 
         <ul class="navbar-items">
-            <a href="./index.html">
+            <a href="{{ url_for('index') }}">
                 <li class="navbar-items-item">Inicio</li>
             </a>
-            <a href="./nuestroDiseño.html">
+            <a href="{{ url_for('nuestroDisenio') }}">
                 <li class="navbar-items-item">Nuestra serie de Diseño</li>
             </a>
-            <a href="./puntosDeVenta.html">
+            <a href="{{ url_for('puntosDeVenta') }}">
                 <li class="navbar-items-item">Puntos de Venta</li>
             </a>
-            <a href="./personalizacion.html">
+            <a href="{{ url_for('personalizacion') }}">
                 <li class="navbar-items-item">Personalización</li>
             </a>
-            <a href="./consulta.html">
+            <a href="{{ url_for('consulta') }}">
                 <li class="navbar-items-item">Consulta</li>
             </a>
             <li class="navbar-items-item-searcher">
                 <input class="searcher" type="search" placeholder="Buscar">
             </li>
         </ul>
-
     </nav>
+
+    <div id="content">{% block content %}{% endblock %}</div>
 
     <footer class="footer2">
 
         <div class="footer2-container">
 
             <div class="footer2-container-logo">
-                <img src="./img/thol3.png" alt="logo3_thol">
+                <img src="/static/img/thol3.png" alt="logo3_thol">
             </div>
 
             <div class="footer2-container-nav">
@@ -78,6 +85,13 @@
                     <h3>Consultas</h3>
                     <ul>
                         <li>Preguntas Frecuentes</li>
+                    </ul>
+                </div>
+
+                <div class="footer2-container-nav-section">
+                    <h3>Admin</h3>
+                    <ul>
+                        <a href="{{url_for('interno')}}"><li>Interno</li></a>
                     </ul>
                 </div>
 
