@@ -18,7 +18,7 @@ export async function traerColleciones() {
 
 export async function traerColeccion(id){
     try{
-        const response = await fetch(`http://127.0.0.1:5000/getCollection/${id}`)
+        const response = await fetch(`http://127.0.0.1:5000/colecciones/getCollection/${id}`)
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');

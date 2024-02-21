@@ -38,18 +38,23 @@ async function modificar(id) {
     
     try {
         // Enviar la solicitud PUT con await
-        const response = await fetch('/updateProduct/' + id, {
+        const response = await fetch('/productos/updateProduct/' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(productoNuevo),
         });
-
+    
+        // Verificar si la respuesta es exitosa
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+    
         // Manejar la respuesta del servidor
         const data = await response.json();
         console.log('Respuesta del servidor:', data);
-
+    
         // Puedes realizar operaciones adicionales aquí si es necesario
     } catch (error) {
         console.error('Error al enviar la solicitud:', error);

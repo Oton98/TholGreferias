@@ -2,7 +2,7 @@ from backend.models.collection import Coleccion
 from backend.models.product import Producto
 from backend.shared import db
 import os
-from flask import jsonify, request, send_from_directory, redirect, url_for, Blueprint, current_app
+from flask import jsonify, request, redirect, url_for, Blueprint
 
 productos_blueprint = Blueprint('productos', __name__)
 
@@ -22,6 +22,16 @@ def add_product():
     es_destacado = request.form.get('isFeaturedProducto') == 'on'
     esta_disponible = request.form.get('isAvailable') == 'on'
     coleccion = request.form.get('collection')
+
+    # Comparo el tipo con su valor en ingles y se lo paso como ruta para que me retorne a la tabla
+
+    ruta_actions = {
+        "grifería monocomando": "faucets",
+        "grifería bimando": "faucets",
+        "grifería freestanding": "faucets",
+        "accesorio": "accesories",
+        "complemento": "addons"
+    }
 
     coleccion_obj = Coleccion.query.filter_by(nombre=coleccion, esta_eliminada=False).first()
 
@@ -45,7 +55,9 @@ def add_product():
         db.session.add(nuevo_producto)
         db.session.commit()
 
-        return redirect(url_for('static', filename='admin/createProduct.html'))
+        ruta = ruta_actions.get(tipo.lower(), 'default')
+        
+        return redirect(url_for(ruta))
     
 #Metodo Get para 1 Producto en particular
 @productos_blueprint.route('/getProduct/<int:id>', methods=['GET'])
@@ -81,13 +93,11 @@ def get_producto(id):
 def delete_producto(id):
     try:
         producto = Producto.query.get(id)
-        print(producto)
         if not producto:
             return jsonify({"error": "Producto no encontrado"}), 404
 
         # Obtén la colección asociada al producto
         coleccion = producto.coleccion
-        print(coleccion)
 
         # Decrementa la columna cantidad_Productos en uno
         if coleccion:
@@ -106,24 +116,16 @@ def delete_producto(id):
         return jsonify({"error": str(e)}), 500
     
 #Redirect al update de Productos
-@productos_blueprint.route('/redirectProduct/<int:id>', methods=['GET'])
+@productos_blueprint.route('/redirectProduct/<int:id>', methods=['GET']) #NO ANDA!
 def get_update_product_page(id):
     try:
         producto = db.session.get(Producto, id)
 
         if not producto:
             return jsonify({"error": "Producto no encontrado"}), 404
-
-        # Obtén la ruta completa del archivo update.html
-        file_path = os.path.join(current_app.blueprints['productos'].root_path, 'static', 'admin')
-
-        # Imprime información de depuración
-        print(f'File Path: {file_path}')
-        print(f'Requested URL: {request.url}')
-
-
-        # Envía el archivo desde el directorio
-        return send_from_directory(file_path, 'updateProduct.html')
+        
+        # Construye la URL para el endpoint 'updateProduct' y redirige
+        return redirect(url_for('updateProduct'))
 
     except Exception as e:
         return jsonify({"error": f"Error en la aplicación: {str(e)}"}), 500

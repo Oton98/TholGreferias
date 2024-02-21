@@ -1,4 +1,5 @@
-import { traerColeccion, traerProducto } from "../traerProducts.js";
+import { traerProducto } from "../traerProducts.js";
+import { traerColeccion } from "../traerCollections.js";
 import { cargarColecciones } from "./cargarColecciones.js";
 
 // Función para obtener el id de la URL
@@ -7,6 +8,8 @@ function getProductIdFromURL() {
     const productId = urlParts[urlParts.length - 1];
     return productId;
 }
+
+localStorage.clear();
 
 // Función para configurar el action del formulario con el id
 async function setFormAction() {

@@ -1,5 +1,4 @@
 async function crearProducto(productName, isAvailable, isFeaturedItem){
-    console.log("enviado")
     const response = await fetch('http://127.0.0.1:5000/products', {
     method: 'POST', // Método HTTP
     headers: {
@@ -15,6 +14,6 @@ async function crearProducto(productName, isAvailable, isFeaturedItem){
 })
 }
 
-
+//esto esta funcionando?
 
 

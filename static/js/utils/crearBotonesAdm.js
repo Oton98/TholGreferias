@@ -1,13 +1,13 @@
 export function crearBotonActualizar(id, ruta) {
     const button = document.createElement('button');
     button.textContent = 'Actualizar';
-    if (ruta === "deleteProduct") {
+    if (ruta === "productos/deleteProduct") {
         button.addEventListener('click', () => {
-            window.location.href = `/redirectProduct/${id}`;
+            window.location.href = `productos/redirectProduct/${id}`;
         });
     } else {
         button.addEventListener('click', () => {
-            window.location.href = `/redirectCollection/${id}`;
+            window.location.href = `colecciones/redirectCollection/${id}`;
         });
     }
     return button;
@@ -19,7 +19,6 @@ export function crearBotonActualizar(id, ruta) {
         button.textContent = 'Borrar';
         button.addEventListener('click', () => {
             if (confirm('¿Estás seguro de que deseas borrar este producto?')) {
-                console.log(id)
                 fetch(`/${ruta}/${id}`, {
                     method: 'DELETE',
                 })

@@ -1,0 +1,19 @@
+backend
+
+-falta endpoint de update colecciones
+-funciona mal el cantidad de productos
+-hacer logica de usuarios
+-crear rutas-blueprint de la seccion del admin (si tengo ganas o ya tengo muchas rutas en el app)
+-un "error" por un put de productos que no modifica nada en la base de datos 
+(mandar los mismos datos no actualiza sino que rompe)
+-hacer la logica de enviar emails a la cuenta de thol.
+
+
+frontend
+-logica de errores del panel admin
+-version mobile
+-armar pantallas de nuestro diseño
+
+
+
+

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="banner">
-        <img src="./img/representatives-img/consultaBanner.png" alt="conusltaBanner">
+        <img src="/static/img/representatives-img/consultaBanner.png" alt="conusltaBanner">
     </div>
 
     <div class="consultation">
@@ -48,14 +48,20 @@
                     <h1>Contáctate con nosotros</h1>
                 </div>
                 <div class="form">
-                    <form action="" class="form-inputs">
-                        <input class="form-inputs-input" type="text" placeholder="Nombre y Apellido">
-                        <input class="form-inputs-input" type="text" placeholder="Asunto">
-                        <input class="form-inputs-input" type="email" placeholder="Correo electrónico">
+                    <form action="#" class="form-inputs">
+                        <div>
+                        <input class="form-inputs-input" type="text" name="name" placeholder="Nombre y Apellido">
+                        <input class="form-inputs-input" type="text" name="topic" placeholder="Asunto">
+                        <input class="form-inputs-input" type="email" name="email" placeholder="Correo electrónico">
                         <div class="form-inputs-box">
-                            <textarea placeholder="Escribir mensaje"></textarea>
+                            <textarea name="message" placeholder="Escribir mensaje"></textarea>
+                        </div>
+                        </div>
+                        <div class="form-button">
+                            <button type="submit" id="btnConsultation">Enviar</button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
 
@@ -81,8 +87,10 @@
         </div>
 
         <div class="consultation-img">
-            <img src="./img/representatives-img/consultaDecoracion.png" alt="grefería">
+            <img src="/static/img/representatives-img/consultaDecoracion.png" alt="grefería">
         </div>
 
     </div>
+
+    <script src="/static/js/index/enviarCorreo.js"></script>
 {% endblock %}

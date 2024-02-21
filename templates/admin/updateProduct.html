@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block content %}
     <section class="control">
 
         <div class="control-panelbox">
@@ -7,7 +8,7 @@
             </div>
             <div class="control-panelbox-form">
 
-                <form class="control-panelbox-form-inputs">
+                <form class="control-panelbox-form-inputs" action="#">
                     <div class="control-panelbox-form-inputs-input">
                         <label for="productName">Nombre de Producto</label>
                         <input type="text" name="productName" id="productName" placeholder="Nombre de Producto">
@@ -62,11 +63,11 @@
                         <label for="isAvailable">¿Está disponible?</label>
                         <input type="checkbox" name="isAvailable" id="isAvailable">
                     </div>
-                    <button type="#" id="updateProduct" >Actualizar Producto</button>
+                    <button type="submit" id="updateProduct" >Actualizar Producto</button>
                 </form>
             </div>
             <div class="control-panelbox-buttons">
-                <a href="/static/admin/interfaceProducts.html"><button>Volver</button></a>
+                <a href="{{ url_for('interfaceProducts') }}"><button>Volver</button></a>
             </div>
         </div>
 
@@ -74,5 +75,5 @@
 
     <script src="/static/js/modificar.js"></script>
     <script type="module" src="/static/js/utils/pasarIDForm.js"></script>
-{% block content %}
+
 {% endblock %}

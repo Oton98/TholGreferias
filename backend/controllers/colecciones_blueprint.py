@@ -18,7 +18,6 @@ def get_update_collection_page(id):
 
         # Obtén la ruta completa del archivo update.html
         file_path = os.path.join(current_app.blueprints['colecciones'].root_path, 'static', 'admin')
-
         # Envía el archivo desde el directorio
         return send_from_directory(file_path, 'updateCollection.html')
 
@@ -53,6 +52,7 @@ def delete_collection(id):
         
         if coleccion:
             coleccion.esta_eliminada = 1
+            Producto.query.filter_by(coleccion_id=id).delete()
 
         db.session.commit()
 
@@ -70,7 +70,6 @@ def delete_collection(id):
 def get_all_collection():
 
     colecciones = Coleccion.query.filter(not_(Coleccion.esta_eliminada)).all()
-    print(colecciones)
     colecciones_json = [
         {
             'nombre': coleccion.nombre,

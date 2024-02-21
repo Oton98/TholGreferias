@@ -7,12 +7,12 @@
             </div>
             <div class="interfaceProducts-box-buttons">
                 <a href="{{ url_for('collections') }}"><button>Colecciones</button></a>
-                <a href="./faucets.html"><button>Griferías</button></a>
-                <a href="./accesories.html"><button>Accesorios</button></a>
-                <a href="./addons.html"><button>Complementos</button></a>
+                <a href="{{ url_for('faucets') }}"><button>Griferías</button></a>
+                <a href="{{ url_for('accesories') }}"><button>Accesorios</button></a>
+                <a href="{{ url_for('addons') }}"><button>Complementos</button></a>
             </div>
             <div class="interfaceProducts-box-unloggin">
-                <button>Cerrar Sesión</button>
+                <a href="/"><button>Cerrar Sesión</button></a>
             </div>
         </div>
     </section>

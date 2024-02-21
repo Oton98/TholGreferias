@@ -11,7 +11,7 @@ export function crearTableCollections(colecciones, selectTBody) {
     for (const coleccion of colecciones) {
 
         var fila = document.createElement("tr");
-        const celdaBotones = crearCeldaBotones(coleccion.id, "deleteCollection");
+        const celdaBotones = crearCeldaBotones(coleccion.id, "colecciones/deleteCollection");
 
 
         for (const clave of ordenColumnasColeccion) {

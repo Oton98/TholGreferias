@@ -7,7 +7,7 @@
                 <h3>Gestor de Productos</h3>
             </div>
             <div class="control-panelbox-form">
-                <form action="/createProduct" class="control-panelbox-form-inputs" method="POST">
+                <form action="/productos/createProduct" class="control-panelbox-form-inputs" method="POST">
 
                     <div class="control-panelbox-form-inputs-input">
                         <label for="productName">Nombre de Producto</label>
@@ -67,14 +67,14 @@
                 </form>
             </div>
             <div class="control-panelbox-buttons">
-                <a href="./interfaceProducts.html"><button>Volver</button></a>
+                <a href="{{ url_for('interfaceProducts') }}"><button>Volver</button></a>
 
             </div>
         </div>
 
     </section>
 
-    <script type="module" src="../js/cargarSelectColecciones.js"></script>
+    <script type="module" src="/static/js/cargarSelectColecciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
