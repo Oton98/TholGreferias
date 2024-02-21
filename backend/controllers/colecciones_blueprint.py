@@ -129,4 +129,4 @@ def add_Coleccion():
     db.session.add(nueva_coleccion)
     db.session.commit()
 
-    return redirect(url_for('createCollection'))
+    return redirect(url_for('admin.createCollection'))

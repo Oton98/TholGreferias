@@ -26,11 +26,11 @@ def add_product():
     # Comparo el tipo con su valor en ingles y se lo paso como ruta para que me retorne a la tabla
 
     ruta_actions = {
-        "grifería monocomando": "faucets",
-        "grifería bimando": "faucets",
-        "grifería freestanding": "faucets",
-        "accesorio": "accesories",
-        "complemento": "addons"
+        "grifería monocomando": "admin.faucets",
+        "grifería bimando": "admin.faucets",
+        "grifería freestanding": "admin.faucets",
+        "accesorio": "admin.accesories",
+        "complemento": "admin.addons"
     }
 
     coleccion_obj = Coleccion.query.filter_by(nombre=coleccion, esta_eliminada=False).first()
