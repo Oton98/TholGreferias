@@ -31,6 +31,14 @@ def personalizacion():
 def consulta():
     return render_template('consulta.html')
 
+@index_blueprint.route('producto/<producto>')
+def productoIndex():
+    return render_template('producto.html')
+
+@index_blueprint.route('nuestroDiseño/coleccion/<int:id>')
+def coleccionIndex(id):
+    return render_template('collection.html', id=id)
+
 @index_blueprint.route('/enviarCorreo', methods=['POST'])
 def enviarCorreo():
     try:

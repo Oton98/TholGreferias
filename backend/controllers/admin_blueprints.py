@@ -6,9 +6,9 @@ admin_blueprint = Blueprint('admin', __name__)
 def interfaceProducts():
     return render_template('admin/interfaceProducts.html')
 
-@admin_blueprint.route('/collections')
-def collections():
-    return render_template('admin/collections.html')
+@admin_blueprint.route('/collection')
+def collection():
+    return render_template('admin/collection.html')
 
 @admin_blueprint.route('/collections/createCollection')
 def createCollection():

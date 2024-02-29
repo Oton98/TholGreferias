@@ -513,4 +513,65 @@ td {
   column-gap: 16px;
 }
 
+.collection-img {
+  height: auto;
+  display: flex;
+}
+.collection-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collection-container {
+  background-color: rgb(237, 237, 237);
+}
+
+.collections-img {
+  height: auto;
+  display: flex;
+}
+.collections-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collections-body {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20vw;
+  background-color: rgb(237, 237, 237);
+}
+.collections-body-title {
+  padding-top: 32px;
+}
+.collections-body-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 24px 0px;
+  gap: 24px;
+}
+.collections-body-container-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.collections-body-container-card-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  padding: 16px;
+  background-color: #F6F6F6;
+}
+.collections-body-container-card-img {
+  max-width: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 /*# sourceMappingURL=style.css.map */

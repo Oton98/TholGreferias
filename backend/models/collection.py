@@ -5,12 +5,14 @@ from backend.shared import db
 class Coleccion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(255), nullable=False)
+    imgRepresentativa = db.Column(db.String(255), nullable=False)
     cantidad_productos = db.Column(db.Integer, default=0)
     esta_eliminada = db.Column(db.Boolean, default=False)
     productos = db.relationship('Producto', back_populates='coleccion')
 
-    def __init__(self, nombre, cantidad_productos=0, esta_eliminada=False): 
+    def __init__(self, nombre, imgRepresentativa, cantidad_productos=0, esta_eliminada=False): 
         self.nombre = nombre
+        self.imgRepresentativa = imgRepresentativa
         self.cantidad_productos = cantidad_productos
         self.esta_eliminada = esta_eliminada
 

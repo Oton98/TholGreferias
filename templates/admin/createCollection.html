@@ -11,15 +11,19 @@
 
                     <div class="control-panelbox-form-inputs-input">
                         <label for="CollectionName">Nombre de Coleccion</label>
-                        <input type="text" name="CollectionName" id="CollectionName" placeholder="Nombre de Producto">
+                        <input type="text" name="CollectionName" id="CollectionName" placeholder="Nombre de Coleccion">
                     </div>
-                    
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="CollectionImg">Imagen de Coleccion</label>
+                        <input type="text" name="CollectionImg" id="CollectionImg" placeholder="Imagen de Coleccion">
+                    </div>
+                              
                     <button type="submit">Crear</button>
 
                 </form>
             </div>
             <div class="control-panelbox-buttons">
-                <a href="{{ url_for('admin.collections') }}"><button>Volver</button></a>
+                <a href="{{ url_for('admin.collection') }}"><button>Volver</button></a>
 
             </div>
         </div>

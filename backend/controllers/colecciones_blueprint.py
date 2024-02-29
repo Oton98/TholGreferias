@@ -73,6 +73,7 @@ def get_all_collection():
     colecciones_json = [
         {
             'nombre': coleccion.nombre,
+            'imgRepresentativa': coleccion.imgRepresentativa,
             'cant_Products': coleccion.cantidad_productos,
             'id': coleccion.id,
             'productos': [
@@ -98,6 +99,7 @@ def get_coleccion(id):
             return jsonify({"error": "Coleccion no encontrado"}), 404
         coleccion_data ={
             'id': coleccion.id,
+            'imgRepresentativa': coleccion.imgRepresentativa,
             'nombre': coleccion.nombre,
             'cantidad_productos': coleccion.cantidad_productos,
             'productos': [
@@ -119,9 +121,11 @@ def get_coleccion(id):
 @colecciones_blueprint.route('/createCollection', methods=['POST'])
 def add_Coleccion():
     nombre = request.form.get('CollectionName')
+    imagen = request.form.get('CollectionImg')
 
     nueva_coleccion = Coleccion(
         nombre=nombre,
+        imgRepresentativa = imagen,
         cantidad_productos=0,
         esta_eliminada=False
     )
