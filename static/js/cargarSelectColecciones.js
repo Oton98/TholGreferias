@@ -1,4 +1,4 @@
-import { cargarColecciones } from "./utils/cargarColecciones.js";
+import { cargarColecciones } from "./index/cargarColecciones.js";
 
 document.addEventListener('DOMContentLoaded', cargarColecciones);
 

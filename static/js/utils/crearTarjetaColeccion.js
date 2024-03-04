@@ -15,7 +15,7 @@ export function crearTarjetaColeccion(coleccion){
     const nombreColeccion = coleccion.nombre;
     const imagenColeccion = coleccion.imgRepresentativa;
     const coleccionId = coleccion.id
-    var linkColeccion = `nuestroDiseño/coleccion/${coleccionId}`;
+    var linkColeccion = `nuestrodisenio/coleccion/${nombreColeccion}`;
 
 
     tituloTarjeta.innerText = nombreColeccion;

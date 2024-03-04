@@ -1,4 +1,45 @@
 {% extends "layout.html" %}
 {% block content %}
+<div>
+    <div class="collection-img">
+        <img src="https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2Ffondo-bano-acogedor-llamadas-zoom.png?alt=media&token=dabde6ac-9081-43ef-8db8-9f67fa461365"
+            alt="banner-diseños">
+    </div>
+    <div class="product-container" id="productContainer">
+        <div class="product-container-title" id="productTitle">
 
+        </div>
+        <div class="product-container-card" id="productCardContainer">
+
+        </div>
+
+    </div>
+
+
+</div>
+{% endblock %}
+
+{% block end_scripts %}
+<script type="module" src="/static/js/index/cargarProducto.js"></script>
+<script type="module">
+    import { cargarProducto } from "/static/js/index/cargarProducto.js";
+    import { traerProducto } from "/static/js/traerProducts.js";
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        const coleccionId = "{{coleccion.id}}";
+        const coleccionNombre = "{{coleccion.nombre}}";
+        // Obtener el atributo 'id' del producto directamente
+        const productoId = "{{ producto.id | default('')}}"; // Ajustar según la estructura real del producto
+        const productos_infoJson = '{{ productos_info | tojson | safe }}'.replace(/[\u0026\t]/g, '');
+        
+        // Intentar parsear la cadena JSON limpiada
+        try {
+            const productoRecuperado = await traerProducto(productoId); // Asegurarse de que 'traerProducto' sea una función asíncrona o devuelva una promesa
+            const productosDeLaColeccion = JSON.parse(productos_infoJson);
+            cargarProducto(coleccionNombre,  productosDeLaColeccion, productoRecuperado);
+        } catch (error) {
+            console.error("Error al parsear la cadena JSON:", error);
+        }
+    });
+</script>
 {% endblock %}

@@ -5,11 +5,30 @@
         alt="banner-diseños">
 </div>
 
-<div class="collection-container">
-    <div class="collection-container-title" id="collectionTitle">
-        
+<div class="collection-container" id="{{coleccion.nombre}}">
+    <div class="collection-container-title" id="containerTitle">
+
     </div>
+    <div class="collection-container-cards" id="containerCards">
+
+    </div>
+
 </div>
 
+
+{% endblock %}
+
+{% block end_scripts %}
+
 <script type="module" src="/static/js/index/cargarColeccion.js"></script>
+<script type="module">
+    import { cargarMenuColeccion } from '/static/js/index/cargarColeccion.js';
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const coleccionId = "{{coleccion.id}}";
+        const coleccionNombre= "{{coleccion.nombre}}";
+        cargarMenuColeccion(coleccionId, coleccionNombre);
+    });
+
+</script>
 {% endblock %}

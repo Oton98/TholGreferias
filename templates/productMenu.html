@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+    <div class="collection-img">
+        <img src="https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2Ffondo-bano-acogedor-llamadas-zoom.png?alt=media&token=dabde6ac-9081-43ef-8db8-9f67fa461365"
+            alt="banner-diseños">
+    </div>
+    <div class="product-type-container" id="productTypeContainer">
+        <div class="product-type-container-title" id="productTypeTitle">
+
+        </div>
+        <div class="product-type-container-cards" id="productTypeCards">
+
+        </div>
+
+    </div>
+
+
+</div>
+{% endblock %}
+
+{% block end_scripts %}
+<script type="module" src="/static/js/index/cargarProductosxTipos.js"></script>
+<script type="module">
+    import { cargarProductoxTipo } from '/static/js/index/cargarProductosxTipos.js';
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const coleccionId = "{{coleccion.id}}";
+        const coleccionNombre = "{{coleccion.nombre}}";
+
+        const productos_info = JSON.parse('{{ productos_info | tojson | safe }}');
+        cargarProductoxTipo(coleccionNombre, productos_info);
+    });
+</script>
+{% endblock %}

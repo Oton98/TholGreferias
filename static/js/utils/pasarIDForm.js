@@ -1,15 +1,7 @@
 import { traerProducto } from "../traerProducts.js";
 import { traerColeccion } from "../traerCollections.js";
-import { cargarColecciones } from "./cargarColecciones.js";
-
-// Función para obtener el id de la URL
-function getProductIdFromURL() {
-    const urlParts = window.location.pathname.split('/');
-    const productId = urlParts[urlParts.length - 1];
-    return productId;
-}
-
-localStorage.clear();
+import { cargarColecciones } from "../index/cargarColecciones.js";
+import { getIdFromURL } from "./capturarIdUrl.js";
 
 // Función para configurar el action del formulario con el id
 async function setFormAction() {
@@ -18,7 +10,7 @@ async function setFormAction() {
         cargarColecciones();
 
         const form = document.querySelector('.control-panelbox-form form');
-        const productId = getProductIdFromURL();
+        const productId = getIdFromURL();
         form.id = productId;
 
         const product = await traerProducto(productId);

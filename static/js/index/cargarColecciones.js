@@ -1,5 +1,5 @@
 import {traerColleciones } from "../traerCollections.js";
-import {selectCollections} from "./constantes.js";
+import {selectCollections} from "../utils/constantes.js";
 
 export async function cargarColecciones() {
     try {

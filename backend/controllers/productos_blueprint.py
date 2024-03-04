@@ -232,3 +232,45 @@ def crear_json_producto(producto):
         'esDestacado': producto.esDestacado,
         'coleccion': producto.coleccion.nombre if producto.coleccion else None
     }
+
+#Metodo Get para Productos de una Coleccion
+@productos_blueprint.route('/getproductsbycollection/<id>', methods=['GET'])    
+def getProductsByCollection(id):
+    try:
+        productos = Producto.query.filter_by(coleccion_id=id).all()
+        productos_json = [{"id": producto.id, "tipo": producto.tipo} for producto in productos]
+
+        return jsonify({"productos": productos_json})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+# Método Get para Productos de una Colección por tipo
+@productos_blueprint.route('/getproductsbytypebycollection/<int:id>/<tipo>', methods=['GET'])
+def get_products_by_type_collection(id, tipo):
+    try:
+        productos = Producto.query.filter_by(coleccion_id=id, tipo=tipo, esta_disponible=True).all()
+
+        # Crear lista de diccionarios para la respuesta JSON
+        productos_json = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen} for producto in productos]
+
+        return jsonify({"productos": productos_json})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+def producto_a_diccionario(producto):
+    return {
+        "id": producto.id,
+        "nombre": producto.nombre,
+        "tipo": producto.tipo,
+        "codigo": producto.codigo,
+        "descripcion": producto.descripcion,
+        "imagen": producto.imagen,
+        "colores": producto.colores,
+        "manual": producto.manual,
+        "medidas": producto.medidas,
+        "estaDisponible": producto.estaDisponible,
+        "esDestacado": producto.esDestacado,
+        "coleccion_id": producto.coleccion_id
+    }
