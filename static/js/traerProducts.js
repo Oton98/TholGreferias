@@ -86,7 +86,24 @@ export async function traerTipoProducto(id){
 
 export async function traerProdctoxTipo(id, tipo){
     try {
-        const response = await fetch(`http://127.0.0.1:5000/productos//getproductsbytypebycollection/${id}/${tipo}`);
+        const response = await fetch(`http://127.0.0.1:5000/productos/getproductsbytypebycollection/${id}/${tipo}`);
+
+        if (!response.ok) {
+            throw new Error('Error de red al obtener datos');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        throw error;
+    }
+}
+
+export async function traerProductoxColeccion(id){
+    try {
+        const response = await fetch(`http://127.0.0.1:5000/productos/getproductsbycollection/${id}`);
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');

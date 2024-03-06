@@ -1,11 +1,12 @@
-import { traerProducto } from "../traerProducts.js";
 import { crearBotonesIndex } from "../utils/crearBotonesIndex.js";
+import { tarjetaProductosRelacionados } from "../cards/crearProductosRelacionados.js"
 
-export function cargarPantallaProducto(productosDeLaColeccion, producto, containerTarjeta){
+
+export function cargarPantallaProducto(productosDeLaColeccion, producto, containerTarjeta) {
 
     let tarjetaImgDiv = document.createElement('div');
-    tarjetaImgDiv.classList= "product-container-card-sectionImage";
-
+    tarjetaImgDiv.classList = "product-container-card-sectionImage";
+ 
     let tarjetaImg = document.createElement('img');
     tarjetaImg.classList = "product-container-card-sectionImage-img";
     tarjetaImg.src = producto.imagen;
@@ -16,38 +17,41 @@ export function cargarPantallaProducto(productosDeLaColeccion, producto, contain
     tarjetaTextDiv.classList = "product-container-card-sectionText";
 
     let productheader = document.createElement('div');
-    productheader.classList ="product-container-card-sectionText-header";
+    productheader.classList = "product-container-card-sectionText-header";
 
     let productTitle = document.createElement('h3');
     productTitle.classList = "product-container-card-sectionText-header-title";
-    productTitle.innerText = "" //aca el titulo
-
-    let productImageColors = document.createElement('img');
-    productImageColors.classList = "product-container-card-sectionText-header-image";
-    productImageColors.src = producto.colores
+    productTitle.innerText = producto.tipo //aca el titulo
 
     productheader.appendChild(productTitle);
-    productheader.appendChild(productImageColors);
-
+    
     let productId = document.createElement('div');
     productId.classList = "product-container-card-sectionText-id";
+    let productIdText = document.createElement('div');
+    productIdText.classList = "product-container-card-sectionText-id-text";
     let productName = document.createElement('h4');
     productName.innerText = producto.nombre;
-    let productCode = document.createElement ('h5');
-    productCode.innerText = producto.codigo;
+    let productCode = document.createElement('h5');
+    productCode.innerText = "CÓDIGO: " + producto.codigo;
+    let productImageColors = document.createElement('img');
+    productImageColors.classList = "product-container-card-sectionText-id-image";
+    productImageColors.src = producto.colores;
 
-    productId.appendChild(productName);
-    productId.appendChild(productCode);
+    productIdText.appendChild(productName);
+    productIdText.appendChild(productCode);
+
+    productId.appendChild(productIdText);
+    productId.appendChild(productImageColors);
 
     let textContainer = document.createElement('div');
-    textContainer.classList = "product-container-card-sectionText-description" ;
+    textContainer.classList = "product-container-card-sectionText-description";
     let text = document.createElement('p');
     text.innerText = producto.descripcion;
 
     textContainer.appendChild(text);
-    
+
     let buttonContainer = document.createElement('div');
-    buttonContainer.classList= "product-container-card-sectionText-buttons";
+    buttonContainer.classList = "product-container-card-sectionText-buttons";
     let buttonMedidas = crearBotonesIndex("Descargar medidas", "button-primary", producto.medidas)
     let buttonManual = crearBotonesIndex("Descagar manual", "button-secondary", producto.manual);
     buttonContainer.appendChild(buttonMedidas);
@@ -61,5 +65,10 @@ export function cargarPantallaProducto(productosDeLaColeccion, producto, contain
     containerTarjeta.appendChild(tarjetaImgDiv);
     containerTarjeta.appendChild(tarjetaTextDiv);
 
-    
+    //productos relacionados
+
+    let contenedorProductosRelacionados = document.getElementById('relationedProductContainer');
+    tarjetaProductosRelacionados(contenedorProductosRelacionados, productosDeLaColeccion, producto.id);
+
+
 }

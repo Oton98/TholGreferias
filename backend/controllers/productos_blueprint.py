@@ -238,7 +238,7 @@ def crear_json_producto(producto):
 def getProductsByCollection(id):
     try:
         productos = Producto.query.filter_by(coleccion_id=id).all()
-        productos_json = [{"id": producto.id, "tipo": producto.tipo} for producto in productos]
+        productos_json = [{"id": producto.id, "tipo": producto.tipo, "nombre": producto.nombre, "imagen": producto.imagen, "coleccion": producto.coleccion_id} for producto in productos]
 
         return jsonify({"productos": productos_json})
 

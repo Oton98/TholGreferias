@@ -56,14 +56,12 @@ def productoMenuTipo(nombre, tipo):
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>/product/<int:id>')
 def productSelection(nombre, tipo, id):
     coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
-    productosColeccionRandom = Producto.query.filter_by(coleccion_id=coleccion.id).all()
-    productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagenProducto": producto.imagen, "productoTipo": producto.tipo} for producto in productosColeccionRandom]
     producto = Producto.query.filter_by(coleccion_id=coleccion.id, tipo=tipo, id=id).first()
     
     if producto is not None:
         # Crear un diccionario que solo contenga el id del producto
         producto_dict = {"id": producto.id}
-        return render_template('product.html', coleccion=coleccion, producto=producto_dict, productos_info=productos_info)
+        return render_template('product.html', coleccion=coleccion, producto=producto_dict)
     else:
         return "Producto no encontrado", 404
 

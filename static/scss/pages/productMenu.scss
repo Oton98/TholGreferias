@@ -1,4 +1,4 @@
-.collection-img {
+.banner-img {
     height: auto;
     display: flex;
 
@@ -9,7 +9,7 @@
     }
 }
 
-.collection-container {
+.product-type-container{
     height: auto;
     display: flex;
     flex-direction: column;
@@ -34,13 +34,13 @@
         }
     }
 
-    &-title {
+    &-title{
         padding: 32px 0;
     }
 
     &-cards{
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         padding: 24px 0px;
         gap: 24px;
 
@@ -67,6 +67,5 @@
                 flex-grow: 1;
             }
         }
-
     }
 }

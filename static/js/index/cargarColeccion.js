@@ -1,5 +1,3 @@
-import { getIdFromURL } from "../utils/capturarIdUrl.js";
-import { traerColeccion } from "../traerCollections.js";
 import { traerTipoProducto } from "../traerProducts.js";
 import { crearTarjetaMenuColecciones } from "../utils/crearMenuColeccion.js";
 

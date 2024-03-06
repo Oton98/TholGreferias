@@ -22,24 +22,27 @@ html {
   height: 100%;
 }
 
+p {
+  font-size: 12px;
+  font-weight: 300;
+}
+
 .button-primary {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 8px;
   background-color: #585858;
   color: #fefeff;
-  min-width: 164px;
-  min-height: 25px;
 }
 
 .button-secondary {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 8px;
   background-color: #888988;
   color: #fefeff;
-  min-width: 164px;
-  min-height: 25px;
 }
 
 .featured-product-cards-card-img img {
@@ -524,7 +527,58 @@ td {
 }
 
 .collection-container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20vw;
   background-color: rgb(237, 237, 237);
+}
+.collection-container-route {
+  padding-top: 32px;
+}
+.collection-container-route-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 8px;
+}
+.collection-container-route-link-icon {
+  font-size: 16px !important;
+}
+.collection-container-route-link-text {
+  font-size: 12px;
+}
+.collection-container-title {
+  padding: 32px 0;
+}
+.collection-container-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 24px 0px;
+  gap: 24px;
+}
+.collection-container-cards-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+.collection-container-cards-card-img {
+  max-width: 100%;
+  min-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin: 0;
+  box-sizing: border-box;
+}
+.collection-container-cards-card-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  padding: 16px;
+  background-color: #F6F6F6;
+  flex-grow: 1;
 }
 
 .collections-img {
@@ -572,6 +626,215 @@ td {
   object-fit: cover;
   margin: 0;
   box-sizing: border-box;
+}
+
+.banner-img {
+  height: auto;
+  display: flex;
+}
+.banner-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-type-container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20vw;
+  background-color: rgb(237, 237, 237);
+}
+.product-type-container-route {
+  padding-top: 32px;
+}
+.product-type-container-route-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 8px;
+}
+.product-type-container-route-link-icon {
+  font-size: 16px !important;
+}
+.product-type-container-route-link-text {
+  font-size: 12px;
+}
+.product-type-container-title {
+  padding: 32px 0;
+}
+.product-type-container-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 24px 0px;
+  gap: 24px;
+}
+.product-type-container-cards-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+.product-type-container-cards-card-img {
+  max-width: 100%;
+  min-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin: 0;
+  box-sizing: border-box;
+}
+.product-type-container-cards-card-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  padding: 16px;
+  background-color: #F6F6F6;
+  flex-grow: 1;
+}
+
+.banner-img {
+  height: auto;
+  display: flex;
+}
+.banner-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20vw;
+  background-color: rgb(237, 237, 237);
+}
+.product-container-route {
+  padding-top: 32px;
+}
+.product-container-route-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 8px;
+}
+.product-container-route-link-icon {
+  font-size: 16px !important;
+}
+.product-container-route-link-text {
+  font-size: 12px;
+}
+.product-container-title {
+  padding: 32px 0;
+}
+.product-container-card {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  border-radius: 2%;
+}
+.product-container-card-sectionImage {
+  width: 50%;
+}
+.product-container-card-sectionImage-img {
+  max-width: 100%;
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  box-sizing: border-box;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.product-container-card-sectionText {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #D9D9D9;
+  padding: 3vw;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.product-container-card-sectionText-header {
+  max-width: 20px;
+  padding-bottom: 12px;
+}
+.product-container-card-sectionText-id {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px #BDBCB8 solid;
+  padding: 12px 0;
+}
+.product-container-card-sectionText-id-text {
+  display: flex;
+  flex-direction: column;
+}
+.product-container-card-sectionText-id-image {
+  max-width: 150px;
+}
+.product-container-card-sectionText-description {
+  border-top: 1px #BDBCB8 solid;
+  padding: 12px 0;
+}
+.product-container-card-sectionText-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 24px;
+  padding-top: 12px;
+}
+.product-container-card-sectionText .button-primary {
+  width: 100%;
+}
+.product-container-card-sectionText .button-secondary {
+  width: 100%;
+}
+
+.relationed-product-container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20vw;
+  padding-bottom: 32px;
+  background-color: rgb(237, 237, 237);
+}
+.relationed-product-container-title {
+  padding: 32px 0;
+}
+.relationed-product-container-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 24px 0px;
+  gap: 24px;
+  max-width: 100%;
+}
+.relationed-product-container-cards-card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.relationed-product-container-cards-card-img {
+  display: flex;
+  max-width: 100%;
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  box-sizing: border-box;
+  min-height: 80%;
+}
+.relationed-product-container-cards-card-title {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background-color: #F6F6F6;
+  flex-grow: 1;
+  min-height: 40px;
 }
 
 /*# sourceMappingURL=style.css.map */
