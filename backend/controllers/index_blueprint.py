@@ -50,7 +50,7 @@ def coleccionIndex(nombre):
 def productoMenuTipo(nombre, tipo):
     coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
     productos = Producto.query.filter_by(coleccion_id=coleccion.id, tipo=tipo).all()
-    productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagenProducto": producto.imagen, "productoTipo": producto.tipo} for producto in productos]
+    productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "tipo": producto.tipo} for producto in productos]
     return render_template('productMenu.html', coleccion=coleccion, productos_info=productos_info)
 
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>/product/<int:id>')

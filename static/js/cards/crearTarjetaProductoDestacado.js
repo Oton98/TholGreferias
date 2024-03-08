@@ -1,22 +1,22 @@
-export function crearTarjetasProductos(producto, containerTarjetas, coleccionNombre){
+export function crearTarjetasProductosDestacados(producto, containerTarjetas, coleccionNombre){
 
     let tarjeta = document.createElement('article');
-    tarjeta.classList = "product-container-cards-card";
+    tarjeta.classList = "featured-products-container-cards-card";
 
     let img = document.createElement('img');
-    img.classList = "product-container-cards-card-img";
+    img.classList = "featured-products-container-cards-card-img";
 
     let textDiv = document.createElement('div');
-    textDiv.classList = "product-container-cards-card-text";
+    textDiv.classList = "featured-products-container-cards-card-text";
     let title = document.createElement('h4');
-    title.classList = "product-container-cards-card-text-title";
+    title.classList = "featured-products-container-cards-card-text-title";
     let url = document.createElement('a');
-    url.classList = "product-container-cards-card-text-url";
+    url.classList = "featured-products-container-cards-card-text-url";
 
     let urlProducto = `/nuestrodisenio/coleccion/${coleccionNombre}/productmenu/${producto.tipo}/product/${producto.id}`;
 
     img.src = producto.imagen;
-    title.innerText = producto.nombre;
+    title.innerText = `${coleccionNombre} ${producto.nombre}`;
     url.href = urlProducto;
     url.innerText = "Ver detalles del producto  >";
     

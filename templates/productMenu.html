@@ -10,14 +10,14 @@
         <img src="https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2Ffondo-bano-acogedor-llamadas-zoom.png?alt=media&token=dabde6ac-9081-43ef-8db8-9f67fa461365"
             alt="banner-diseños">
     </div>
-    <div class="product-type-container" id="productTypeContainer">
-        <div class="product-type-container-route" id="productTypeRoute">
+    <div class="product-container" id="productContainer">
+        <div class="product-container-route" id="productRoute">
 
         </div>
-        <div class="product-type-container-title" id="productTypeTitle">
+        <div class="product-container-title" id="productTitle">
 
         </div>
-        <div class="product-type-container-cards" id="productTypeCards">
+        <div class="product-container-cards" id="productCards">
 
         </div>
 
@@ -31,12 +31,12 @@
 <script type="module" src="/static/js/index/cargarProductosxTipos.js"></script>
 <script type="module">
     import { cargarProductoxTipo } from '/static/js/index/cargarProductosxTipos.js';
-    import { crearRutaProductoMenuVolver} from '/static/js/returnRoutes/volverProductosMenu.js'
+    import { crearRutaProductoMenuVolver} from '/static/js/returnRoutes/volverProductosMenu.js';
 
     window.addEventListener('DOMContentLoaded', () => {
         const coleccionId = "{{coleccion.id}}";
         const coleccionNombre = "{{coleccion.nombre}}";
-
+        
         const productos_info = JSON.parse('{{ productos_info | tojson | safe }}');
         crearRutaProductoMenuVolver(coleccionNombre);
         cargarProductoxTipo(coleccionNombre, productos_info);

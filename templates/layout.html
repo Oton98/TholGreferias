@@ -44,61 +44,51 @@
 
     <div id="content">{% block content %}{% endblock %}</div>
 
-    <footer class="footer2">
+    <footer class="footer">
 
-        <div class="footer2-container">
+        <div class="footer-container">
 
-            <div class="footer2-container-logo">
-                <img src="/static/img/thol3.png" alt="logo3_thol">
+            <div class="footer-container-nav">
+                <div class="footer-container-nav-logo">
+                    <img src="/static/img/thol3.png" alt="logo3_thol">
+                </div>
             </div>
 
-            <div class="footer2-container-nav">
-                <div class="footer2-container-nav-section">
-                    <h3>Inicio</h3>
+            <div class="footer-container-nav">
 
-                </div>
-
-                <div class="footer2-container-nav-section">
-                    <h3>Nuestra serie de diseño</h3>
-                    <ul>
+                <div class="footer-container-nav-section">
+                    <h3>Productos y Servicios</h3>
+                    <ul class="footer-container-nav-section-list">
                         <li>Colecciones</li>
                         <li>Accesorios</li>
                         <li>Complementos</li>
-                        <li>Newsletter</li>
+                        <li>Personalización</li>
                     </ul>
                 </div>
 
-                <div class="footer2-container-nav-section">
-                    <h3>Puntos de Venta</h3>
-                    <ul>
-                        <li>Mapa</li>
+                <div class="footer-container-nav-section">
+                    <h3>Información</h3>
+                    <ul class="footer-container-nav-section-list">
+                        <li>Preguntas Frecuentes</li>
+                        <li>Consultar</li>
                         <li>Puntos de Venta</li>
                     </ul>
                 </div>
 
-                <div class="footer2-container-nav-section">
-                    <h3>Personalización</h3>
-
-                </div>
-
-                <div class="footer2-container-nav-section">
-                    <h3>Consultas</h3>
-                    <ul>
-                        <li>Preguntas Frecuentes</li>
+                <div class="footer-container-nav-section">
+                    <h3>Redes Sociales</h3>
+                    <ul class="footer-container-nav-section-socialmedia">
+                        <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href=""><i class="fa-brands fa-facebook"></i></i></a>
+                        <a href=""><i class="fa-brands fa-youtube"></i></i></a>
                     </ul>
-                </div>
 
-                <div class="footer2-container-nav-section">
-                    <h3>Admin</h3>
-                    <ul>
-                        <a href="{{url_for('index.interno')}}"><li>Interno</li></a>
-                    </ul>
                 </div>
 
             </div>
         </div>
 
-        <div class="footer2-copyright">
+        <div class="footer-copyright">
             Thol Griferías Todos los derechos reservados 2023
         </div>
 
@@ -106,7 +96,10 @@
 
 </body>
 
+<script src="https://kit.fontawesome.com/f097d0c634.js" crossorigin="anonymous"></script>
+
 {% block end_scripts %}
+
 {% endblock %}
 
 </html>

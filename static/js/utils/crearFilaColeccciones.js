@@ -1,5 +1,5 @@
 import { crearTableData } from "./crearTd.js"
-import { crearCeldaBotones } from "./crearTd.js";
+import { crearCeldaBotones, crearTDimagen } from "./crearTd.js";
 
 const ordenColumnasColeccion = [
     'nombre',
@@ -12,7 +12,9 @@ export function crearTableCollections(colecciones, selectTBody) {
     for (const coleccion of colecciones) {
 
         var fila = document.createElement("tr");
+        fila.classList = "table-tbody-tr";
         const celdaBotones = crearCeldaBotones(coleccion.id, "colecciones/deleteCollection");
+
         for (const clave of ordenColumnasColeccion) {
             if (clave !== 'id') {
                 const valor = coleccion[clave];
@@ -20,6 +22,8 @@ export function crearTableCollections(colecciones, selectTBody) {
                 if (clave === 'productos' && Array.isArray(valor) && valor.length > 0) {
                     const nombresProductos = valor.map(productoInterno => productoInterno.nombre_producto).join(', ');
                     crearTableData(nombresProductos, fila);
+                } else if (clave === 'imgRepresentativa') {
+                    crearTDimagen(valor, fila);
                 } else {
                     crearTableData(valor, fila);
                 }

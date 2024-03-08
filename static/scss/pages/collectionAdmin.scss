@@ -7,9 +7,10 @@
     column-gap: 32px;
     color: white;
     background-color: black;
+    padding: 0 10vw;
 
     &-tablebox {
-        width: 500px;
+        width: 100%;
         overflow-x: auto;
         /* Agregar desplazamiento horizontal */
     }

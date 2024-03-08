@@ -1,10 +1,10 @@
 export function crearRutaProductoMenuVolver(coleccionNombre) {
-    let contenedor = document.getElementById('productTypeRoute');
-
+    let contenedor = document.getElementById('productRoute');
+    
     let linkAtras = document.createElement('a');
-    linkAtras.classList = "product-type-container-route-link";
+    linkAtras.classList = "product-container-route-link";
     let textAtras = document.createElement('p');
-    textAtras.classList = "product-type-container-route-text"
+    textAtras.classList = "product-container-route-text"
 
     let iconBackTag = document.createElement('span');
     iconBackTag.classList = "material-symbols-outlined product-container-route-link-icon ";
@@ -21,5 +21,5 @@ export function crearRutaProductoMenuVolver(coleccionNombre) {
     // Falta crear link completo
 
     contenedor.appendChild(linkAtras);
-    contenedor.appendChild(linkCompleto);
+    // contenedor.appendChild(linkCompleto);
 }

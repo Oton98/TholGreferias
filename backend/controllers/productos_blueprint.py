@@ -23,41 +23,48 @@ def add_product():
     esta_disponible = request.form.get('isAvailable') == 'on'
     coleccion = request.form.get('collection')
 
-    # Comparo el tipo con su valor en ingles y se lo paso como ruta para que me retorne a la tabla
+    cantidadProductoDestacado = Producto.query.filter_by(esDestacado=True).count()
 
-    ruta_actions = {
-        "grifería monocomando": "admin.faucets",
-        "grifería bimando": "admin.faucets",
-        "grifería freestanding": "admin.faucets",
-        "accesorio": "admin.accesories",
-        "complemento": "admin.addons"
-    }
-
-    coleccion_obj = Coleccion.query.filter_by(nombre=coleccion, esta_eliminada=False).first()
-
-    if coleccion_obj is None:
-        return "La colección especificada no existe", 404
+    if cantidadProductoDestacado >= 3 and es_destacado:
+        return ('error: cantidad maxima de productos destacados superada')
     else:
-        nuevo_producto = Producto(
-            nombre=nombre,
-            tipo=tipo,
-            codigo=codigo,
-            descripcion=descripcion,
-            imagen=imgProducto,
-            colores=imgColores,
-            manual=linkManualInstalacion,
-            medidas=linkManualDetalles,
-            esta_disponible=es_destacado,
-            es_destacado=esta_disponible,
-            coleccion=coleccion_obj 
-        )
+    
+        # Comparo el tipo con su valor en ingles y se lo paso como ruta para que me retorne a la tabla
 
-        db.session.add(nuevo_producto)
-        db.session.commit()
+        ruta_actions = {
+            "grifería monocomando": "admin.faucets",
+            "grifería bimando": "admin.faucets",
+            "grifería freestanding": "admin.faucets",
+            "accesorio": "admin.accesories",
+            "complemento": "admin.addons"
+        }
 
-        ruta = ruta_actions.get(tipo.lower(), 'default')
-        
-        return redirect(url_for(ruta))
+        coleccion_obj = Coleccion.query.filter_by(nombre=coleccion, esta_eliminada=False).first()
+
+
+        if coleccion_obj is None:
+            return "La colección especificada no existe", 404
+        else:
+            nuevo_producto = Producto(
+                nombre=nombre,
+                tipo=tipo,
+                codigo=codigo,
+                descripcion=descripcion,
+                imagen=imgProducto,
+                colores=imgColores,
+                manual=linkManualInstalacion,
+                medidas=linkManualDetalles,
+                esta_disponible=esta_disponible,
+                es_destacado=es_destacado,
+                coleccion=coleccion_obj 
+            )
+
+            db.session.add(nuevo_producto)
+            db.session.commit()
+
+            ruta = ruta_actions.get(tipo.lower(), 'default')
+            
+            return redirect(url_for(ruta))
     
 #Metodo Get para 1 Producto en particular
 @productos_blueprint.route('/getProduct/<int:id>', methods=['GET'])
@@ -212,6 +219,15 @@ def get_all_addons():
 @productos_blueprint.route('/getAllfaucets', methods=['GET'])    
 def get_all_faucets():
     productos = Producto.query.filter(Producto.tipo.like('Grifería%')).all()
+
+    productos_json = [crear_json_producto(producto) for producto in productos]
+
+    return jsonify(productos_json)
+
+#Metodo Get para Productos Destacados
+@productos_blueprint.route('/getallfeatureproducts', methods=['GET'])    
+def get_all_featured_products():
+    productos = Producto.query.filter_by(esDestacado = True).all()
 
     productos_json = [crear_json_producto(producto) for producto in productos]
 

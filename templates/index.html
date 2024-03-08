@@ -2,12 +2,10 @@
 {% block content %}
     <section class="intro">
         <div class="intro-container">
-            <div class="intro-container-logo">
-                <img src="/static/img/thol2.png" alt="logo2_thol">
-            </div>
             <div class="intro-container-text">
-                <div class="intro-container-text-title">
-                    <h1>Elige, personaliza, disfruta: <br> Nuestras Griferías, tu elección.</h1>
+                <div class="intro-container-text-title" id="indexTitulo">
+                    <p class="intro-container-text-title-sub">VENTA A DISTRIBUIDORES</p>
+                    <h1 class="intro-container-text-title-main">Grifería de diseño, <br> de máxima calidad.</h1>
                 </div>
                 <div class="intro-container-text-buttons">
                     <a href="{{ url_for('index.nuestroDisenio') }}"><button class="button-primary">Ver Serie de Diseño</button></a>
@@ -17,53 +15,29 @@
         </div>
     </section>
 
-    <section class="featured-product">
-        <div class="featured-product-title">
+    <section class="featured-products">
+        <div class="featured-products-title">
             <h2>Productos Destacados</h2>
         </div>
-        <div class="featured-product-cards">
-            <div class="featured-product-cards-card">
-                <div class="featured-product-cards-card-img">
-                    <img src="/static/img/Imagenes -20231127T163241Z-001/Imagenes/Monocomando/01_A.jpg" alt="canilla">
-                </div>
-                <div class="featured-product-cards-card-text">
-                    <h3>L20</h3>
-                    <p>ver la coleccion completa ></p>
-                </div>
+        <div class="featured-products-product-container" id="productContainer">
+            <div class="featured-products-container-cards" id="featuredProducts">
+    
             </div>
-            <div class="featured-product-cards-card">
-                <div class="featured-product-cards-card-img">
-                    <img src="/static/img/Imagenes -20231127T163241Z-001/Imagenes/Bimando/07_A.jpg" alt="canilla">
-                </div>
-                <div class="featured-product-cards-card-text">
-                    <h3>L20</h3>
-                    <p>ver la coleccion completa ></p>
-                </div>
-            </div>
-            <div class="featured-product-cards-card">
-                <div class="featured-product-cards-card-img">
-                    <img src="/static/img/Imagenes -20231127T163241Z-001/Imagenes/Bimando/19.png" alt="canilla">
-                </div>
-                <div class="featured-product-cards-card-text">
-                    <h3>L20</h3>
-                    <p>ver la coleccion completa ></p>
-                </div>
-            </div>
+    
         </div>
 
     </section>
-
-
 
     <section class="customized-products">
         <div class="customized-products-title">
             <h1><strong>Productos personalizados</strong><br> y realizados a tu medida</h1>
         </div>
-        <div>
-            <img src="/static/img/Imagenes -20231127T163241Z-001/Imagenes/Estudios arq/image 23.png"
-                alt="imagen-presentacion">
+        <div  class="customized-products-videocontainer">
+            <video class="customized-products-videocontainer-video" id="videoThol" src="https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/Thol%20griferias%20v3.mp4?alt=media&token=979d0d8d-a4da-4028-b7f8-615a94036441"
+                alt="video-presentacion">
         </div>
-        <div class="customized-products-logos">
+        
+        <!-- <div class="customized-products-logos">
             <div class="customized-products-logos-logo">
                 <img src="/static/img/icons/pencil_4871485.png" alt="precision">
                 <p>Precisión</p>
@@ -80,7 +54,7 @@
                 <img src="/static/img/icons/spray-gun_3665698 1.png" alt="precision">
                 <p>Acabados Exclusivos</p>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <section class="partnership">
@@ -97,4 +71,10 @@
         </div>
 
     </section>
+{% endblock %}
+
+{% block end_scripts %}
+<script type="module" src="/static/js/index/cargarProductosDestacados.js"></script>
+<script type="module" src="/static/js/animations/animacionIndex.js"></script>
+<script src="/static/js/index/video.js"></script>
 {% endblock %}

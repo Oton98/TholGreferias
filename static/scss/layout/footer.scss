@@ -1,83 +1,52 @@
-.footer{
-    background-color: $color-quinary;
+.footer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &-container{
-
-        display: flex;
-        flex-direction: row;
-        justify-content: baseline;
-        flex-wrap: wrap;
-        column-gap: 64px;
-        
-
-        &-logo{
-
-        }
-
-        &-nav{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            column-gap: 48px;
-            flex-wrap: wrap;
-            padding: 24px 0px;
-            &-section{
-                display: flex;
-                flex-direction: column;
-                row-gap: 8px;
-            }
-        }
-    }
-
-    &-copyright{
-        padding-bottom: 24px;;
-    }
-
-}
-
-.footer2{
-
-    background-color: $color-novenary;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    row-gap: 16px;
+    background-color: #706f6f;
+    
     color: white;
 
-    &-container{
-
+    &-container {
         display: flex;
         flex-direction: row;
-        justify-content: baseline;
-        flex-wrap: wrap;
-        column-gap: 64px;
+        justify-content: space-between;
+        padding: 32px 20vw;
         
-
-        &-logo{
-            padding-top: 32px;
-            width: auto;
+        &-logo {
+           max-width: 150px; 
         }
 
-        &-nav{
+        &-nav {
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
-            column-gap: 48px;
-            flex-wrap: wrap;
-            padding: 24px 0px;
+            column-gap: 2vw;
+
             &-section{
                 display: flex;
                 flex-direction: column;
-                row-gap: 8px;
+                row-gap: 12px;
+
+                &-list{
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 8px;
+                }
+
+                &-socialmedia{
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 8px;
+                }
             }
+
         }
     }
 
     &-copyright{
-        padding-bottom: 24px;;
+        display: flex;
+        justify-content: center;
+        border-top: 2px white solid;
+        padding: 16px 0;
     }
+
 }

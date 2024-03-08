@@ -1,7 +1,9 @@
 .intro {
     height: 80vh;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/estudio-clich.appspot.com/o/thol%2Fintro-background.png?alt=media&token=b286ae21-aca9-41f0-a75b-1ef9a34ee022");
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/Component%202.png?alt=media&token=ead86fa9-1db2-4a8c-b8b5-f7e38531f530");
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     color: $color-primary;
 
     &-container {
@@ -9,19 +11,32 @@
         display: flex;
         flex-direction: column;
         row-gap: 24px;
-        padding-top: 128px;
-        padding-left: 128px;
-        width: 400px;
-
-        &-logo {}
+        width: auto;
 
         &-text {
 
             display: flex;
             flex-direction: column;
             row-gap: 24px;
+            padding: 128px 20vw;
+            opacity: 0;
+            transition: opacity 2.5s ease;
 
-            &-title {}
+            &-title {
+                display: flex;
+                flex-direction: column;
+                row-gap: 16px;
+
+                &-sub {
+                    font-size: 16px;
+                    font-weight: 300;
+                }
+
+                &-main {
+                    font-size: 50px;
+                    font-weight: bold;
+                }
+            }
 
             &-buttons {
                 display: flex;
@@ -33,40 +48,75 @@
     }
 }
 
-.featured-product{
-    margin: 30px 20vh;
-    display: flex;
-    flex-direction: column;
+.featured-products {
 
-    &-title{
-        margin: 40px 0px;
+    background-color: rgb(237, 237, 237);
+    padding: 64px 20vw;
+
+    &-title {
+        padding: 24px 0;
     }
 
-    &-cards{
+    &-container {
 
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        height: 30vh;
-        margin-bottom: 200px;
-        
-        
+        &-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+
+            &-card {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                flex-grow: 1;
+
+                &-img {
+                    max-width: 100%;
+                    min-width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+
+                &-text {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 8px;
+                    padding: 16px;
+                    background-color: #DBDBDB;
+                    flex-grow: 1;
+                }
+            }
+        }
     }
+
 }
 
 .customized-products {
     background-color: $color-septenary;
     color: #ffffff;
-    
+    padding: 64px 0;
+
     &-title {
-        padding: 30px 20vh;
+        padding: 0 20vw 64px 20vw;
     }
 
-    & > div:nth-child(2) { 
+    &-videocontainer {
+        display: flex;
+
+        &-video {
+            width: 100%;
+        }
+    }
+
+
+
+    &>div:nth-child(2) {
         img {
             width: 100%;
             height: 70vh;
-            object-fit: cover; 
+            object-fit: cover;
         }
     }
 
@@ -75,7 +125,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 30px 20vh;
+        padding: 30px 20vw;
 
         &-logo {
             display: flex;
@@ -94,23 +144,30 @@
     justify-content: center;
 
 
-    &-text{
+    &-text {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        padding: 48px;
+        padding: 48px 48px 48px 20vw;
         width: 50%;
         row-gap: 24px;
     }
 
 
     &-photo {
-        width: 60%; /* Ocupa el 50% del ancho del contenedor padre */
+        width: 60%;
+
+        /* Ocupa el 50% del ancho del contenedor padre */
         img {
             width: 100%;
-            height:100%; /* Mantiene la proporción original de la imagen */
+            height: 100%;
+            /* Mantiene la proporción original de la imagen */
             object-fit: cover;
         }
     }
+}
+
+.loaded {
+    opacity: 1;
 }
