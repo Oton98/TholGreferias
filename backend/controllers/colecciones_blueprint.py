@@ -74,7 +74,7 @@ def get_all_collection():
         {
             'nombre': coleccion.nombre,
             'imgRepresentativa': coleccion.imgRepresentativa,
-            'cant_Products': coleccion.cantidad_productos,
+            'cant_Products': len(coleccion.productos),
             'id': coleccion.id,
             'productos': [
                 {

@@ -14,6 +14,12 @@ frontend
 -version mobile
 -armar pantallas de nuestro diseño
 
+nuestra serie de diseño -> falta hacer las modificaciones de logica.
+pestaña de inicio -> hecha (falta mobile)
+pestaña de consulta -> anda todo excepto por la animacion. (falta mobile)
+pestala de personalizacion -> hecha. (falta mobile)
+puntos de venta -> necesito ayuda. (falta mobile)
+falta links del footer
 
 
 

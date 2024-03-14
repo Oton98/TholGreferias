@@ -1,4 +1,4 @@
-export function crearTarjetaColeccion(coleccion){
+export function crearTarjetaColeccion(tipo, link){
 
     var contenedor = document.createElement('article');
     var divTarjetConentedor = document.createElement('div');
@@ -12,16 +12,14 @@ export function crearTarjetaColeccion(coleccion){
     tituloTarjeta.classList = "collections-body-container-card-text-title"
     linkTarjeta.classList = "collections-body-container-card-text-link"
 
-    const nombreColeccion = coleccion.nombre;
-    const imagenColeccion = coleccion.imgRepresentativa;
-    const coleccionId = coleccion.id
-    var linkColeccion = `nuestrodisenio/coleccion/${nombreColeccion}`;
-
+    const nombreColeccion = tipo;
+    const imagenColeccion = link;
+    var linkColeccion = `nuestrodisenio/coleccion/${tipo}`;
 
     tituloTarjeta.innerText = nombreColeccion;
     imgTarjeta.src = imagenColeccion;
     linkTarjeta.href = linkColeccion;
-    linkTarjeta.innerText = "Ver la colección completa >"
+    linkTarjeta.innerText = "Ver categoría >"
 
     divTarjetConentedor.appendChild(tituloTarjeta);
     divTarjetConentedor.appendChild(linkTarjeta);

@@ -1,41 +1,47 @@
-.consultation-menu-form {
-    .form {
-        background-color: $color-tricenary;
+.consultation-menu-contact {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+
+    &-subtitle {}
+
+    &-form {
+        padding: 32px 5vw;
+        background-color: #706F6F;
+        border-radius: 5px;
+        color: white;
 
         &-inputs {
             display: flex;
             flex-direction: column;
-            padding: 24px 32px;
-            row-gap: 16px;
-
-            &-input,
-            &-box textarea {
-                background-color: transparent;
-                color: $color-primary;
-                padding-bottom: 8px;
-
-                &::placeholder {
-                    color: $color-quinary;
-                }
-            }
+            row-gap: 8px;
 
             &-input {
-                border-bottom: 2px solid $color-quinary;
                 padding: 8px;
+                background-color: #706F6F;
+                border-bottom: 1px solid #BDBCB8;
             }
 
-            &-box {
-                border: 2px solid $color-quinary;
+            &-box{
+                margin: 8px 0;
+                border: 1px solid #BDBCB8;
                 padding: 8px;
-
-                textarea {
-                    height: 20vh; // Ajusta según sea necesario
-                    resize: none;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                }
+                border-radius: 5px;
+                background-color: #706F6F;
             }
+
+            input::placeholder,
+            textarea::placeholder {
+                color: white;
+            }
+
         }
+    }
+
+    &-buttons{
+        display: flex;
+        flex-direction: row;
+        column-gap: 16px;
     }
 }
 

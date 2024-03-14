@@ -92,14 +92,18 @@
             Thol Griferías Todos los derechos reservados 2023
         </div>
 
+        <div class="login-form-buttons">
+            <a href="{{url_for( 'index.interno' )}}"><button type="button"
+                    class="login-form-button">Ingresar</button></a>
+            <a href="/"><button class="login-form-button">Admin</button></a>
+        </div>
+
     </footer>
 
+    {% block end_scripts %}
+
+    {% endblock %}
+    <script src="https://kit.fontawesome.com/f097d0c634.js" crossorigin="anonymous"></script>
 </body>
-
-<script src="https://kit.fontawesome.com/f097d0c634.js" crossorigin="anonymous"></script>
-
-{% block end_scripts %}
-
-{% endblock %}
 
 </html>

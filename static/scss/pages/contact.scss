@@ -1,11 +1,13 @@
 .consultation {
     display: flex;
     flex-direction: row;
-    padding-left: 10%;
-    margin-top: 64px;
+    padding: 0 0 0 20vw;
     column-gap: 24px;
+    background-color: #ededed;
 
     &-menu {
+
+        padding: 5vw 0;
 
         &-title {
             padding-bottom: 40px;
@@ -17,61 +19,48 @@
             flex-direction: column;
             row-gap: 16px;
 
-
             &-matter {
                 display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
+                flex-direction: column;
                 column-gap: 30%;
-                background-color: $color-undenary;
-                padding: 16px 16px;
-            }
-        }
 
-        &-form {
-
-            &-subtitle {
-
-                padding: 40px 0px;
-
-            }
-        }
-
-        &-contacts {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            padding: 32px 0px;
-
-            &-buttons {
-                display: flex;
-                justify-content: center;
-                column-gap: 16px;
-                border: 2px solid $color-quinary;
-                flex: 0 40%;
-
-
-                .button-link {
-                    text-decoration: none;
-                    color: inherit;
+                &-question {
                     display: flex;
+                    box-sizing: border-box;
+                    flex-direction: row;
+                    justify-content: space-between;
                     align-items: center;
                     width: 100%;
-                    height: 100%;
+                    background-color: $color-undenary;
+                    padding: 16px;
+                }
 
-                    button {
-                        width: 100%;
-                        height: 100%;
-                        border: none;
-                        background: none;
-                        cursor: pointer;
-                        padding: 8px;
-                        font-size: 16px;
-                    }
+                &-answer {
+                    width: 100%;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    transition: max-height 1s ease-in-out, opacity 1s ease-in-out;
+                    max-height: 0;
+                    opacity: 0;
+                    background-color: white;
+                    padding: 16px;
                 }
             }
         }
     }
+  
+    &-img {
+        width: 100%;
 
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+}
+
+.mostrar-respuesta {
+    max-height: 500px;
+    opacity: 1;
 }

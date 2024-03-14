@@ -1,32 +1,32 @@
-import { traerTipoProducto } from "../traerProducts.js";
-import { crearTarjetaMenuColecciones } from "../utils/crearMenuColeccion.js";
-
-export async function cargarMenuColeccion(id, coleccionNombre) {
+export async function cargarMenuColeccion(nombre, imagen, tipo) {
     
-    const productosTipo = await traerTipoProducto(id);
-    const productosTipoArray = productosTipo.productos;
-
-    let containerTitulo = document.getElementById('containerTitle');
     let containerTarjetas = document.getElementById('containerCards');
-
-    let titulo = document.createElement('h2');
-    titulo.classList = "collection-container-title-text";
-    titulo.innerText = coleccionNombre;
+    let tarjeta = document.createElement('div');
+    let imagenTarjeta = document.createElement('img');
+    let tituloTarjeta = document.createElement('p');
+    let aTag = document.createElement('a');
+    let aTag2 = document.createElement('a');
+    let textDiv = document.createElement('div');
+    let textTarjeta = document.createElement('p');
+    let link = `/nuestrodisenio/coleccion/${nombre}/productmenu/${tipo}`;1
     
-    containerTitulo.appendChild(titulo);
+    tarjeta.classList = "collection-container-cards-card";
+    imagenTarjeta.classList = "collection-container-cards-card-img";
+    textDiv.classList = "collection-container-cards-card-text";
+
+    imagenTarjeta.src = imagen
+    tituloTarjeta.innerText = nombre;
+    textTarjeta.innerText = "Ver la colección completa >"
+    aTag.href = link;
+    aTag2.href = link;
+
+    textDiv.appendChild(tituloTarjeta);
+    textDiv.appendChild(textTarjeta);
+    aTag.appendChild(textDiv);
+    aTag2.appendChild(imagenTarjeta)
     
-    // Utilizar un conjunto para almacenar tipos únicos
-    const tiposUnicos = new Set();
-
-    // Filtrar el array y agregar tipos únicos al conjunto
-    productosTipoArray.forEach(producto => {
-        tiposUnicos.add(producto.tipo);
-    });
-
-    // Iterar sobre tipos únicos y llamar a la función
-    tiposUnicos.forEach(tipo => {
-        crearTarjetaMenuColecciones(tipo, containerTarjetas, coleccionNombre);
-        console.log(tipo)
-    });
+    tarjeta.appendChild(aTag2);
+    tarjeta.appendChild(aTag);
+    containerTarjetas.appendChild(tarjeta);
 
 }

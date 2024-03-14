@@ -20,4 +20,28 @@
     // min-height: 25px;
 }
 
+.consultation-menu-contact-buttons-btn {
 
+    border: 1px solid #BDBCB8;
+    padding: 8px;
+    width: 50%;
+    font-size: 18px;
+    transition: all 0.5s ease;
+
+    &-link {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        i{
+            font-size: 32px;
+            text-align: center;
+        }
+
+    }
+}
+
+.consultation-menu-contact-buttons-btn:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

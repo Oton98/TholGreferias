@@ -18,6 +18,8 @@ app.register_blueprint(productos_blueprint, url_prefix='/productos')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:firewall15@localhost/thol'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = False
+
 
 db.init_app(app)
 

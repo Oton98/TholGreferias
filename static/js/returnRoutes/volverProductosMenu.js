@@ -1,4 +1,4 @@
-export function crearRutaProductoMenuVolver(coleccionNombre) {
+export function crearRutaProductoMenuVolver(tipo) {
     let contenedor = document.getElementById('productRoute');
     
     let linkAtras = document.createElement('a');
@@ -14,7 +14,7 @@ export function crearRutaProductoMenuVolver(coleccionNombre) {
 
     textAtras.appendChild(linkAtras);
     textAtras.innerText = "Volver";
-    linkAtras.href = `/nuestrodisenio/coleccion/${coleccionNombre}`;
+    linkAtras.href = `/nuestrodisenio/coleccion/${tipo}`;
     linkAtras.appendChild(textAtras);
 
     let linkCompleto = document.createElement('a');

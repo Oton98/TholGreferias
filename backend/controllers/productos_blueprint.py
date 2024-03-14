@@ -105,11 +105,14 @@ def delete_producto(id):
 
         # Obtén la colección asociada al producto
         coleccion = producto.coleccion
-
+        print(coleccion)
         # Decrementa la columna cantidad_Productos en uno
         if coleccion:
+            print(coleccion)
+            print(coleccion.cantidad_productos)
             if coleccion.cantidad_productos > 0:
                 coleccion.cantidad_productos -= 1
+                print(coleccion.cantidad_productos)
 
         # Elimina el producto
         db.session.delete(producto)

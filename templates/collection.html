@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 
 {% block extra_scripts %}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 {% endblock %}
 
 {% block content %}
@@ -10,7 +11,7 @@
         alt="banner-diseños">
 </div>
 
-<div class="collection-container" id="{{coleccion.nombre}}">
+<div class="collection-container">
 
     <div class="collection-container-route" id="containerRoute">
 
@@ -32,14 +33,21 @@
 
 <script type="module" src="/static/js/index/cargarColeccion.js"></script>
 <script type="module">
+    
     import { cargarMenuColeccion } from '/static/js/index/cargarColeccion.js';
     import { crearRutaProductoTipoVolver } from '/static/js/returnRoutes/volverProductoTipos.js'
 
     window.addEventListener('DOMContentLoaded', () => {
-        const coleccionId = "{{coleccion.id}}";
-        const coleccionNombre= "{{coleccion.nombre}}";
+        const tipo = '{{tipo}}';
+        const coleccionData = '{{ colecciones_data | tojson | safe }}';
+        const colecciones = JSON.parse(coleccionData);
         crearRutaProductoTipoVolver();
-        cargarMenuColeccion(coleccionId, coleccionNombre);
+
+        colecciones.forEach(coleccion => {
+            cargarMenuColeccion(coleccion.nombre, coleccion.imgRepresentativa, tipo);
+        });
+
+
     });
 
 </script>

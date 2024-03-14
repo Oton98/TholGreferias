@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      gmpx-store-locator {
+        width: 100%;
+        height: 100%;
+
+        --gmpx-color-surface: #fff;
+        --gmpx-color-on-surface: #523939;
+        --gmpx-color-on-surface-variant: #757575;
+        --gmpx-color-primary: #1967d2;
+        --gmpx-color-outline: #e0e0e0;
+        --gmpx-fixed-panel-width-row-layout: 28.5em;
+        --gmpx-fixed-panel-height-column-layout: 65%;
+        --gmpx-font-family-base: "Roboto", sans-serif;
+        --gmpx-font-family-headings: "Roboto", sans-serif;
+        --gmpx-font-size-base: 0.875rem;
+        --gmpx-hours-color-open: #188038;
+        --gmpx-hours-color-closed: #d50000;
+        --gmpx-rating-color: #ffb300;
+        --gmpx-rating-color-empty: #e0e0e0;
+      }
+    </style>
+    <script>
+      const CONFIGURATION = {
+        "locations": [
+          {"title":"Av. Juan Bautista Alberdi 3699","address1":"Av. Juan Bautista Alberdi 3699","address2":"C1407GZD Buenos Aires, Argentina","coords":{"lat":-34.6362395,"lng":-58.477286776686476},"placeId":"ChIJ6Rx_X5rJvJURUzV2MPHbRrc"},
+          {"title":"Rodríguez Peña 1378","address1":"Rodríguez Peña 1378","address2":"C1021 Buenos Aires, Argentina","coords":{"lat":-34.59345747598072,"lng":-58.391969807357576},"placeId":"ChIJ2ecrrL3KvJURXLNm9c87eUg"},
+          {"title":"Federico Lacroze 1880","address1":"Federico Lacroze 1880","address2":"C1426 CPQ, Buenos Aires, Argentina","coords":{"lat":-34.565220000000004,"lng":-58.440040727612676},"placeId":"ChIJPa07CLi1vJUR-SRVZjuRvQI"},
+          {"title":"Av. del Libertador 6609","address1":"Av. del Libertador 6609","address2":"C1405 Buenos Aires, Argentina","coords":{"lat":-34.551013600000005,"lng":-58.45233765828381},"placeId":"ChIJq_LULy60vJURcFGNWmq0Msw"},
+          {"title":"Av. Monroe 826","address1":"Av. Monroe 826","address2":"C1428BKD Buenos Aires, Argentina","coords":{"lat":-34.54862389540571,"lng":-58.443412870552244},"placeId":"ChIJOdmv8Da0vJURp-0lMDEqtQs"},
+          {"title":"Av. del Libertador 6545","address1":"Av. del Libertador 6545","address2":"C1428ARI Buenos Aires, Argentina","coords":{"lat":-34.551628777228096,"lng":-58.45195100861569},"placeId":"ChIJdZqGHy60vJURrH7V1yFe0lA"},
+          {"title":"Degacor S.A. Materiales para la construcción","address1":"Colectora Sur Acceso Oeste 7040","address2":"B1714 Ituzaingó, Provincia de Buenos Aires, Argentina","coords":{"lat":-34.63350685147247,"lng":-58.663188823313526},"placeId":"ChIJc36Jqz6_vJURAC3I_7xb9gU"},
+          {"title":"Av. Centenario 939","address1":"Av. Centenario 939","address2":"B1642CAL San Isidro, Provincia de Buenos Aires, Argentina","coords":{"lat":-34.46690461777383,"lng":-58.51941527916793},"placeId":"ChIJQUSk5S-wvJUR0BLusqOk6Cs"},
+          {"title":"Dardo Rocha 2290","address1":"Dardo Rocha 2290","address2":"B1640 FTD, Provincia de Buenos Aires, Argentina","coords":{"lat":-34.4930586413559,"lng":-58.530735565029715},"placeId":"ChIJyUdgeF2wvJUR6FW_mq9Q4bY"},
+          {"title":"Estivariz 1110","address1":"Estivariz 1110","address2":"Puerto Madryn, Chubut, Argentina","coords":{"lat":-42.77838340149525,"lng":-65.04458684113922},"placeId":"EjBFc3RpdmFyaXogMTExMCwgUHVlcnRvIE1hZHJ5biwgQ2h1YnV0LCBBcmdlbnRpbmEiMRIvChQKEgnB0gPZQjUCvhEMHpbDMBDQIxDWCCoUChIJA1E7AEM1Ar4RV8zFXn_R8eE"},
+          {"title":"Av. Belgrano Sur 1011","address1":"Av. Belgrano Sur 1011","address2":"G4200 Santiago del Estero, Argentina","coords":{"lat":-27.794655614088402,"lng":-64.256463263212},"placeId":"ChIJR6ksFg9SO5QRv_km2Jgriy0"},
+          {"title":"Martín Zapata 601","address1":"Martín Zapata 601","address2":"M5500 Mendoza, Argentina","coords":{"lat":-32.88915109393442,"lng":-68.85914484785042},"placeId":"ChIJaYyKDqoJfpYRFwUHxyHyRo0"}
+        ],
+        "mapOptions": {"center":{"lat":38.0,"lng":-100.0},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":false,"zoom":4,"zoomControl":true,"maxZoom":17,"mapId":""},
+        "mapsApiKey": "AIzaSyAw5nx-T06If4bIODIynyDosQhMrf5eAQA",
+        "capabilities": {"input":false,"autocomplete":false,"directions":false,"distanceMatrix":false,"details":false,"actions":false}
+      };
+
+    </script>
+    <script type="module">
+      document.addEventListener('DOMContentLoaded', async () => {
+        await customElements.whenDefined('gmpx-store-locator');
+        const locator = document.querySelector('gmpx-store-locator');
+        locator.configureFromQuickBuilder(CONFIGURATION);
+      });
+    </script>
+  </head>
+  <body>
+
+    <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6"></script>
+    <gmpx-api-loader key="AIzaSyAw5nx-T06If4bIODIynyDosQhMrf5eAQA" solution-channel="GMP_QB_locatorplus_v10_c"></gmpx-api-loader>
+    <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
+  </body>
+</html>

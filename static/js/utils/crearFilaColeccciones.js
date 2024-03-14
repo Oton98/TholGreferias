@@ -23,7 +23,7 @@ export function crearTableCollections(colecciones, selectTBody) {
                     const nombresProductos = valor.map(productoInterno => productoInterno.nombre_producto).join(', ');
                     crearTableData(nombresProductos, fila);
                 } else if (clave === 'imgRepresentativa') {
-                    crearTDimagen(valor, fila);
+                    // crearTDimagen(valor, fila);
                 } else {
                     crearTableData(valor, fila);
                 }

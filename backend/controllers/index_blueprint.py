@@ -42,8 +42,15 @@ def productoIndex():
 
 @index_blueprint.route('nuestrodisenio/coleccion/<string:nombre>')
 def coleccionIndex(nombre):
-    coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
-    return render_template('collection.html', coleccion=coleccion)
+    tipoTarjetasNombre = ["Grifería Bimando", "Grifería Monocomando", "Grifería Freestanding", "Accesorio", "Complemento"]
+    nombre_con_prefijo = f"Grifería {nombre}" if nombre not in ["Accesorio", "Complemento"] else nombre
+
+    if nombre_con_prefijo not in tipoTarjetasNombre:
+        return "Tipo de producto no válido", 404
+
+    colecciones = Coleccion.query.join(Producto).filter(Producto.tipo==nombre_con_prefijo, Coleccion.esta_eliminada==False).distinct().all()
+    colecciones_data = [{"id": coleccion.id, "nombre": coleccion.nombre, "imgRepresentativa": coleccion.imgRepresentativa} for coleccion in colecciones]
+    return render_template('collection.html', colecciones_data = colecciones_data, tipo=nombre_con_prefijo)
 
 
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>')
@@ -64,9 +71,6 @@ def productSelection(nombre, tipo, id):
         return render_template('product.html', coleccion=coleccion, producto=producto_dict)
     else:
         return "Producto no encontrado", 404
-
-
-
 
 @index_blueprint.route('/enviarCorreo', methods=['POST'])
 def enviarCorreo():

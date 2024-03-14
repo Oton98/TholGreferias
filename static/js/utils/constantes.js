@@ -10,3 +10,15 @@ export const imagenFreestanding = "https://firebasestorage.googleapis.com/v0/b/t
 export const imagenComplementos = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2F06052021155442.png?alt=media&token=211af300-4a97-4d9a-b87e-3dbf223f9eae"
 export const imagenAccesorios = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2FAG-4F-62753.png?alt=media&token=0b5db33b-07cb-4ccf-ac1f-b276c79ba0d6"
 
+export const tipoTarjetasImg =[
+    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FCapa_1.png?alt=media&token=84abe905-80e7-4736-a753-5b165f32dd5b",
+    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FVector.png?alt=media&token=5e8c488c-04ec-411c-91be-02788b033dbf",
+    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FCapa_1%20(2).png?alt=media&token=ebe24488-61fc-4f43-af4d-9e7f9bf1b2bc",
+    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FCapa_1%20(1).png?alt=media&token=237d1b92-762f-49bb-8a31-aa4e4c422f5d",
+    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FVector%20(1).png?alt=media&token=34acf3e7-b9eb-44c3-bcac-cfd20c5a64b4"
+];
+
+export const tipoTarjetasNombre = [
+    "Bimando", "Monocomando", "Freestanding", "Accesorio", "Complemento"
+]
+
