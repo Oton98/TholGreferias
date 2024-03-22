@@ -7,8 +7,8 @@
     <title>Thol</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="" type="image/x-icon">
     {% block extra_scripts %}{% endblock %}
 </head>
@@ -37,12 +37,12 @@
                 <li class="navbar-items-item">Consulta</li>
             </a>
             <li class="navbar-items-item-searcher">
-                <input class="searcher" type="search" placeholder="Buscar">
+                <input class="navbar-items-item-searcher-input" type="search" placeholder="Buscar">
             </li>
         </ul>
     </nav>
 
-    <div id="content">{% block content %}{% endblock %}</div>
+    <div class="content" id="content">{% block content %}{% endblock %}</div>
 
     <footer class="footer">
 
@@ -57,12 +57,13 @@
             <div class="footer-container-nav">
 
                 <div class="footer-container-nav-section">
-                    <h3>Productos y Servicios</h3>
+                    <h3>Nuestra serie de diseño</h3>
                     <ul class="footer-container-nav-section-list">
-                        <li>Colecciones</li>
+                        <li>Bimando</li>
+                        <li>Monocomando</li>
+                        <li>Freestanding</li>
                         <li>Accesorios</li>
                         <li>Complementos</li>
-                        <li>Personalización</li>
                     </ul>
                 </div>
 
@@ -91,13 +92,6 @@
         <div class="footer-copyright">
             Thol Griferías Todos los derechos reservados 2023
         </div>
-
-        <div class="login-form-buttons">
-            <a href="{{url_for( 'index.interno' )}}"><button type="button"
-                    class="login-form-button">Ingresar</button></a>
-            <a href="/"><button class="login-form-button">Admin</button></a>
-        </div>
-
     </footer>
 
     {% block end_scripts %}

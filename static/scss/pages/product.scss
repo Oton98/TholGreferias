@@ -150,7 +150,8 @@
                 max-width: 100%;
                 min-width: 100%;
                 height: 100%;
-                object-fit: cover;
+                background-color: white;
+                object-fit: contain;
                 margin: 0;
                 box-sizing: border-box;
                 min-height: 80%;

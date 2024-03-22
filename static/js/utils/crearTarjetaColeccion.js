@@ -2,15 +2,18 @@ export function crearTarjetaColeccion(tipo, link){
 
     var contenedor = document.createElement('article');
     var divTarjetConentedor = document.createElement('div');
+
+    var linkTarjeta = document.createElement('a');
+    var linkTarjeta2= document.createElement('a');
+    
     var imgTarjeta = document.createElement('img');
     var tituloTarjeta = document.createElement('h4');
-    var linkTarjeta = document.createElement('a');
 
-    contenedor.classList = "collections-body-container-card"
-    imgTarjeta.classList = "collections-body-container-card-img"
-    divTarjetConentedor.classList = "collections-body-container-card-text"
-    tituloTarjeta.classList = "collections-body-container-card-text-title"
-    linkTarjeta.classList = "collections-body-container-card-text-link"
+    contenedor.classList = "collections-body-container-card";
+    imgTarjeta.classList = "collections-body-container-card-text-link-img";
+    divTarjetConentedor.classList = "collections-body-container-card-text";
+    tituloTarjeta.classList = "collections-body-container-card-text-link-title";
+    linkTarjeta.classList = "collections-body-container-card-text-link";
 
     const nombreColeccion = tipo;
     const imagenColeccion = link;
@@ -19,12 +22,15 @@ export function crearTarjetaColeccion(tipo, link){
     tituloTarjeta.innerText = nombreColeccion;
     imgTarjeta.src = imagenColeccion;
     linkTarjeta.href = linkColeccion;
-    linkTarjeta.innerText = "Ver categoría >"
+    linkTarjeta.innerText = ""
+    linkTarjeta2.href = linkColeccion;
 
-    divTarjetConentedor.appendChild(tituloTarjeta);
+    linkTarjeta.appendChild(imgTarjeta);
+    linkTarjeta2.appendChild(tituloTarjeta);
+
     divTarjetConentedor.appendChild(linkTarjeta);
+    divTarjetConentedor.appendChild(linkTarjeta2);
 
-    contenedor.appendChild(imgTarjeta);
     contenedor.appendChild(divTarjetConentedor);
 
     return contenedor

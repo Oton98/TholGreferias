@@ -2,23 +2,51 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px;
-    background-color: $color-secundary-button;
-    color: $color-primary-button;
-    // min-width: 164px;
-    // min-height: 25px;
+    padding: 12px 26px;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: $color-four;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: white;
+
+
+}
+
+.button-primary:hover {
+    background-color: $color-five;
+    cursor: pointer;
+}
+
+.button-primary:active {
+    background-color: $color-six;
 }
 
 .button-secondary {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px;
-    background-color: $color-tertiary-button;
-    color: $color-primary-button;
-    // min-width: 164px;
-    // min-height: 25px;
+    padding: 12px 26px;
+    border-radius: 6px;
+    font-size: 14px;
+    border: 1px solid white;
+    background: none;
+    background-color: none;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.button-secondary:hover {
+    background-color: $color-three;
+    cursor: pointer;
+}
+
+.button-secondary:active {
+    background-color: $color-two;
+    color: black;
+}
+
+
+
 
 .consultation-menu-contact-buttons-btn {
 
@@ -34,7 +62,7 @@
         justify-content: center;
         align-items: center;
 
-        i{
+        i {
             font-size: 32px;
             text-align: center;
         }
@@ -42,6 +70,6 @@
     }
 }
 
-.consultation-menu-contact-buttons-btn:hover{
+.consultation-menu-contact-buttons-btn:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

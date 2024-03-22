@@ -5,6 +5,8 @@
     background-color: $color-primary !important;
     margin: 0 !important;
     padding: 0 !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
 
     &-logo {
         display: flex !important;
@@ -19,41 +21,69 @@
     &-items {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center !important;
-        align-items: center !important;
         flex-wrap: wrap !important;
         column-gap: 24px;
         color: $color-secundary !important;
         margin: 0 !important;
         padding: 0 !important;
 
+
         a {
-            text-decoration: none;
-            color: inherit ;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            padding: 0 8px !important;
+            position: relative !important;
+            /* Posicionamiento relativo para el elemento a */
+            text-decoration: none !important;
+            color: inherit !important;
+            transition: color 0.3s ease !important;
+            /* Transición suave para el color del texto */
+
+            &::after {
+                content: '' !important;
+                /* Pseudo-elemento para la línea */
+                position: absolute !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                border-bottom: 8px solid transparent !important;
+                /* Línea invisible por defecto */
+                transition: border-bottom 0.3s ease !important;
+                /* Transición suave para el borde inferior */
+            }
+
+            &:hover {
+                &::after {
+                    border-bottom: 8px solid $color-three !important;
+                    /* Mostrar la línea al hacer hover */
+                }
+            }
+
+            &:active {
+                transition: none !important;
+                background-color: $color-three !important;
+                color: white !important;
+            }
         }
-        
-        li{
-            text-decoration: none;
+
+
+        li {
+            text-decoration: none !important;
         }
 
         &-item-searcher {
-            border: 2px solid black !important;
-            border-radius: 2px !important;
-            padding: 8px !important;
             display: flex;
             justify-content: center !important;
             align-items: center !important;
-        }
 
-        &-items:hover {
-            border-bottom: 4px solid grey !important;
-            z-index: 1 !important;
+            &-input {
+                padding: 8px !important;
+                border: 2px solid $color-two !important;
+                border-radius: 4px !important;
+            }
         }
-
 
     }
-
-
-
 
 }

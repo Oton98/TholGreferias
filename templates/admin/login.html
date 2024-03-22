@@ -1,25 +1,26 @@
 {% extends "layout.html" %}
 {% block content %}
-    <section class="login">
-        <!-- <form action="#" class="login-form">
-            <div class="login-form-inputs">
-                <div class="login-form-inputs-input">
-                    <label for="user">Admin:</label>
-                    <input type="text" name="user" placeholder="Ingrese Admin">
-                </div>
-                <div class="login-form-inputs-input">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" name="password" placeholder="Ingrese Contraseña">
-                </div>
+<section class="login">
+    <form action="#" class="login-form">
+        <div class="login-form-inputs">
+            <div class="login-form-inputs-input">
+                <label for="userName">Admin:</label>
+                <input type="text" name="userName" id="userName" placeholder="Ingrese Admin">
             </div>
-            <div class="login-form-buttons">
-                <button class="login-form-button">Volver a Index</button>
+            <div class="login-form-inputs-input">
+                <label for="userPassword">Contraseña:</label>
+                <input type="password" name="userPassword" id="userPassword" placeholder="Ingrese Contraseña">
             </div>
-
-        </form> -->
-        <div class="login-form-buttons">
-            <a href="{{url_for( 'admin.interfaceProducts' )}}"><button type="button" class="login-form-button">Ingresar</button></a>
-            <a href="/"><button class="login-form-button">Volver a Index</button></a>
         </div>
-    </section>
+
+        <div class="login-form-buttons">
+            <button type="submit" class="button-primary" id="loginbtn">Ingresar</button>
+            <a href="/" class="button-primary">Volver a Index</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
+
+{% block end_scripts %}
+<script type="module" src="/static/js/login/checklogin.js"></script>
 {% endblock %}
