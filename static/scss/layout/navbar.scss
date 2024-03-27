@@ -1,89 +1,189 @@
 .navbar {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-around !important;
-    background-color: $color-primary !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 16px !important;
-    font-weight: 400 !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    background-color: $color-primary ;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 400;
+
 
     &-logo {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-two;
 
         img {
-            height: 64px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 64px;
         }
+
+        &-mobile-open {
+            display: none;
+        }
+
+        &-mobile-close {
+            display: none;
+        }
+
     }
 
     &-items {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         column-gap: 24px;
-        color: $color-secundary !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        color: $color-secundary;
+        margin: 0;
+        padding: 0;
+        transition: all 2s ease;
 
 
         a {
-            display: flex !important;
-            flex-direction: row !important;
-            align-items: center !important;
-            padding: 0 8px !important;
-            position: relative !important;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 8px;
+            position: relative;
             /* Posicionamiento relativo para el elemento a */
-            text-decoration: none !important;
-            color: inherit !important;
-            transition: color 0.3s ease !important;
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
             /* Transición suave para el color del texto */
 
             &::after {
-                content: '' !important;
+                content: '';
                 /* Pseudo-elemento para la línea */
-                position: absolute !important;
-                bottom: 0 !important;
-                left: 0 !important;
-                width: 100% !important;
-                border-bottom: 8px solid transparent !important;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                border-bottom: 8px solid transparent;
                 /* Línea invisible por defecto */
-                transition: border-bottom 0.3s ease !important;
+                transition: border-bottom 0.3s ease;
                 /* Transición suave para el borde inferior */
             }
 
             &:hover {
                 &::after {
-                    border-bottom: 8px solid $color-three !important;
+                    border-bottom: 8px solid $color-three;
                     /* Mostrar la línea al hacer hover */
                 }
             }
 
             &:active {
-                transition: none !important;
-                background-color: $color-three !important;
-                color: white !important;
+                transition: none;
+                background-color: $color-three;
+                color: white;
             }
         }
 
 
         li {
-            text-decoration: none !important;
+            text-decoration: none;
         }
 
         &-item-searcher {
             display: flex;
-            justify-content: center !important;
-            align-items: center !important;
+            justify-content: center;
+            flex-direction: column;
+            width: 200px;
+            max-width: 100%;
+            position: relative;
+
 
             &-input {
-                padding: 8px !important;
-                border: 2px solid $color-two !important;
-                border-radius: 4px !important;
+                padding: 8px;
+                border: 2px solid $color-two;
+                border-radius: 4px;
             }
+
+            &-list {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: 400px;
+                position: absolute;
+                overflow-y: auto;
+                top: 76%;
+                left: 0;
+
+                &-item {
+                    display: flex;
+                    width: 184px;
+                    background-color: #ededed;
+                    border-top: 2px solid #d1d3d4;
+                    padding: 8px;
+                }
+
+                &-itemcargando {
+                    display: flex;
+                    width: 184px;
+                    background-color: #ededed;
+                    border-top: 2px solid #d1d3d4;
+                    padding: 8px;
+                }
+            }
+
         }
 
     }
 
+    @include mobile-small {
+
+        flex-direction: column;
+
+
+        &-logo {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 8px;
+
+            &-mobile-open {
+                display: block;
+            }
+        }
+
+        &-items {
+            display: none;
+            height: 0;
+            transition: all 2s ease;
+
+            &-item-searcher {
+                display: none;
+            }
+        }
+    }
+}
+
+.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+    row-gap: 2vh;
+    border-top: 2px solid $color-one;
+    height: auto;
+    animation: slideDown 0.2s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

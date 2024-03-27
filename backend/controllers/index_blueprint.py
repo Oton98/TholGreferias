@@ -1,6 +1,7 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
+import time
 from flask import Blueprint, jsonify, render_template, request
 from backend.controllers.productos_blueprint import producto_a_diccionario
 from backend.models.collection import Coleccion
@@ -106,3 +107,31 @@ def enviarCorreo():
         return jsonify({'mensaje': 'Correo enviado exitosamente'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+def combinar_resultados(productos, colecciones):
+    resultados_combinados = []
+
+    for producto in productos:
+        resultados_combinados.append({
+            'tipo': 'producto',
+            'nombre': producto.nombre,
+        })
+
+    for coleccion in colecciones:
+        resultados_combinados.append({
+            'tipo': 'coleccion',
+            'nombre': coleccion.nombre,
+        })
+
+    return resultados_combinados
+
+@index_blueprint.route('/searchword/<string:word>', methods=['GET'])
+def search_word(word):
+    productos = Producto.query.filter(Producto.nombre.like(f'{word}%')).all()
+    colecciones = Coleccion.query.filter(Coleccion.nombre.like(f'{word}%')).all()
+
+    time.sleep(2)
+
+    resultados_combinados = combinar_resultados(productos, colecciones)
+
+    return jsonify(resultados_combinados)

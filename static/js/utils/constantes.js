@@ -19,6 +19,6 @@ export const tipoTarjetasImg =[
 ];
 
 export const tipoTarjetasNombre = [
-    "Bimando", "Monocomando", "Freestanding", "Accesorios", "Complementos"
+    "Bimando", "Monocomando", "Freestanding", "Accesorio", "Complemento"
 ]
 

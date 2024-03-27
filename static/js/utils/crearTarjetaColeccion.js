@@ -19,7 +19,7 @@ export function crearTarjetaColeccion(tipo, link){
     const imagenColeccion = link;
     var linkColeccion = `nuestrodisenio/coleccion/${tipo}`;
 
-    tituloTarjeta.innerText = nombreColeccion;
+    tituloTarjeta.innerText = nombreColeccion+"s";
     imgTarjeta.src = imagenColeccion;
     linkTarjeta.href = linkColeccion;
     linkTarjeta.innerText = ""

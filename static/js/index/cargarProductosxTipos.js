@@ -1,13 +1,13 @@
 import { crearTarjetasProductos } from "../cards/crearTarjetasProductos.js";
 
-export async function cargarProductoxTipo(coleccionNombre, productos_info) {
+export async function cargarProductoxTipo(coleccionNombre, productos_info, tipoFiltrado) {
 
     let containerTitulo = document.getElementById('productTitle');
     let containerTarjetas = document.getElementById('productCards');
 
     let titulo = document.createElement('h2');
     titulo.classList = "product-container-title-text";
-    titulo.innerText = coleccionNombre;
+    titulo.innerText = "Colección " + coleccionNombre + " | " + tipoFiltrado + "s";
     
     containerTitulo.appendChild(titulo);
     

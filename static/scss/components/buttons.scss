@@ -68,6 +68,20 @@
         }
 
     }
+
+    @include mobile-small{
+        &-link {
+         
+            i {
+               
+            }
+
+            p{
+                display: none;
+            }
+    
+        }
+    }
 }
 
 .consultation-menu-contact-buttons-btn:hover {

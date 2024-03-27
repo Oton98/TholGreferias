@@ -8,8 +8,8 @@ export async function cargarMenuColeccion(nombre, imagen, tipo) {
     let aTag2 = document.createElement('a');
     let textDiv = document.createElement('div');
     let textTarjeta = document.createElement('p');
-    let link = `/nuestrodisenio/coleccion/${nombre}/productmenu/${tipo}`;1
-    
+    let link = `/nuestrodisenio/coleccion/${nombre}/productmenu/${tipo}`;
+
     tarjeta.classList = "collection-container-cards-card";
     imagenTarjeta.classList = "collection-container-cards-card-img";
     textDiv.classList = "collection-container-cards-card-text";

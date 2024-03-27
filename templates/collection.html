@@ -33,18 +33,25 @@
 
 <script type="module" src="/static/js/index/cargarColeccion.js"></script>
 <script type="module">
-    
+
     import { cargarMenuColeccion } from '/static/js/index/cargarColeccion.js';
     import { crearRutaProductoTipoVolver } from '/static/js/returnRoutes/volverProductoTipos.js'
+    import { agregarEventosHover, agregaEventosClick } from '/static/js/animations/animacionesCardss.js'
+    import { cargarTituloProducto } from '/static/js/index/cargarTituloProducto.js'
+
 
     window.addEventListener('DOMContentLoaded', () => {
         const tipo = '{{tipo}}';
         const coleccionData = '{{ colecciones_data | tojson | safe }}';
         const colecciones = JSON.parse(coleccionData);
+        cargarTituloProducto(tipo);
         crearRutaProductoTipoVolver();
 
         colecciones.forEach(coleccion => {
             cargarMenuColeccion(coleccion.nombre, coleccion.imgRepresentativa, tipo);
+            let cartas = document.querySelectorAll('.collection-container-cards-card');
+            agregarEventosHover(cartas, '.collection-container-cards-card-text');
+            agregaEventosClick(cartas, '.collection-container-cards-card-text');
         });
 
 

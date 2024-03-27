@@ -1,31 +1,30 @@
-export function crearTarjetasProductos(producto, containerTarjetas, coleccionNombre){
-
+export function crearTarjetasProductos(producto, containerTarjetas, coleccionNombre) {
     let tarjeta = document.createElement('article');
-    tarjeta.classList = "product-container-cards-card";
-
-    let img = document.createElement('img');
-    img.classList = "product-container-cards-card-img";
-
+    let imagenTarjeta = document.createElement('img');
+    let tituloTarjeta = document.createElement('p');
+    let aTag = document.createElement('a');
+    let aTag2 = document.createElement('a');
     let textDiv = document.createElement('div');
+    let textTarjeta = document.createElement('p');
+    let link = `/nuestrodisenio/coleccion/${coleccionNombre}/productmenu/${producto.tipo}/product/${producto.id}`;
+
+    tarjeta.classList = "product-container-cards-card";
+    imagenTarjeta.classList = "product-container-cards-card-img";
     textDiv.classList = "product-container-cards-card-text";
-    let title = document.createElement('h4');
-    title.classList = "product-container-cards-card-text-title";
-    let url = document.createElement('a');
-    url.classList = "product-container-cards-card-text-url";
 
-    let urlProducto = `/nuestrodisenio/coleccion/${coleccionNombre}/productmenu/${producto.tipo}/product/${producto.id}`;
+    imagenTarjeta.src = producto.imagen;
+    tituloTarjeta.innerText = producto.nombre; // Corregido aquí
+    textTarjeta.innerText = "Ver detalles del producto  >";
+    aTag.href = link;
+    aTag2.href = link;
 
-    img.src = producto.imagen;
-    title.innerText = producto.nombre;
-    url.href = urlProducto;
-    url.innerText = "Ver detalles del producto  >";
+    textDiv.appendChild(tituloTarjeta);
+    textDiv.appendChild(textTarjeta);
+    aTag.appendChild(textDiv);
+    aTag2.appendChild(imagenTarjeta);
     
-    textDiv.appendChild(title);
-    textDiv.appendChild(url);
-
-    tarjeta.appendChild(img);
-    tarjeta.appendChild(textDiv);
+    tarjeta.appendChild(aTag2);
+    tarjeta.appendChild(aTag);
 
     containerTarjetas.appendChild(tarjeta);
-
 }

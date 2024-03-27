@@ -24,7 +24,7 @@
                 font-weight: 300;
                 width: 30%;
 
-                p{  
+                p {
                     font-size: 14px;
                 }
 
@@ -203,7 +203,7 @@
 
         }
 
-        &-specials{
+        &-specials {
             display: flex;
             flex-direction: column;
             row-gap: 24px;
@@ -237,7 +237,7 @@
 
         }
 
-        &-endings{
+        &-endings {
             display: flex;
             flex-direction: row;
 
@@ -281,4 +281,113 @@
         }
 
     }
+
+    @include mobile-small {
+        &-intro {
+            padding: 5vw 0 0 0;
+            &-title{
+                flex-direction: column;
+                padding: 0 2vw;
+                &-h1{
+                    width: auto;
+                }
+                &-text{
+                    width: auto;
+                }
+            }
+        }
+
+        &-articles {
+            padding: 48px 2vw;
+            row-gap: 32px;
+
+            &-sizes {
+                &-info {
+                    flex-direction: column-reverse;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-img {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-selected {
+
+                &-info {
+                    flex-direction: column;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-finished {
+                &-colors {
+                    &-list {
+                        grid-template-columns: repeat(2, 1fr);
+
+                    }
+                }
+
+                ul {
+                    padding-left: 0;
+                }
+            }
+
+            &-unique {
+                &-info {
+                    flex-direction: column-reverse;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-specials {
+                &-colors {
+                    &-list {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                }
+
+                ul {
+                    padding-left: 0;
+                }
+            }
+
+            &-endings {
+                &-info {
+                    flex-direction: column;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+        }
+
+        .last-item {
+            grid-column: span 2;
+            justify-content: center;
+        }
+    }
+
 }

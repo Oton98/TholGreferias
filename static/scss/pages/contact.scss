@@ -48,7 +48,7 @@
             }
         }
     }
-  
+
     &-img {
         width: 100%;
 
@@ -56,6 +56,23 @@
             width: 100%;
             height: auto;
             object-fit: cover;
+        }
+    }
+
+    @include mobile-small {
+        padding: 0 2vw;
+        flex-direction: column;
+        
+        &-menu {
+            &-title {
+                text-align: center;
+            }
+            &-matters {
+                &-matter {
+                    &-question {}
+                    &-answer {}
+                }
+            }
         }
     }
 }

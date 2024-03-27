@@ -64,11 +64,11 @@
 }
 
 .hovered {
-    background-color: #D1D3D4;
+    background-color: $color-two;
     text-decoration: underline;
 }
 
 .clicked{
-    background-color: #A7A9AC;
+    background-color: $color-three;
     text-decoration: underline;
 }

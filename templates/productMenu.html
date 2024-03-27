@@ -33,6 +33,7 @@
 <script type="module">
     import { cargarProductoxTipo } from '/static/js/index/cargarProductosxTipos.js';
     import { crearRutaProductoMenuVolver } from '/static/js/returnRoutes/volverProductosMenu.js';
+    import { agregarEventosHover, agregaEventosClick } from '/static/js/animations/animacionesCardss.js';
 
     window.addEventListener('DOMContentLoaded', () => {
         const coleccionId = "{{coleccion.id}}";
@@ -44,7 +45,11 @@
         const tipoFiltrado = tipo.replace('Grifería ', '');
 
         crearRutaProductoMenuVolver(tipoFiltrado);
-        cargarProductoxTipo(coleccionNombre, productos_info);
+        cargarProductoxTipo(coleccionNombre, productos_info, tipoFiltrado);
+        let cartas = document.querySelectorAll('.product-container-cards-card');
+        agregarEventosHover(cartas, '.product-container-cards-card-text');
+        agregaEventosClick(cartas, '.product-container-cards-card-text');
+
     });
 </script>
 {% endblock %}

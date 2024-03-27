@@ -15,9 +15,22 @@
 
 <body>
 
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="navbar-logo">
-            <img src="/static/img/thol.png" alt="logo_thol">
+            <a href="/"><img src="/static/img/thol.png" alt="logo_thol"></a>
+
+            <div class="navbar-logo-mobile-open" id="icon-open">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <div class="navbar-logo-mobile-close" id="icon-close">
+                <i class="fa-solid fa-x"></i>
+            </div>
+
+            <div class="navbar-logo-mobile-searcher" id="mobile-searcher">
+
+            </div>
+
         </div>
 
         <ul class="navbar-items">
@@ -36,9 +49,13 @@
             <a href="{{ url_for('index.consulta') }}">
                 <li class="navbar-items-item">Consulta</li>
             </a>
-            <li class="navbar-items-item-searcher">
+            <li class="navbar-items-item-searcher" id="searcher">
                 <input class="navbar-items-item-searcher-input" type="search" placeholder="Buscar">
+                <div class="navbar-items-item-searcher-list" id="results">
+                
+                </div>
             </li>
+            
         </ul>
     </nav>
 
@@ -57,7 +74,7 @@
             <div class="footer-container-nav">
 
                 <div class="footer-container-nav-section">
-                    <h3>Nuestra serie de diseño</h3>
+                    <h3>Productos</h3>
                     <ul class="footer-container-nav-section-list">
                         <li>Bimando</li>
                         <li>Monocomando</li>
@@ -90,13 +107,16 @@
         </div>
 
         <div class="footer-copyright">
-            Thol Griferías Todos los derechos reservados 2023
+            <p>Thol Griferías</p>
+            <p>Todos los derechos reservados 2023</p>
         </div>
     </footer>
 
     {% block end_scripts %}
 
     {% endblock %}
+    <script src="/static/js/searcher/searcher.js"></script>
+    <script type="module" src="/static/js/animations/navbar.js"></script>
     <script src="https://kit.fontawesome.com/f097d0c634.js" crossorigin="anonymous"></script>
 </body>
 
