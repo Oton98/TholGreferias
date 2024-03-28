@@ -32,16 +32,24 @@ searcher.addEventListener('keyup', async (event) => {
                 resultados.forEach(resultado => {
                     if (resultado.tipo === "Producto") {
                         let contenedor = document.createElement('div');
-                        contenedor.classList = "navbar-items-item-searcher-list-item";
+                        let a = document.createElement('a');
+                        a.href = `/nuestrodisenio/coleccion/${resultado.coleccion}/productmenu/${resultado.tipo_producto}/product/${resultado.producto_id}`;
+                        a.classList = "navbar-items-item-searcher-list-a";
+                        contenedor.classList = "navbar-items-item-searcher-list-a-item"
                         contenedor.innerText = `${resultado.nombre} - ${resultado.tipo_producto} - ${resultado.coleccion}`;
-                        listaResultados.appendChild(contenedor);
+                        a.appendChild(contenedor)
+                        listaResultados.appendChild(a);
                     }
 
                     else {
                         let contenedor = document.createElement('div');
-                        contenedor.classList = "navbar-items-item-searcher-list-item";
+                        let a = document.createElement('a');
+                        a.href = `/nuestrodisenio/coleccion-buscada/${resultado.nombre}`;
+                        a.classList = "navbar-items-item-searcher-list-a";
+                        contenedor.classList = "navbar-items-item-searcher-list-a-item"
                         contenedor.innerText = `${resultado.tipo} - ${resultado.nombre}`;
-                        listaResultados.appendChild(contenedor);
+                        a.appendChild(contenedor)
+                        listaResultados.appendChild(a);
                     }
                 });
 

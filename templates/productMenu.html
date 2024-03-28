@@ -43,8 +43,8 @@
         const objeto = productos_info[0];
         const tipo = objeto.tipo
         const tipoFiltrado = tipo.replace('Grifería ', '');
-
-        crearRutaProductoMenuVolver(tipoFiltrado);
+        const primeraLetraMayuscula = tipoFiltrado.charAt(0).toUpperCase() + tipoFiltrado.slice(1);
+        crearRutaProductoMenuVolver(primeraLetraMayuscula);
         cargarProductoxTipo(coleccionNombre, productos_info, tipoFiltrado);
         let cartas = document.querySelectorAll('.product-container-cards-card');
         agregarEventosHover(cartas, '.product-container-cards-card-text');

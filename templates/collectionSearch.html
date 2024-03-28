@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="colsearched">
+    <div class="colsearched-title">
+        <h1>Has buscado la colección {{coleccion}}</h1>
+    </div>
+
+    <div class="colsearched-container" id="collectionSearchedContainer">
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block end_scripts %}
+<script type="module" src="/static/js/index/cargarProducto.js"></script>
+<script type="module">
+    import { traerColleciones } from "/static/js/traerCollections.js";
+    import { traerProductoxColeccion } from "/static/js/traerProducts.js";
+    import { cargarColeccionBuscada } from "/static/js/index/cargarColeccionBuscada.js";
+
+    let coleccionEncontrada = ""
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        const colecciones = await traerColleciones();
+        colecciones.forEach(async coleccion => {
+            if (coleccion.nombre === "{{coleccion}}") {
+                console.log(coleccion.nombre);
+                const productosColeccion = await traerProductoxColeccion(coleccion.id);
+                console.log(productosColeccion);
+                cargarColeccionBuscada(productosColeccion, coleccion.nombre);
+            }
+        });
+
+    });
+</script>
+{% endblock %}

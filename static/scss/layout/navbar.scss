@@ -50,29 +50,23 @@
             align-items: center;
             padding: 0 8px;
             position: relative;
-            /* Posicionamiento relativo para el elemento a */
             text-decoration: none;
             color: inherit;
             transition: color 0.3s ease;
-            /* Transición suave para el color del texto */
 
             &::after {
                 content: '';
-                /* Pseudo-elemento para la línea */
                 position: absolute;
                 bottom: 0;
                 left: 0;
                 width: 100%;
                 border-bottom: 8px solid transparent;
-                /* Línea invisible por defecto */
                 transition: border-bottom 0.3s ease;
-                /* Transición suave para el borde inferior */
             }
 
             &:hover {
                 &::after {
                     border-bottom: 8px solid $color-three;
-                    /* Mostrar la línea al hacer hover */
                 }
             }
 
@@ -113,12 +107,19 @@
                 top: 76%;
                 left: 0;
 
-                &-item {
+                &-a {
                     display: flex;
                     width: 184px;
                     background-color: #ededed;
-                    border-top: 2px solid #d1d3d4;
+                    margin: 0;
                     padding: 8px;
+                    border-top: 2px solid #d1d3d4;
+
+                    &-item {
+                        width: 100%;
+                        padding: 8px 0;
+
+                    }
                 }
 
                 &-itemcargando {

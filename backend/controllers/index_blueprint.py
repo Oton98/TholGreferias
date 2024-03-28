@@ -1,5 +1,6 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from operator import itemgetter
 import smtplib
 import time
 from flask import Blueprint, jsonify, render_template, request
@@ -53,6 +54,9 @@ def coleccionIndex(nombre):
     colecciones_data = [{"id": coleccion.id, "nombre": coleccion.nombre, "imgRepresentativa": coleccion.imgRepresentativa} for coleccion in colecciones]
     return render_template('collection.html', colecciones_data = colecciones_data, tipo=nombre_con_prefijo)
 
+@index_blueprint.route('/nuestrodisenio/coleccion-buscada/<string:coleccion>')
+def coleccionBuscada(coleccion):
+    return render_template('collectionSearch.html', coleccion=coleccion)
 
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>')
 def productoMenuTipo(nombre, tipo):
@@ -111,9 +115,10 @@ def enviarCorreo():
 def combinar_resultados(productos, colecciones):
     resultados_combinados = []
 
-    for producto_nombre, producto_tipo, coleccion_id in productos:
+    for producto_id, producto_nombre, producto_tipo, coleccion_id in productos:
         resultados_combinados.append({
             'tipo': 'Producto',
+            'producto_id': producto_id,
             'nombre': producto_nombre,
             'tipo_producto': producto_tipo,
             'coleccion': coleccion_id
@@ -134,21 +139,35 @@ def search_word(word):
     # Realizar la consulta para obtener productos disponibles
     productos = Producto.query.filter(Producto.estaDisponible == True).all()
 
-    # Obtener nombre de productos y cambiar coleccion_id por nombre de colección
-    productos_con_nombres_coleccion = [
-        (producto.nombre, producto.tipo, next((coleccion.nombre for coleccion in colecciones if coleccion.id == producto.coleccion_id), None))
+    # Obtener solo el nombre de productos y cambiar coleccion_id por nombre de colección
+    nombres_productos = [
+        (
+            producto.id, 
+            producto.nombre, 
+            producto.tipo, 
+            next((coleccion.nombre for coleccion in colecciones if coleccion.id == producto.coleccion_id), None)
+        )
         for producto in productos
     ]
-    print(productos_con_nombres_coleccion)
 
-    # Encuentra las coincidencias más cercanas
-    coincidencias = process.extract(word, productos_con_nombres_coleccion, limit=5)
+    # Obtener solo los nombres y tipos de productos para la búsqueda con process.extract
+    nombres_tipos_productos_para_busqueda = [(producto[1], producto[2]) for producto in nombres_productos]
+
+    # Encuentra las coincidencias más cercanas basadas solo en el nombre y tipo de productos
+    coincidencias = process.extract(word, nombres_tipos_productos_para_busqueda, limit=5)
 
     print(coincidencias)
 
-    coincidencias = [coincidencia[0] for coincidencia in coincidencias if coincidencia[1] > 50]
-    colecciones = Coleccion.query.filter(Coleccion.nombre.like(f'{word}%')).all()
+    coincidencias_nombres_tipos = [coincidencia[0] for coincidencia in coincidencias if coincidencia[1] > 50]
+    
+    # Filtrar los productos que coinciden con los nombres y tipos
+    productos_coincidentes = [
+        producto for producto in nombres_productos 
+        if (producto[1], producto[2]) in coincidencias_nombres_tipos
+    ]
 
-    resultados_combinados = combinar_resultados(coincidencias, colecciones)
+    colecciones_coincidencias = Coleccion.query.filter(Coleccion.esta_eliminada == False, Coleccion.nombre.like(f'{word}%')).all()
+
+    resultados_combinados = combinar_resultados(productos_coincidentes, colecciones_coincidencias)
 
     return jsonify(resultados_combinados)
