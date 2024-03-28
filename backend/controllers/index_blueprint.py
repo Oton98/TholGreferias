@@ -4,8 +4,8 @@ import smtplib
 import time
 from flask import Blueprint, jsonify, render_template, request
 from backend.controllers.productos_blueprint import producto_a_diccionario
+from fuzzywuzzy import process
 from backend.models.collection import Coleccion
-
 from backend.models.product import Producto
 
 
@@ -111,15 +111,17 @@ def enviarCorreo():
 def combinar_resultados(productos, colecciones):
     resultados_combinados = []
 
-    for producto in productos:
+    for producto_nombre, producto_tipo, coleccion_id in productos:
         resultados_combinados.append({
-            'tipo': 'producto',
-            'nombre': producto.nombre,
+            'tipo': 'Producto',
+            'nombre': producto_nombre,
+            'tipo_producto': producto_tipo,
+            'coleccion': coleccion_id
         })
 
     for coleccion in colecciones:
         resultados_combinados.append({
-            'tipo': 'coleccion',
+            'tipo': 'Colección',
             'nombre': coleccion.nombre,
         })
 
@@ -127,11 +129,26 @@ def combinar_resultados(productos, colecciones):
 
 @index_blueprint.route('/searchword/<string:word>', methods=['GET'])
 def search_word(word):
-    productos = Producto.query.filter(Producto.nombre.like(f'{word}%')).all()
+    colecciones = Coleccion.query.filter(Coleccion.esta_eliminada == False).all()
+
+    # Realizar la consulta para obtener productos disponibles
+    productos = Producto.query.filter(Producto.estaDisponible == True).all()
+
+    # Obtener nombre de productos y cambiar coleccion_id por nombre de colección
+    productos_con_nombres_coleccion = [
+        (producto.nombre, producto.tipo, next((coleccion.nombre for coleccion in colecciones if coleccion.id == producto.coleccion_id), None))
+        for producto in productos
+    ]
+    print(productos_con_nombres_coleccion)
+
+    # Encuentra las coincidencias más cercanas
+    coincidencias = process.extract(word, productos_con_nombres_coleccion, limit=5)
+
+    print(coincidencias)
+
+    coincidencias = [coincidencia[0] for coincidencia in coincidencias if coincidencia[1] > 50]
     colecciones = Coleccion.query.filter(Coleccion.nombre.like(f'{word}%')).all()
 
-    time.sleep(2)
-
-    resultados_combinados = combinar_resultados(productos, colecciones)
+    resultados_combinados = combinar_resultados(coincidencias, colecciones)
 
     return jsonify(resultados_combinados)

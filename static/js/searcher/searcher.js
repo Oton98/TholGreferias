@@ -24,23 +24,25 @@ searcher.addEventListener('keyup', async (event) => {
             }
 
             const resultados = await response.json();
-
-            const mockResultados = [
-                { nombre: 'Producto 1', tipo: 'Tipo A' },
-                { nombre: 'Producto 2', tipo: 'Tipo B' },
-                // { nombre: 'Producto 3', tipo: 'Tipo C' },
-                // { nombre: 'Producto 4', tipo: 'Tipo D' }
-            ];
-
+            console.log(resultados);
             // Limpiar resultados anteriores
             listaResultados.innerHTML = '';
 
-            if (mockResultados.length > 0) {
-                mockResultados.forEach(resultado => {
-                    let contenedor = document.createElement('div');
-                    contenedor.classList = "navbar-items-item-searcher-list-item";
-                    contenedor.innerText = `${resultado.nombre} - ${resultado.tipo}`;
-                    listaResultados.appendChild(contenedor);
+            if (resultados.length > 0) {
+                resultados.forEach(resultado => {
+                    if (resultado.tipo === "Producto") {
+                        let contenedor = document.createElement('div');
+                        contenedor.classList = "navbar-items-item-searcher-list-item";
+                        contenedor.innerText = `${resultado.nombre} - ${resultado.tipo_producto} - ${resultado.coleccion}`;
+                        listaResultados.appendChild(contenedor);
+                    }
+
+                    else {
+                        let contenedor = document.createElement('div');
+                        contenedor.classList = "navbar-items-item-searcher-list-item";
+                        contenedor.innerText = `${resultado.tipo} - ${resultado.nombre}`;
+                        listaResultados.appendChild(contenedor);
+                    }
                 });
 
             } else {
@@ -57,6 +59,6 @@ searcher.addEventListener('keyup', async (event) => {
             console.error('Error:', error.message);
         }
     } else {
-        listaResultados.style.display = 'none'; // Ocultar la lista si la palabra es corta
+        listaResultados.innerHTML = '';
     }
 });
