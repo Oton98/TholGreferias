@@ -20,7 +20,9 @@ def login():
         if usuario and check_password_hash(usuario.password, pwd):
             token = s.dumps({})
             session["token"] = token
+            print("estoy entrando")
             return jsonify({'redirect': '/interfaceProducts/interfaceProducts'})
+            
         else:
             return jsonify({'redirect': '/admin/login'})
 

@@ -1,6 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask
 from flask_cors import CORS
 from backend.shared import db
+
+from backend.controllers.distribuidores_blueprint import distribuidores_blueprint
 from backend.controllers.colecciones_blueprint import colecciones_blueprint
 from backend.controllers.productos_blueprint import productos_blueprint
 from backend.controllers.index_blueprint import index_blueprint
@@ -16,6 +18,7 @@ app.register_blueprint(index_blueprint, url_prefix='/')
 app.register_blueprint(admin_blueprint, url_prefix='/interfaceProducts')
 app.register_blueprint(colecciones_blueprint, url_prefix='/colecciones')
 app.register_blueprint(productos_blueprint, url_prefix='/productos')
+app.register_blueprint(distribuidores_blueprint, url_prefix='/distribuidores')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:firewall15@localhost/thol'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

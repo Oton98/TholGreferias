@@ -1,3 +1,18 @@
+<!--
+  Copyright 2023 Google LLC
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,11 +30,14 @@
         width: 100%;
         height: 100%;
 
+        /* These parameters customize the appearance of Locator Plus. See the documentation at
+           https://github.com/googlemaps/extended-component-library/blob/main/src/store_locator/README.md
+           for more information. */
         --gmpx-color-surface: #fff;
-        --gmpx-color-on-surface: #523939;
+        --gmpx-color-on-surface: #212121;
         --gmpx-color-on-surface-variant: #757575;
         --gmpx-color-primary: #1967d2;
-        --gmpx-color-outline: #ff00ea;
+        --gmpx-color-outline: #e0e0e0;
         --gmpx-fixed-panel-width-row-layout: 28.5em;
         --gmpx-fixed-panel-height-column-layout: 65%;
         --gmpx-font-family-base: "Roboto", sans-serif;
@@ -62,27 +80,10 @@
     </script>
   </head>
   <body>
-
+    <!-- Please note unpkg.com is unaffiliated with Google Maps Platform. -->
     <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6"></script>
-    <gmpx-api-loader key="AIzaSyAw5nx-T06If4bIODIynyDosQhMrf5eAQA" solution-channel="GMP_QB_locatorplus_v10_c"></gmpx-api-loader>
-    <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
+    
+    <gmpx-api-loader key="AIzaSyAw5nx-T06If4bIODIynyDosQhMrf5eAQA" solution-channel="GMP_QB_locatorplus_v10_cABD"></gmpx-api-loader>
+    <gmpx-store-locator map-id="59cd492fb79389df"></gmpx-store-locator>
   </body>
 </html>
-
-<div>
-  <!--
-  Copyright 2023 Google LLC
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
-<!DOCTYPE html>

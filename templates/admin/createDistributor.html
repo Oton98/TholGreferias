@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section class="control">
+
+        <div class="control-panelbox">
+            <div class="control-panelbox-tittle">
+                <h3>Gestor de Distribuidores</h3>
+            </div>
+            <div class="control-panelbox-form">
+                <form action="/distribuidores/createdistributor" class="control-panelbox-form-inputs" method="POST">
+
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorName">Nombre del Distribuidor</label>
+                        <input type="text" name="DistributorName" id="DistributorName" placeholder="Nombre del Distribuidor">
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorAdress">Dirección del Distribuidor</label>
+                        <input type="text" name="DistributorAdress" id="DistributorAdress" placeholder="Dirección del Distribuidor">
+                    </div>
+                    <div>
+                        <p>(Los números de la longitud y latitud son decimales y en vez de "," usan "." )</p>
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorLatitude">Latitud de Google</label>
+                        <input type="number" name="DistributorLatitude" id="DistributorLatitude" placeholder="Latitud">
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorLength">Longitud de Google</label>
+                        <input type="number" name="DistributorLength" id="DistributorLength" placeholder="Longitud">
+                    </div>
+                              
+                    <button type="submit">Crear</button>
+
+                </form>
+            </div>
+            <div class="control-panelbox-buttons">
+                <a href="{{ url_for('admin.collection') }}"><button>Volver</button></a>
+
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

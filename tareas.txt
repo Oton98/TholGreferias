@@ -22,4 +22,16 @@ puntos de venta -> necesito ayuda. (falta mobile)
 falta links del footer
 
 
+links google maps.
 
+https://developers.google.com/maps/documentation/javascript/adding-a-google-map?hl=es-419 poner el codigo en html/js
+
+https://developers.google.com/maps/get-started?hl=es-419#create-project /crear projecto
+
+https://cloud.google.com/docs/authentication/api-keys?hl=es-419 /autenticacion
+
+https://mapsplatform.google.com/resources/blog/introducing-data-driven-styling/?hl=es-419 /creare estilos para mapas
+
+https://developers.google.com/maps/documentation/maps-static/start?hl=es-419#Markers /crear marcadores
+
+https://developers.google.com/maps/documentation/javascript/examples/icon-simple crear marcadores con iconos
