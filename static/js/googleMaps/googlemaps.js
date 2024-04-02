@@ -23,18 +23,13 @@ async function initMap() {
         mapId: "59cd492fb79389df",
     });
 
-    // const marker = new Marker({
-    //     map: map,
-    //     position: position,
-    //     title: "Uluru",
-    // });
-
-    console.log(distribuidores);
-    distribuidores.forEach(distribuidor =>{
-      
-    })
-
-
+    distribuidores.forEach(distribuidor => {
+        const marker = new Marker({
+            map: map,
+            position: { lat: parseFloat(distribuidor.lat), lng: parseFloat(distribuidor.long) },
+            title: distribuidor.nombre,
+        });
+    });
 
 }
 

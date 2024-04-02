@@ -3,6 +3,7 @@ export const selectTBodyFaucets = document.getElementById("tbodyFaucets");
 export const selectTBodyAddons = document.getElementById("tbodyAddons");
 export const selectTBodyAccesories = document.getElementById("tbodyAccesories");
 export const selectTBodyCollections = document.getElementById("tbodyCollections");
+export const selectTBodyDistributors = document.getElementById("tbodyDistributors");
 
 export const imagenMonomando = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2F06072021151229.png?alt=media&token=368f1a63-da95-4f6d-9248-d94fbe140e83"
 export const imagenBimando = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2FBUNKER%20-%20NORDELTA%2003%20(1).png?alt=media&token=7d942953-b08d-4f40-af4b-6a9029104071"
@@ -21,4 +22,128 @@ export const tipoTarjetasImg =[
 export const tipoTarjetasNombre = [
     "Bimando", "Monocomando", "Freestanding", "Accesorio", "Complemento"
 ]
+
+export const provinciasCoordenadas = [
+    {
+        nombre: "Buenos Aires",
+        latitud: -34.6037,
+        longitud: -58.3815,
+    },
+    {
+        nombre: "Catamarca",
+        latitud: -28.469581,
+        longitud: -65.779541,
+    },
+    {
+        nombre: "Chaco",
+        latitud: -27.450705,
+        longitud: -58.986459,
+    },
+    {
+        nombre: "Chubut",
+        latitud: -43.29399,
+        longitud: -65.10228,
+    },
+    {
+        nombre: "Ciudad Autónoma de Buenos Aires (CABA)",
+        latitud: -34.6158238,
+        longitud: -58.4332985,
+    },
+    {
+        nombre: "Córdoba",
+        latitud: -31.416668,
+        longitud: -64.18333,
+    },
+    {
+        nombre: "Corrientes",
+        latitud: -27.4806,
+        longitud: -58.8341,
+    },
+    {
+        nombre: "Entre Ríos",
+        latitud: -32.486146,
+        longitud: -58.22813,
+    },
+    {
+        nombre: "Formosa",
+        latitud: -26.184418,
+        longitud: -58.172073,
+    },
+    {
+        nombre: "Jujuy",
+        latitud: -24.185786,
+        longitud: -65.299492,
+    },
+    {
+        nombre: "La Pampa",
+        latitud: -36.61667,
+        longitud: -64.283333,
+    },
+    {
+        nombre: "La Rioja",
+        latitud: -29.413052,
+        longitud: -66.855766,
+    },
+    {
+        nombre: "Mendoza",
+        latitud: -32.890838,
+        longitud: -68.827171,
+    },
+    {
+        nombre: "Misiones",
+        latitud: -27.36708,
+        longitud: -55.89608,
+    },
+    {
+        nombre: "Neuquén",
+        latitud: -38.952669,
+        longitud: -68.105468,
+    },
+    {
+        nombre: "Río Negro",
+        latitud: -41.133472,
+        longitud: -71.31057,
+    },
+    {
+        nombre: "Salta",
+        latitud: -24.7859,
+        longitud: -65.41166,
+    },
+    {
+        nombre: "San Juan",
+        latitud: -31.5375,
+        longitud: -68.53639,
+    },
+    {
+        nombre: "San Luis",
+        latitud: -33.29501,
+        longitud: -66.33563,
+    },
+    {
+        nombre: "Santa Cruz",
+        latitud: -51.622616,
+        longitud: -69.218127,
+    },
+    {
+        nombre: "Santa Fe",
+        latitud: -31.632389,
+        longitud: -60.699459,
+    },
+    {
+        nombre: "Santiago del Estero",
+        latitud: -27.79511,
+        longitud: -64.26149,
+    },
+    {
+        nombre: "Tierra del Fuego",
+        latitud: -54.80191,
+        longitud: -68.303,
+    },
+    {
+        nombre: "Tucumán",
+        latitud: -26.82414,
+        longitud: -65.2226,
+    },
+];
+
 
