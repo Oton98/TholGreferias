@@ -91,3 +91,12 @@
 .btn {
     text-decoration: none !important;
 }
+
+.botones-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+}

@@ -50,9 +50,31 @@ def coleccionIndex(nombre):
     if nombre_con_prefijo not in tipoTarjetasNombre:
         return "Tipo de producto no válido", 404
 
-    colecciones = Coleccion.query.join(Producto).filter(Producto.tipo==nombre_con_prefijo, Coleccion.esta_eliminada==False).distinct().all()
-    colecciones_data = [{"id": coleccion.id, "nombre": coleccion.nombre, "imgRepresentativa": coleccion.imgRepresentativa} for coleccion in colecciones]
-    return render_template('collection.html', colecciones_data = colecciones_data, tipo=nombre_con_prefijo)
+    # Diccionario que mapea tipos de colección a columnas de imagen
+    columnas_imagenes = {
+        "Grifería Bimando": Coleccion.img_bimando,
+        "Grifería Monocomando": Coleccion.img_monocomando,
+        "Grifería Freestanding": Coleccion.img_freestanding,
+        "Accesorio": Coleccion.img_accesorio,
+        "Complemento": Coleccion.img_complemento,
+    }
+
+    # Obtener la columna de imagen correspondiente al tipo de colección
+    columna_imagen = columnas_imagenes[nombre_con_prefijo]
+
+    # Consulta para obtener las colecciones y sus imágenes
+    colecciones = (
+        Coleccion.query
+        .filter(Producto.tipo == nombre_con_prefijo, Coleccion.esta_eliminada == False)
+        .join(Producto)
+        .add_columns(columna_imagen.label("imagen"))  # Alias para la columna de imagen
+        .distinct()
+        .all()
+    )
+
+    # Preparar datos para la plantilla
+    colecciones_data = [{"id": coleccion.id, "nombre": coleccion.nombre, "imgRepresentativa": getattr(coleccion, columna_imagen.key)} for coleccion, imagen in colecciones]
+    return render_template('collection.html', colecciones_data=colecciones_data, tipo=nombre_con_prefijo)
 
 @index_blueprint.route('/nuestrodisenio/coleccion-buscada/<string:coleccion>')
 def coleccionBuscada(coleccion):

@@ -40,21 +40,31 @@ export function crearTDimagen(valor, fila) {
     td.classList = "table-tbody-tr-td";
     let imagen = document.createElement('img');
     imagen.src = valor;
-    imagen.classList="table-tbody-tr-td-img"
+    imagen.classList="table-tbody-tr-td-img";
+    imagen.style = "max-height: 80px;";
     td.appendChild(imagen)
     fila.appendChild(td);
 }
 
 export function crearCeldaBotones(id, ruta) {
     const celda = document.createElement("td");
-    celda.classList = "table-tbody-tr-td"
+
+    // Crear un contenedor para los botones y aplicarle estilos
+    const botonesContainer = document.createElement("div");
+    botonesContainer.classList = "botones-container";
 
     // Crear y agregar botones
     const botonBorrar = crearBotonBorrar(id, ruta);
     const botonActualizar = crearBotonActualizar(id, ruta);
 
-    celda.appendChild(botonActualizar);
-    celda.appendChild(botonBorrar);
+    botonBorrar.classList.add("boton");
+    botonActualizar.classList.add("boton");
+
+    botonesContainer.appendChild(botonActualizar);
+    botonesContainer.appendChild(botonBorrar);
+
+    // Agregar el contenedor de botones a la celda
+    celda.appendChild(botonesContainer);
 
     return celda;
 }

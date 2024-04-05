@@ -73,7 +73,11 @@ def get_all_collection():
     colecciones_json = [
         {
             'nombre': coleccion.nombre,
-            'imgRepresentativa': coleccion.imgRepresentativa,
+            'imgMonocomando': coleccion.img_monocomando,
+            'imgBimando': coleccion.img_bimando,
+            'imgFreestanding': coleccion.img_freestanding,
+            'imgAccesorio': coleccion.img_accesorio,
+            'imgComplemento': coleccion.img_complemento,
             'cant_Products': len(coleccion.productos),
             'id': coleccion.id,
             'productos': [
@@ -99,7 +103,11 @@ def get_coleccion(id):
             return jsonify({"error": "Coleccion no encontrado"}), 404
         coleccion_data ={
             'id': coleccion.id,
-            'imgRepresentativa': coleccion.imgRepresentativa,
+            'imgMonocomando': coleccion.img_monocomando,
+            'imgBimando': coleccion.img_bimando,
+            'imgFreestanding': coleccion.img_freestanding,
+            'imgAccesorio': coleccion.img_accesorio,
+            'imgComplemento': coleccion.img_complemento,
             'nombre': coleccion.nombre,
             'cantidad_productos': coleccion.cantidad_productos,
             'productos': [
@@ -121,11 +129,19 @@ def get_coleccion(id):
 @colecciones_blueprint.route('/createCollection', methods=['POST'])
 def add_Coleccion():
     nombre = request.form.get('CollectionName')
-    imagen = request.form.get('CollectionImg')
+    imagen_bimando = request.form.get('CollectionImgBimandos')
+    imagen_monocomando = request.form.get('CollectionImgMonocomandos')
+    imagen_freestanding = request.form.get('CollectionImgFreestandings')
+    imagen_complemento = request.form.get('CollectionImgComplementos')
+    imagen_accesorio = request.form.get('CollectionImgAccesorios')
 
     nueva_coleccion = Coleccion(
         nombre=nombre,
-        imgRepresentativa = imagen,
+        img_monocomando = imagen_monocomando,
+        img_bimando = imagen_bimando,
+        img_freestanding = imagen_freestanding,
+        img_accesorio = imagen_accesorio,
+        img_complemento = imagen_complemento,
         cantidad_productos=0,
         esta_eliminada=False
     )

@@ -46,7 +46,8 @@
         const colecciones = JSON.parse(coleccionData);
         cargarTituloProducto(tipo);
         crearRutaProductoTipoVolver();
-
+        console.log(tipo)
+        console.log(colecciones)
         colecciones.forEach(coleccion => {
             cargarMenuColeccion(coleccion.nombre, coleccion.imgRepresentativa, tipo);
             let cartas = document.querySelectorAll('.collection-container-cards-card');

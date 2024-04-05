@@ -103,6 +103,15 @@ p {
   text-decoration: none !important;
 }
 
+.botones-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+}
+
 .featured-product-cards-card-img img {
   width: 80%;
   height: 40vh;
