@@ -4,7 +4,7 @@ class Producto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(255), nullable=False)
     tipo = db.Column(db.String(50))
-    codigo = db.Column(db.Integer)
+    codigo = db.Column(db.String(255))
     descripcion = db.Column(db.String(1000))
     imagen = db.Column(db.String(255))
     colores = db.Column(db.String(255))

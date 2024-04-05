@@ -1,5 +1,6 @@
 export function crearBotonActualizar(id, ruta) {
     const button = document.createElement('button');
+    button.classList = "button-primary";
     button.textContent = 'Actualizar';
     if (ruta === "productos/deleteProduct") {
         button.addEventListener('click', () => {
@@ -15,7 +16,7 @@ export function crearBotonActualizar(id, ruta) {
 
     export function crearBotonBorrar(id, ruta) {
         const button = document.createElement('button');
-
+        button.classList = "button-primary";
         button.textContent = 'Borrar';
         button.addEventListener('click', () => {
             if (confirm('¿Estás seguro de que deseas borrar este producto?')) {

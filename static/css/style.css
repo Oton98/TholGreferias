@@ -99,6 +99,10 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.btn {
+  text-decoration: none !important;
+}
+
 .featured-product-cards-card-img img {
   width: 80%;
   height: 40vh;
@@ -1123,6 +1127,12 @@ gmpx-store-locator {
   justify-content: flex-end;
 }
 
+.control-tablebox-title-buttons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+}
+
 .control {
   height: 90vh;
   display: flex;
@@ -1164,6 +1174,10 @@ gmpx-store-locator {
   display: flex;
   justify-content: center;
   column-gap: 16px;
+}
+
+.a-admin {
+  text-decoration: none;
 }
 
 .collection-img {

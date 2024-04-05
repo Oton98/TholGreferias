@@ -13,7 +13,6 @@
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Imagen</th>
                     <th scope="col">Cantidad de Productos</th>
                     <th scope="col">Productos</th>
                     <th scope="col">Acciones</th>
@@ -27,8 +26,8 @@
     </div>
 
     <div class="control-tablebox-title-buttons">
-        <a href="{{ url_for('admin.interfaceProducts') }}"><button>Volver</button></a>
-        <a href="{{ url_for('admin.createCollection') }}"><button>Crear</button></a>
+        <a class="a-admin" href="{{ url_for('admin.interfaceProducts') }}"><button class="button-secondary">Volver</button></a>
+        <a class="a-admin" href="{{ url_for('admin.createCollection') }}"><button class="button-secondary">Crear</button></a>
     </div>
     
 </section>

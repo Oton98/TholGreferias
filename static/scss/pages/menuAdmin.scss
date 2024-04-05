@@ -25,3 +25,9 @@
         }
     }
 }
+
+.control-tablebox-title-buttons{
+    display: flex;
+    flex-direction: row;
+    column-gap: 16px;
+}

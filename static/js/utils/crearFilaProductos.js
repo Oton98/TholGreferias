@@ -23,7 +23,7 @@ export function crearTableRowProducts(productos, selectTBody) {
         let manual;
         let colores;
         let imagen;
-
+        
         const celdaBotones = crearCeldaBotones(producto.id, "productos/deleteProduct");
 
         for (const clave of ordenColumnasProductos) {

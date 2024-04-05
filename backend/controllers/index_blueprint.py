@@ -89,8 +89,8 @@ def enviarCorreo():
 
         # Tengo que ver como hacer las credenciales con Thol
         remitente_correo = 'joaquindiago98@gmail.com'
-        remitente_password = 'qmat ghfn ezkj rzaf'
-        destinatario_correo = 'joaquindiago98@gmail.com'
+        remitente_password = 'qmat ghfn ezkj '
+        destinatario_correo = 'ventas@thol.com.ar'
         smtp_server = 'smtp.gmail.com'
         smtp_port = 587
 

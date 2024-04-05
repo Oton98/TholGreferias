@@ -10,8 +10,9 @@ export const imagenBimando = "https://firebasestorage.googleapis.com/v0/b/tholgr
 export const imagenFreestanding = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2F23_A%201.png?alt=media&token=1c62d4d8-3178-457a-be1b-1082637103b6"
 export const imagenComplementos = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2F06052021155442.png?alt=media&token=211af300-4a97-4d9a-b87e-3dbf223f9eae"
 export const imagenAccesorios = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2FAG-4F-62753.png?alt=media&token=0b5db33b-07cb-4ccf-ac1f-b276c79ba0d6"
+export const imagenMarker = "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Puntos%20de%20Venta%2Ficono%20thol_Mesa%20de%20trabajo%201.png?alt=media&token=0444833a-4ca2-41a0-8657-d723c24984ed"
 
-export const tipoTarjetasImg =[
+export const tipoTarjetasImg = [
     "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2Fpruebas%2FCapa_1%20(3).png?alt=media&token=1d5a4a3f-f532-41d9-96fc-64713944e7ac",
     "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2Fpruebas%2FVector%20(2).png?alt=media&token=fb99e4da-8094-409d-bbba-ff54ecfb9378",
     "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FCapa_1%20(2).png?alt=media&token=ebe24488-61fc-4f43-af4d-9e7f9bf1b2bc",
@@ -28,6 +29,21 @@ export const provinciasCoordenadas = [
         nombre: "Buenos Aires",
         latitud: -34.6037,
         longitud: -58.3815,
+    },
+    {
+        nombre: "Zona Norte",
+    },
+    {
+        nombre: "Zona Oeste",
+    },
+    {
+        nombre: "Zona Sur",
+    },
+    {
+        nombre: "Uruguay",
+    },
+    {
+        nombre: "Online",
     },
     {
         nombre: "Catamarca",
