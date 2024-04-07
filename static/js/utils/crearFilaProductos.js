@@ -5,6 +5,7 @@ const ordenColumnasProductos = [
     'nombre',
     'codigo',
     'coleccion',
+    'tipo',
     'descripcion',
     'imagen',
     'colores',
@@ -28,7 +29,7 @@ export function crearTableRowProducts(productos, selectTBody) {
 
         for (const clave of ordenColumnasProductos) {
             if (clave !== 'id') {
-                //si clave es imagen descripcioon / imagen / colores / manual / medidas
+                // Si la clave es imagen, descripción, colores, manual o medidas
                 switch (clave) {
                     case 'imagen':
                         imagen = producto[clave];
@@ -48,10 +49,8 @@ export function crearTableRowProducts(productos, selectTBody) {
                         break;
                     default:
                         const valor = producto[clave];
-                        crearTableData(valor, fila);
+                        crearTableData(valor, fila, clave); // Pasar el identificador de la columna a crearTableData
                 }
-
-
             }
         }
 

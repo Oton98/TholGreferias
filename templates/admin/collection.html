@@ -12,15 +12,15 @@
         <table class=" table table-dark table-hover table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Imagen Bimando</th>
-                    <th scope="col">Imagen Monocomando</th>
-                    <th scope="col">Imagen Freestanding</th>
-                    <th scope="col">Imagen Complementos</th>
-                    <th scope="col">Imagen Accesorios</th>
-                    <th scope="col">Cantidad de Productos</th>
-                    <th scope="col">Productos</th>
-                    <th scope="col">Acciones</th>
+                    <th class="title-head" scope="col">Nombre</th>
+                    <th class="title-head" scope="col">Imagen Bimando</th>
+                    <th class="title-head" scope="col">Imagen Monocomando</th>
+                    <th class="title-head" scope="col">Imagen Freestanding</th>
+                    <th class="title-head" scope="col">Imagen Complementos</th>
+                    <th class="title-head" scope="col">Imagen Accesorios</th>
+                    <th class="title-head" scope="col">Cantidad de Productos</th>
+                    <th class="title-head" scope="col">Productos</th>
+                    <th class="title-head" scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider" id="tbodyCollections">
@@ -31,10 +31,12 @@
     </div>
 
     <div class="control-tablebox-title-buttons">
-        <a class="a-admin" href="{{ url_for('admin.interfaceProducts') }}"><button class="button-secondary">Volver</button></a>
-        <a class="a-admin" href="{{ url_for('admin.createCollection') }}"><button class="button-secondary">Crear</button></a>
+        <a class="a-admin" href="{{ url_for('admin.interfaceProducts') }}"><button
+                class="button-secondary">Volver</button></a>
+        <a class="a-admin" href="{{ url_for('admin.createCollection') }}"><button
+                class="button-secondary">Crear</button></a>
     </div>
-    
+
 </section>
 
 

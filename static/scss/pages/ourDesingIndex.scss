@@ -17,14 +17,36 @@
     padding: 64px 20vw;
     background-color: rgb(237, 237, 237);
 
+    &-title{
+        margin-top: 64px;
+    }
 
     &-container {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         padding: 32px 0 64px 0px;
         column-gap: 24px;
+        row-gap: 24px;
+
+        @media (max-width: 1500px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1280px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 864px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 584px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
 
         &-card {
+
+            min-width: 165px;
 
             &-text {
                 height: 250px;

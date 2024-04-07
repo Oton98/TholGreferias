@@ -26,3 +26,9 @@ p {
     font-weight: 300;
 }
 
+body{
+    min-width: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+

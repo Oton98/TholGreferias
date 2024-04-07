@@ -12,17 +12,18 @@
         <table class=" table table-dark table-hover table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Código</th>
-                    <th scope="col">Colección</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Imagen</th>
-                    <th scope="col">Colores</th>
-                    <th scope="col">Manual</th>
-                    <th scope="col">Medidas</th>
-                    <th scope="col">Esta Disponible</th>
-                    <th scope="col">Es destacado</th>
-                    <th scope="col">Operaciones</th>
+                    <th class="title-head" scope="col">Nombre</th>
+                    <th class="title-head" scope="col">Código</th>
+                    <th class="title-head" scope="col">Colección</th>
+                    <th class="title-head" scope="col">Tipo</th>
+                    <th class="title-head" scope="col">Descripción</th>
+                    <th class="title-head" scope="col">Imagen</th>
+                    <th class="title-head" scope="col">Colores</th>
+                    <th class="title-head" scope="col">Manual</th>
+                    <th class="title-head" scope="col">Medidas</th>
+                    <th class="title-head" scope="col">Esta Disponible</th>
+                    <th class="title-head" scope="col">Es destacado</th>
+                    <th class="title-head" scope="col">Operaciones</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider" id="tbodyAddons">
@@ -30,8 +31,10 @@
             </tbody>
         </table>
         <div class="control-tablebox-title-buttons">
-            <a class="a-admin" href="{{ url_for('admin.interfaceProducts') }}"><button class="button-secondary">Volver</button></a>
-            <a class="a-admin" href="{{ url_for('admin.createProduct') }}"><button class="button-secondary">Crear</button></a>
+            <a class="a-admin" href="{{ url_for('admin.interfaceProducts') }}"><button
+                    class="button-secondary">Volver</button></a>
+            <a class="a-admin" href="{{ url_for('admin.createProduct') }}"><button
+                    class="button-secondary">Crear</button></a>
         </div>
 </section>
 

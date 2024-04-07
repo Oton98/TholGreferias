@@ -1,9 +1,10 @@
 import { crearBotonActualizar, crearBotonBorrar } from "./crearBotonesAdm.js";
 
-export function crearTableData(valor, fila) {
+export function crearTableData(valor, fila, columnId) {
     let td = document.createElement("td");
+    td.setAttribute("data-column", columnId); // Agregar el atributo data-column con el valor del identificador de la columna
     let p = document.createElement("p");
-    p.innerText = valor
+    p.innerText = valor;
     p.classList = "table-tbody-tr-td-p";
     td.appendChild(p);
     td.classList = "table-tbody-tr-td";
@@ -32,7 +33,6 @@ export function crearPDFVisual(valor, fila){
     pdf.appendChild(iconPdf);
     td.appendChild(pdf)
     fila.appendChild(td);
-    
 }
 
 export function crearTDimagen(valor, fila) {
