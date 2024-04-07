@@ -1,6 +1,9 @@
+import { apiIp } from "./utils/constantes.js";
+
+
 export async function traerDistributors() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/distribuidores/getalldistributors');
+        const response = await fetch(`http://${apiIp}/distribuidores/getalldistributors`);
         
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');

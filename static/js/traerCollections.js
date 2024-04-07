@@ -1,6 +1,9 @@
+import { apiIp } from "./utils/constantes.js";
+
+
 export async function traerColleciones() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/colecciones/getAllCollection');
+        const response = await fetch(`http://${apiIp}/colecciones/getAllCollection`);
         
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -18,7 +21,7 @@ export async function traerColleciones() {
 
 export async function traerColeccion(id){
     try{
-        const response = await fetch(`http://127.0.0.1:5000/colecciones/getCollection/${id}`)
+        const response = await fetch(`http://${apiIp}/colecciones/getCollection/${id}`)
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');

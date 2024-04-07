@@ -20,7 +20,7 @@ app.register_blueprint(colecciones_blueprint, url_prefix='/colecciones')
 app.register_blueprint(productos_blueprint, url_prefix='/productos')
 app.register_blueprint(distribuidores_blueprint, url_prefix='/distribuidores')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:firewall15@localhost/thol'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://thol_thol:Thol/97531@localhost/thol_thol'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
 

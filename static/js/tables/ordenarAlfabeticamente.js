@@ -1,4 +1,4 @@
-export function ordenarColumnaAlfabeticamente(columnId) {
+export function ordenarColumnaAlfabeticamente(columnId, tbody) {
 
     const columnCells = document.querySelectorAll(`td[data-column="${columnId}"]`);
     const sortedCells = Array.from(columnCells).sort((a, b) => {
@@ -7,12 +7,11 @@ export function ordenarColumnaAlfabeticamente(columnId) {
         return compareValues(valueA, valueB);
     });
 
-    const tbody = document.getElementById("tbodyFaucets");
-
     sortedCells.forEach(cell => {
         tbody.appendChild(cell.parentElement);
     });
 }
+
 
 function getValue(cell) {
     const textContent = cell.textContent.trim().toLowerCase();

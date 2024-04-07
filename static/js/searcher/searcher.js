@@ -1,3 +1,5 @@
+import { apiIp } from "./utils/constantes.js";
+
 let searcher = document.getElementById('searcher');
 let animacionBuscando;
 
@@ -13,7 +15,7 @@ searcher.addEventListener('keyup', async (event) => {
                 listaResultados.appendChild(animacionBuscando);
             }
 
-            const response = await fetch(`http://127.0.0.1:5000/searchword/${palabra}`);
+            const response = await fetch(`http://${apiIp}/searchword/${palabra}`);
 
             if (animacionBuscando && listaResultados.contains(animacionBuscando)) {
                 listaResultados.removeChild(animacionBuscando);
@@ -24,7 +26,6 @@ searcher.addEventListener('keyup', async (event) => {
             }
 
             const resultados = await response.json();
-            console.log(resultados);
             // Limpiar resultados anteriores
             listaResultados.innerHTML = '';
 

@@ -1,5 +1,7 @@
+import { apiIp } from "./utils/constantes.js";
+
 async function crearProducto(productName, isAvailable, isFeaturedItem){
-    const response = await fetch('http://127.0.0.1:5000/products', {
+    const response = await fetch(`http://${apiIp}/products`, {
     method: 'POST', // Método HTTP
     headers: {
         'Content-Type': 'application/json' // Indica que el cuerpo de la solicitud es un JSON

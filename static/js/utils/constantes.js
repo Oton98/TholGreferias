@@ -1,9 +1,11 @@
 export var selectCollections = document.getElementById("collection");
-export const selectTBodyFaucets = document.getElementById("tbodyFaucets");
-export const selectTBodyAddons = document.getElementById("tbodyAddons");
-export const selectTBodyAccesories = document.getElementById("tbodyAccesories");
+export const selectTBodyFaucets = () => document.getElementById("tbodyFaucets");
+export const selectTBodyAddons = () => document.getElementById("tbodyAddons");
+export const selectTBodyAccesories = () => document.getElementById("tbodyAccesories");
 export const selectTBodyCollections = document.getElementById("tbodyCollections");
 export const selectTBodyDistributors = document.getElementById("tbodyDistributors");
+
+export const apiIp = "200.58.107.86";
 
 export const imagenMonomando = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2F06072021151229.png?alt=media&token=368f1a63-da95-4f6d-9248-d94fbe140e83"
 export const imagenBimando = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2FBUNKER%20-%20NORDELTA%2003%20(1).png?alt=media&token=7d942953-b08d-4f40-af4b-6a9029104071"

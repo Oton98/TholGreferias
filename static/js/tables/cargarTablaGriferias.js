@@ -6,17 +6,18 @@ import { ordenarColumnaAlfabeticamente } from "./ordenarAlfabeticamente.js";
 window.addEventListener('DOMContentLoaded', async (event) => {
     try {
         const griferias = await traerGriferias();
-        crearTableRowProducts(griferias, selectTBodyFaucets);
-        ordenarColumnaAlfabeticamente('coleccion');
+        crearTableRowProducts(griferias, selectTBodyFaucets());
+        ordenarColumnaAlfabeticamente('coleccion', selectTBodyFaucets() );
 
         // Agregar eventos de clic a los títulos de columna
         const columnTitles = document.querySelectorAll('.title-head');
         columnTitles.forEach(title => {
             title.addEventListener('click', () => {
                 const columnId = title.id;
-                ordenarColumnaAlfabeticamente(columnId);
+                ordenarColumnaAlfabeticamente(columnId, selectTBodyFaucets());
             });
         });
+
     } catch (error) {
         console.error('Error:', error);
     }
