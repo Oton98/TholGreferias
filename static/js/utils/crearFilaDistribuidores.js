@@ -7,6 +7,9 @@ const ordenColumnasDistribuidores = [
     'provincia',
     'latitud',
     'longitud',
+    'web',
+    'whatsapp',
+    'telefono',
 ];
 
 

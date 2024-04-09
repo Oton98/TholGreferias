@@ -28,7 +28,7 @@ def nuestroDisenio():
 
 @index_blueprint.route('/puntosdeventa')
 def puntosDeVenta():
-    return render_template('puntosdeventa.html')
+    return render_template('puntosDeVenta.html')
 
 @index_blueprint.route('/personalizacion')
 def personalizacion():

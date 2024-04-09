@@ -20,24 +20,29 @@ export function crearBotonesProvincia(provincias, distribuidores) {
         companiasContainer.classList = "partnership-locations-regions-companys";
 
         //Filtrado de distribuidores por provincia y creacion de tarjeta interna
-        const distribuidoresFiltrados = distribuidores.filter(distribuidor => distribuidor.provincia === provincia);
+        const distribuidoresFiltrados = distribuidores.filter(distribuidor => distribuidor.Localidad === provincia);
         
         distribuidoresFiltrados.forEach(empresa => {
             let contenedorEmpresa = document.createElement("div");
             let tituloEmpresa = document.createElement("h3");
-            let direccionFisica = document.createElement("p");
 
             contenedorEmpresa.classList = "partnership-locations-regions-companys-company";
             tituloEmpresa.innerText = empresa.nombre;
-            direccionFisica.innerText = empresa.direccion;
+            contenedorEmpresa.appendChild(tituloEmpresa);
+
+            for (let campo in empresa) {
+                if (campo !== "Localidad" && campo !== "id" && campo !== "nombre" && campo !== "longitud" && campo !== "latitud" && empresa[campo]) {
+                    let campoCapitalizado = campo.charAt(0).toUpperCase() + campo.slice(1);
+                    let etiquetaCampo = document.createElement("p");
+                    etiquetaCampo.innerText = `${campoCapitalizado}: ${empresa[campo]}`;
+                    contenedorEmpresa.appendChild(etiquetaCampo);
+                }
+            }
 
             contenedorEmpresa.addEventListener("click", () => {
                 map.setCenter({ lat: parseFloat(empresa.latitud), lng: parseFloat(empresa.longitud) });
                 map.setZoom(17);
             });
-
-            contenedorEmpresa.appendChild(tituloEmpresa);
-            contenedorEmpresa.appendChild(direccionFisica);
 
             companiasContainer.appendChild(contenedorEmpresa);
 

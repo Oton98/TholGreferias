@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     
     let provincias = await obtenerProvinciasUnicas();
     const distribuidores = await traerDistributors();
-
     crearBotonesProvincia(provincias, distribuidores);
     initMap();
 });

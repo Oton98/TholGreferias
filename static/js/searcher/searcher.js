@@ -1,4 +1,5 @@
-import { apiIp } from "./utils/constantes.js";
+// const apiIp = "200.58.107.86";
+const apiIp = "192.168.100.3";
 
 let searcher = document.getElementById('searcher');
 let animacionBuscando;

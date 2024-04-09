@@ -6,7 +6,7 @@ export async function obtenerProvinciasUnicas() {
     const provinciasMap = {};
 
     distribuidores.forEach(distribuidor => {
-        const provincia = distribuidor.provincia;
+        const provincia = distribuidor.Localidad;
 
         if (!provinciasMap[provincia]) {
             provinciasMap[provincia] = true;

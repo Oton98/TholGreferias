@@ -1,8 +1,8 @@
 from backend.models.usuario import Usuario
 from flask import jsonify, render_template, request, Blueprint, session
-from werkzeug.security import check_password_hash
 from itsdangerous import URLSafeTimedSerializer as Serializer
 from functools import wraps
+import bcrypt
 
 usuarios_blueprint = Blueprint('usuarios', __name__)
 
@@ -17,7 +17,7 @@ def login():
     if nombre == 'BurgemeisterThol2024':
         usuario = Usuario.query.filter_by(nombre=nombre).first()
 
-        if usuario and check_password_hash(usuario.password, pwd):
+        if usuario and bcrypt.checkpw(pwd.encode("utf-8"), usuario.password.encode("utf-8") ):
             token = s.dumps({})
             session["token"] = token
             print("estoy entrando")
