@@ -43,10 +43,15 @@ def createProduct():
 def updateProduct(id):
     return render_template('admin/updateProduct.html') 
 
-@admin_blueprint.route('/admin/distributors')
+@admin_blueprint.route('/distributors')
 @token_requerido
 def distributors():
-    return render_template('admin/distributors.html') 
+    return render_template('admin/distributors.html')
+
+@admin_blueprint.route('/distribuidores/redirectdistributors/<int:id>')
+@token_requerido
+def updateDistributor(id):
+    return render_template('admin/updateDistributor.html') 
 
 @admin_blueprint.route('/admin/createDistributor')
 @token_requerido

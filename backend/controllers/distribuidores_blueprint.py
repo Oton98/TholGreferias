@@ -1,4 +1,5 @@
-from flask import jsonify, render_template, request, Blueprint
+import os
+from flask import current_app, jsonify, redirect, render_template, request, Blueprint, send_from_directory, url_for
 from backend.models.distribuidores import Distribuidor
 from backend.shared import db
 from sqlalchemy import not_
@@ -31,18 +32,52 @@ def add_Distribuidor():
     db.session.add(nuevo_distribuidor)
     db.session.commit()
 
-    return render_template('admin/distributors.html')
+    return render_template('distributors.html')
 
+@distribuidores_blueprint.route("/updatedistributor/<int:id>", methods=['PUT'])
+def update_distributor(id):
+    try:
+        distribuidor = Distribuidor.query.get(id)
 
-# @distribuidores_blueprint.route("/updatedistributor/<int:id>")
+        if not distribuidor:
+            return jsonify({"error": "Distribuidor no encontrado"}), 404
+        
+        if distribuidor:
+            data = request.json
 
+            nombre = data.get('nombre', distribuidor.nombre)
+            direccion =  data.get('direccion', distribuidor.direccion)
+            provincia = data.get('region', distribuidor.provincia)
+            latitud = data.get('latitud', distribuidor.latitud)
+            longitud = data.get('longitud', distribuidor.longitud)
+            web = data.get('web', distribuidor.web)
+            whatsapp = data.get('whatsapp', distribuidor.whatsapp)
+            telefono = data.get('telefono', distribuidor.telefono)
+
+            distribuidor.nombre = nombre
+            distribuidor.direccion = direccion
+            distribuidor.provincia = provincia
+            distribuidor.latitud = latitud
+            distribuidor.longitud = longitud
+            distribuidor.web = web
+            distribuidor.whatsapp = whatsapp
+            distribuidor.telefono = telefono
+
+            db.session.commit()
+
+            return jsonify({"message": "Distribuidor actualizado correctamente"}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+    
 @distribuidores_blueprint.route("/delatedistributor/<int:id>", methods=['DELETE'])
 def delete_distributor(id):
     try:
         distribuidor = Distribuidor.query.get(id)
 
         if not distribuidor:
-            return jsonify({"error": "Producto no encontrado"}), 404
+            return jsonify({"error": "Distribuidor no encontrado"}), 404
         
         if distribuidor:
             distribuidor.esta_eliminado = 1
@@ -54,7 +89,7 @@ def delete_distributor(id):
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
     
-    return jsonify({"message": "Colección borrada exitosamente"}), 200
+    return jsonify({"message": "Distribuidor borrado exitosamente"}), 200
 
 # @distribuidores_blueprint.route("/getdistributor/<int:id>")
 
@@ -77,3 +112,23 @@ def get_all_distributors():
         for distribuidor in distribuidores
     ]
     return jsonify(distribuidores_json)
+
+@distribuidores_blueprint.route("/getdistributor/<int:id>", methods=['GET'])
+def get_distributor(id):
+    distribuidor = Distribuidor.query.get(id)
+
+    if distribuidor is None:
+        return jsonify({'error': 'Distribuidor no encontrado'}), 404
+
+    distribuidor_json = {
+        'id': distribuidor.id,
+        'nombre': distribuidor.nombre,
+        'Dirección': distribuidor.direccion,
+        'Localidad': distribuidor.provincia,
+        'latitud': distribuidor.latitud,
+        'longitud': distribuidor.longitud,
+        'Web': distribuidor.web,
+        'Whatsapp': distribuidor.whatsapp,
+        'Teléfono': distribuidor.telefono
+    }
+    return jsonify(distribuidor_json)

@@ -3,19 +3,18 @@ import { crearCeldaBotones } from "./crearTd.js";
 
 const ordenColumnasDistribuidores = [
     'nombre',
-    'direccion',
-    'provincia',
+    'Dirección',
+    'Localidad',
     'latitud',
     'longitud',
-    'web',
-    'whatsapp',
-    'telefono',
+    'Web',
+    'Whatsapp',
+    'Teléfono',
 ];
 
 
 export function crearTableDistributors(distribuidores, selectTBody) {
     for (const distribuidor of distribuidores) {
-        console.log(distribuidor)
         var fila = document.createElement("tr");
         fila.classList = "table-tbody-tr";
         const celdaBotones = crearCeldaBotones(distribuidor.id, "distribuidores/delatedistributor");
@@ -23,7 +22,6 @@ export function crearTableDistributors(distribuidores, selectTBody) {
         for (const clave of ordenColumnasDistribuidores) {
             if (clave !== 'id') {
                 const valor = distribuidor[clave];
-                console.log(distribuidor[clave])
                 crearTableData(valor, fila);
             }
         }

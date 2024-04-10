@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section class="control">
+
+        <div class="control-panelbox">
+            <div class="control-panelbox-tittle">
+                <h3>Actualizar Producto</h3>
+            </div>
+            <div class="control-panelbox-form">
+                <form action="#" class="control-panelbox-form-inputs">
+
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorName">Nombre del Distribuidor</label>
+                        <input type="text" name="DistributorName" id="DistributorName"
+                            placeholder="Nombre del Distribuidor">
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorAdress">Dirección del Distribuidor</label>
+                        <input type="text" name="DistributorAdress" id="DistributorAdress"
+                            placeholder="Dirección del Distribuidor">
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="ProvinciaAdress">Zona del Distribuidor</label>
+                        <select name="ProvinciaAdress" id="ProvinciaAdress">
+    
+                        </select>
+                    </div>
+                    <div>
+                        <p>(Los números de la longitud y latitud son decimales y en vez de "," usan "." )</p>
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorLatitude">Latitud de Google</label>
+                        <input type="text" name="DistributorLatitude" id="DistributorLatitude" placeholder="Latitud">
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorLength">Longitud de Google</label>
+                        <input type="text" name="DistributorLength" id="DistributorLength" placeholder="Longitud">
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorWeb">Web</label>
+                        <input type="text" name="DistributorWeb" id="DistributorWeb" placeholder="Web">
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorWhatsapp">Whatsapp</label>
+                        <input type="text" name="DistributorWhatsapp" id="DistributorWhatsapp" placeholder="Whatsapp">
+                    </div>
+                    <div class="control-panelbox-form-inputs-input">
+                        <label for="DistributorPhone">Teléfono</label>
+                        <input type="text" name="DistributorPhone" id="DistributorPhone" placeholder="Teléfono">
+                    </div>
+    
+                    <button class="button-secondary" type="#" id="updateDistributor">Actualizar</button>
+    
+                </form>
+    
+            </div>
+            <div class="control-panelbox-buttons">
+                <a href="{{ url_for('admin.distributors') }}"><button class="button-secondary">Volver</button></a>
+            </div>
+        </div>
+
+    </section>
+
+    <script type="module" src="/static/js/actualizarDistribuidor/actualizarDistribuidor.js"></script>
+
+{% endblock %}

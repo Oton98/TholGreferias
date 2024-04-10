@@ -125,21 +125,6 @@ def delete_producto(id):
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
     
-#Redirect al update de Productos
-@productos_blueprint.route('/redirectProduct/<int:id>', methods=['GET']) #NO ANDA!
-def get_update_product_page(id):
-    try:
-        producto = db.session.get(Producto, id)
-
-        if not producto:
-            return jsonify({"error": "Producto no encontrado"}), 404
-        
-        # Construye la URL para el endpoint 'updateProduct' y redirige
-        return redirect(url_for('updateProduct'))
-
-    except Exception as e:
-        return jsonify({"error": f"Error en la aplicación: {str(e)}"}), 500
-
 #Metodo Put para 1 Producto
 @productos_blueprint.route('/updateProduct/<int:id>', methods=['PUT'])
 def update_producto(id):

@@ -34,8 +34,6 @@ def update_collection(id):
         if not coleccion:
             return jsonify({"error": "Producto no encontrado"}), 404
 
-
-
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500

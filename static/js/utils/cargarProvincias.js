@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
     cargarProvincias();
 });
 
-function cargarProvincias(){
+export function cargarProvincias(){
     provinciasCoordenadas.forEach(provincia => {
-        let select = document.getElementById("DistributorsAdress");
+        let select = document.getElementById("ProvinciaAdress");
         let option = document.createElement("option");
         option.innerText = provincia.nombre;
         option.value = provincia.nombre; 

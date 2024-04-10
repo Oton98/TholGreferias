@@ -1,5 +1,3 @@
-//esto se va o se puede romper
-
 export function getIdFromURL() {
     const urlParts = window.location.pathname.split('/');
     const productId = urlParts[urlParts.length - 1];
