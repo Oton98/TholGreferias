@@ -22,6 +22,10 @@ def index():
 def interno():
     return render_template('admin/login.html')
 
+@index_blueprint.route('/prueba')
+def prueba():
+    return render_template('prueba.html')
+
 @index_blueprint.route('/nuestrodisenio')
 def nuestroDisenio():
     return render_template('nuestroDisenio.html')

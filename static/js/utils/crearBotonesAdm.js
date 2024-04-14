@@ -2,7 +2,6 @@ export function crearBotonActualizar(id, ruta) {
     const button = document.createElement('button');
     button.classList = "button-primary";
     button.textContent = 'Actualizar';
-    console.log(ruta)
     if (ruta === "productos/deleteProduct") {
         button.addEventListener('click', () => {
             window.location.href = `productos/redirectProduct/${id}`;

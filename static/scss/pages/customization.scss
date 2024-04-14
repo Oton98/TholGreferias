@@ -1,3 +1,7 @@
+.carousel-item {
+    height: 300px;
+}
+
 .customization-sections {
 
     &-intro {
@@ -28,6 +32,12 @@
                     font-size: 14px;
                 }
 
+            }
+        }
+
+        &-carousel {
+            .carousel-item {
+                height: auto;
             }
         }
 
@@ -147,6 +157,20 @@
                 &-list {
                     display: grid;
                     grid-template-columns: repeat(5, 1fr);
+                    padding: 0;
+                    margin: 0;
+
+                    @media (max-width: 1120px) {
+                        grid-template-columns: repeat(3, 1fr);
+                        grid-template-rows: repeat(2, auto);
+
+                    }
+
+                    @media (max-width: 720px) {
+                        grid-template-columns: repeat(2, 1fr);
+                        grid-template-rows: repeat(3, auto);
+
+                    }
                 }
             }
 
@@ -282,16 +306,173 @@
 
     }
 
+    @include tablet {
+        &-articles {
+            &-sizes {
+                &-info {
+                    flex-direction: column-reverse;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-img {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-selected {
+
+                &-info {
+                    flex-direction: column;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-unique {
+                &-info {
+                    flex-direction: column-reverse;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-endings {
+                &-info {
+                    flex-direction: column;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    @include mobile-large {
+        &-intro {
+            &-title {
+                flex-direction: column;
+
+                &-h1 {
+                    width: auto;
+                }
+
+                &-text {
+                    width: auto;
+                }
+            }
+        }
+
+        &-articles {
+            &-sizes {
+                &-info {
+                    flex-direction: column-reverse;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-img {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-selected {
+
+                &-info {
+                    flex-direction: column;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-unique {
+                &-info {
+                    flex-direction: column-reverse;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+
+            &-specials {
+                &-colors {
+                    &-list {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                }
+
+                ul {
+                    padding-left: 0;
+                }
+            }
+
+            &-endings {
+                &-info {
+                    flex-direction: column;
+
+                    &-text {
+                        width: auto;
+                    }
+
+                    &-imgs {
+                        width: auto;
+                    }
+                }
+            }
+
+            .last-item {
+                grid-column: span 2;
+                justify-content: center;
+            }
+        }
+
+    }
+
     @include mobile-small {
         &-intro {
             padding: 5vw 0 0 0;
-            &-title{
+
+            &-title {
                 flex-direction: column;
                 padding: 0 2vw;
-                &-h1{
+
+                &-h1 {
                     width: auto;
                 }
-                &-text{
+
+                &-text {
                     width: auto;
                 }
             }

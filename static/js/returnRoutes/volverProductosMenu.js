@@ -1,6 +1,5 @@
 export function crearRutaProductoMenuVolver(tipo) {
     let contenedor = document.getElementById('productRoute');
-    console.log(tipo)
     let linkAtras = document.createElement('a');
     linkAtras.classList = "product-container-route-link";
     let textAtras = document.createElement('p');

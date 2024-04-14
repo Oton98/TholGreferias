@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: column;
 
-    row-gap: 8px;
-
     &-cityTitle {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         background-color: $color-undenary;
         padding: 8px;
     }
@@ -14,18 +16,32 @@
         flex-direction: column;
         background-color: $color-primary;
         row-gap: 16px;
-
+        height: 0;
+        opacity: 0;
+        transition: height 0.5s ease, opacity 0.5s ease;
+        
         &-company {
             display: flex;
             flex-direction: column;
             row-gap: 8px;
             padding: 8px 8px;
-            // display: none; //Tengo un problema con como empuja esto
-
+            display: none;
         }
     }
 
+    &.show {
+        .partnership-locations-regions-companys {
+            height: 100%;
+            opacity: 1;
+        }
+
+        .partnership-locations-regions-companys-company {
+            display: flex;
+        }
+    }
+
+    .rotated-icon {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+    }
 }
-
-
-        

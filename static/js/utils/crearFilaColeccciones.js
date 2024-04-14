@@ -14,7 +14,6 @@ const ordenColumnasColeccion = [
 
 export function crearTableCollections(colecciones, selectTBody) {
     for (const coleccion of colecciones) {
-        console.log(coleccion)
         var fila = document.createElement("tr");
         fila.classList = "table-tbody-tr";
         const celdaBotones = crearCeldaBotones(coleccion.id, "colecciones/deleteCollection");

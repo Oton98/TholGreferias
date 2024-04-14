@@ -25,9 +25,7 @@
         const colecciones = await traerColleciones();
         colecciones.forEach(async coleccion => {
             if (coleccion.nombre === "{{coleccion}}") {
-                console.log(coleccion.nombre);
                 const productosColeccion = await traerProductoxColeccion(coleccion.id);
-                console.log(productosColeccion);
                 cargarColeccionBuscada(productosColeccion, coleccion.nombre);
             }
         });

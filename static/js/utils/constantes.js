@@ -29,6 +29,11 @@ export const tipoTarjetasNombre = [
 
 export const provinciasCoordenadas = [
     {
+        nombre: "Ciudad Autónoma de Buenos Aires",
+        latitud: -34.6158238,
+        longitud: -58.4332985,
+    },
+    {
         nombre: "Buenos Aires",
         latitud: -34.6037,
         longitud: -58.3815,
@@ -49,6 +54,9 @@ export const provinciasCoordenadas = [
         nombre: "Online",
     },
     {
+        nombre: "Brasil",
+    },
+    {
         nombre: "Catamarca",
         latitud: -28.469581,
         longitud: -65.779541,
@@ -63,11 +71,7 @@ export const provinciasCoordenadas = [
         latitud: -43.29399,
         longitud: -65.10228,
     },
-    {
-        nombre: "Ciudad Autónoma de Buenos Aires (CABA)",
-        latitud: -34.6158238,
-        longitud: -58.4332985,
-    },
+
     {
         nombre: "Córdoba",
         latitud: -31.416668,

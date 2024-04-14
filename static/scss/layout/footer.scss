@@ -3,7 +3,7 @@
     flex-direction: column;
     row-gap: 16px;
     background-color: #706f6f;
-    
+
     color: white;
 
     &-container {
@@ -11,9 +11,9 @@
         flex-direction: row;
         justify-content: space-between;
         padding: 32px 20vw;
-        
+
         &-logo {
-           max-width: 150px; 
+            max-width: 150px;
         }
 
         &-nav {
@@ -21,61 +21,124 @@
             flex-direction: row;
             column-gap: 2vw;
 
-            &-section{
+            &-section {
                 display: flex;
                 flex-direction: column;
                 row-gap: 12px;
 
-                &-list{
+                &-list {
                     display: flex;
                     flex-direction: column;
                     row-gap: 8px;
+                    margin: 0;
+                    padding: 0;
+
+                    li{
+                        a{
+                            color: white;
+                            text-decoration: none;
+                        }
+                    }
                 }
 
-                &-socialmedia{
+                &-socialmedia {
                     display: flex;
                     flex-direction: row;
                     column-gap: 8px;
+                    a{
+                        i{
+                            color: white;
+                        }
+                    }
                 }
             }
 
         }
     }
 
-    &-copyright{
+    &-copyright {
         display: flex;
         justify-content: center;
+        align-items: center;
+        text-align: center;
         column-gap: 16px;
         border-top: 2px white solid;
         padding: 16px 0;
+        p{
+            margin: 0;
+        }
     }
 
-    @include mobile-small{
+    @include tablet{
         &-container{
+            flex-direction: column;
+            row-gap: 32px;
+        }
+    }
+
+    @include mobile-large {
+        &-container {
             padding: 32px 5vw;
             flex-direction: column;
 
-            &-nav{
+            &-nav {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 24px;
-                
-                &-logo{
+
+                &-logo {
                     display: flex;
                     padding-bottom: 32px;
                 }
 
-                &-section{
-                    ul{
+                &-section {
+                    ul {
                         padding: 0;
                     }
-                    i{
+
+                    i {
                         color: white;
                     }
                 }
             }
         }
-        &-copyright{
+
+        &-copyright {
+            padding: 16px;
+            flex-direction: column;
+            row-gap: 8px;
+            align-items: center;
+        }
+    }
+
+    @include mobile-small {
+        &-container {
+            padding: 32px 5vw;
+            flex-direction: column;
+
+            &-nav {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+
+                &-logo {
+                    display: flex;
+                    padding-bottom: 32px;
+                }
+
+                &-section {
+                    ul {
+                        padding: 0;
+                    }
+
+                    i {
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        &-copyright {
             padding: 16px;
             flex-direction: column;
             row-gap: 8px;

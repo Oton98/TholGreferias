@@ -9,7 +9,7 @@ function checkSize() {
     var width = window.innerWidth;
 
     if (width > 810 && isIconOpenVisible) {
-        navbarLinks.classList.remove('active');
+        navbarLinks.classList.remove('activado');
         iconOpen.style.display = 'none';
         iconClose.style.display = 'none';
         navbar.style.height = 'auto';
@@ -23,7 +23,7 @@ function checkSize() {
 window.addEventListener('resize', checkSize);
 
 iconOpen.addEventListener('click', function () {
-  navbarLinks.classList.add('active');
+  navbarLinks.classList.add('activado');
   iconOpen.style.display = 'none';
   iconClose.style.display = 'block';
 //   navbar.style.height = '100vh';
@@ -31,7 +31,7 @@ iconOpen.addEventListener('click', function () {
 });
 
 iconClose.addEventListener('click', function () {
-  navbarLinks.classList.remove('active');
+  navbarLinks.classList.remove('activado');
   iconOpen.style.display = 'block';
   iconClose.style.display = 'none';
 //   navbar.style.height = 'auto';

@@ -8,13 +8,16 @@ export function crearBotonesProvincia(provincias, distribuidores) {
         let region = document.createElement("div");
         let regionContainerTitulo = document.createElement("div");
         let regionTitulo = document.createElement("h3");
+        let icono = document.createElement("i");
 
         //Creo el titulo de la seccion
         region.classList = "partnership-locations-regions";
         regionContainerTitulo.classList = "partnership-locations-regions-cityTitle";
         regionTitulo.innerText = provincia;
+        icono.classList = "fa-solid fa-chevron-down";
 
         regionContainerTitulo.appendChild(regionTitulo);
+        regionContainerTitulo.appendChild(icono);
 
         let companiasContainer = document.createElement("div");
         companiasContainer.classList = "partnership-locations-regions-companys";

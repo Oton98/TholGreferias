@@ -1,6 +1,6 @@
 .distributor-list {
     background-color: $color-decenary;
-    
+
 
     &-banner {
         img {
@@ -25,11 +25,11 @@
             display: flex;
             flex-direction: row;
             column-gap: 32px;
-            height: 600px;
 
             &-maps {
                 flex: 1; // Hacer que ocupe el espacio restante
                 max-width: 60%; // Limitar el ancho al 60% del contenedor
+                height: 50vh;
 
                 iframe {
                     width: 100%;
@@ -44,6 +44,69 @@
                 display: flex;
                 flex-direction: column;
                 row-gap: 32px;
+
+            }
+        }
+    }
+
+    @include tablet{
+
+    }
+
+    @include mobile-large{
+        &-body {
+            padding: 30px 5vh;
+
+            &-title {
+
+            }
+    
+            &-finder {
+                flex-direction: column;
+    
+                &-maps {
+
+                    max-width: 100%;
+    
+                    iframe {
+
+                    }
+                }
+    
+                &-partnership-locations {
+                    max-width: 100%;
+                    
+                }
+            }
+        }
+
+    }
+
+    @include mobile-small{
+
+        &-body {
+            padding: 30px 5vh;
+
+            &-title {
+
+            }
+    
+            &-finder {
+                flex-direction: column;
+    
+                &-maps {
+
+                    max-width: 100%;
+    
+                    iframe {
+
+                    }
+                }
+    
+                &-partnership-locations {
+                    max-width: 100%;
+                    
+                }
             }
         }
     }

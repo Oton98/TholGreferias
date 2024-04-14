@@ -32,7 +32,7 @@ def add_Distribuidor():
     db.session.add(nuevo_distribuidor)
     db.session.commit()
 
-    return render_template('distributors.html')
+    return redirect(url_for('admin.distributors'))
 
 @distribuidores_blueprint.route("/updatedistributor/<int:id>", methods=['PUT'])
 def update_distributor(id):
