@@ -6,7 +6,7 @@
     background-color: #ededed;
 
     &-menu {
-
+        width: 50%;
         padding: 5vw 0;
 
         &-title {
@@ -50,29 +50,55 @@
     }
 
     &-img {
-        width: 100%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
 
         img {
-            width: 100%;
-            height: auto;
+            width: auto;
+            height: 100%;
+            max-width: none;
             object-fit: cover;
         }
     }
 
-    @include mobile-small {
-        padding: 0 2vw;
+    @include tablet {
+        padding: 5vw 20vw;
         flex-direction: column;
-        
+
         &-menu {
-            &-title {
-                text-align: center;
-            }
-            &-matters {
-                &-matter {
-                    &-question {}
-                    &-answer {}
-                }
-            }
+            width: 100%;
+
+        }
+
+        &-img {
+            display: none;
+        }
+
+    }
+
+    @include mobile-large{
+        padding: 5vw 20vw;
+        flex-direction: column;
+
+        &-menu {
+            width: 100%;
+
+        }
+
+        &-img {
+            display: none;
+        }
+    }
+
+    @include mobile-small {
+        padding: 5vw 2vw;
+        &-menu {
+            width: 100%;
+
+        }
+        &-img {
+            display: none;
         }
     }
 }

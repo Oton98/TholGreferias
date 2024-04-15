@@ -139,6 +139,8 @@
 
         &-items {
             column-gap: 1vw;
+            justify-content: center;
+
             &-item-searcher{
                 width: 160px;
                 max-width: auto;

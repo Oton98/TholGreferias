@@ -27,8 +27,8 @@
             column-gap: 32px;
 
             &-maps {
-                flex: 1; // Hacer que ocupe el espacio restante
-                max-width: 60%; // Limitar el ancho al 60% del contenedor
+                flex: 1;
+                max-width: 60%;
                 height: 50vh;
 
                 iframe {
@@ -49,63 +49,71 @@
         }
     }
 
-    @include tablet{
-
-    }
-
-    @include mobile-large{
+    @include tablet {
         &-body {
-            padding: 30px 5vh;
+            padding-bottom: 64px;
 
-            &-title {
-
-            }
-    
             &-finder {
-                flex-direction: column;
-    
+                display: grid;
+                grid-template-columns: auto;
+                grid-template-rows: auto auto;
+                row-gap: 32px;
+
                 &-maps {
-
                     max-width: 100%;
-    
-                    iframe {
-
-                    }
                 }
-    
+
                 &-partnership-locations {
                     max-width: 100%;
-                    
+                }
+            }
+        }
+    }
+
+    @include mobile-large {
+        &-body {
+            padding: 30px 5vh;
+            padding-bottom: 64px;
+
+            &-title {}
+
+            &-finder {
+                display: grid;
+                grid-template-columns: auto;
+                grid-template-rows: auto auto;
+                row-gap: 32px;
+
+                &-maps {
+                    max-width: 100%;
+                }
+
+                &-partnership-locations {
+                    max-width: 100%;
                 }
             }
         }
 
     }
 
-    @include mobile-small{
+    @include mobile-small {
 
         &-body {
             padding: 30px 5vh;
 
-            &-title {
+            &-title {}
 
-            }
-    
             &-finder {
-                flex-direction: column;
-    
+                display: grid;
+                grid-template-columns: auto;
+                grid-template-rows: auto auto;
+                row-gap: 32px;
+
                 &-maps {
-
                     max-width: 100%;
-    
-                    iframe {
-
-                    }
                 }
-    
+
                 &-partnership-locations {
                     max-width: 100%;
-                    
                 }
             }
         }

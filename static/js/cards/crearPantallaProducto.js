@@ -4,6 +4,7 @@ import { tarjetaProductosRelacionados } from "../cards/crearProductosRelacionado
 
 export function cargarPantallaProducto(productosDeLaColeccion, producto, containerTarjeta) {
 
+    //crea la seccion de la imagen
     let tarjetaImgDiv = document.createElement('div');
     tarjetaImgDiv.classList = "product-container-card-sectionImage";
  
@@ -13,18 +14,22 @@ export function cargarPantallaProducto(productosDeLaColeccion, producto, contain
 
     tarjetaImgDiv.appendChild(tarjetaImg);
 
+    //crea la seccion del texto
+    
     let tarjetaTextDiv = document.createElement('div')
     tarjetaTextDiv.classList = "product-container-card-sectionText";
 
     let productheader = document.createElement('div');
-    productheader.classList = "product-container-card-sectionText-header";
 
+    productheader.classList = "product-container-card-sectionText-header";
+    //creo el titulo
     let productTitle = document.createElement('h3');
     productTitle.classList = "product-container-card-sectionText-header-title";
-    productTitle.innerText = producto.tipo //aca el titulo
+    productTitle.innerText = producto.tipo
 
     productheader.appendChild(productTitle);
     
+    //creo la seccion del codigo y la imagen
     let productId = document.createElement('div');
     productId.classList = "product-container-card-sectionText-id";
     let productIdText = document.createElement('div');
@@ -43,6 +48,7 @@ export function cargarPantallaProducto(productosDeLaColeccion, producto, contain
     productId.appendChild(productIdText);
     productId.appendChild(productImageColors);
 
+    //creo la seccion del texto
     let textContainer = document.createElement('div');
     textContainer.classList = "product-container-card-sectionText-description";
     let text = document.createElement('p');
@@ -50,12 +56,18 @@ export function cargarPantallaProducto(productosDeLaColeccion, producto, contain
 
     textContainer.appendChild(text);
 
+    //creo los botones
     let buttonContainer = document.createElement('div');
     buttonContainer.classList = "product-container-card-sectionText-buttons";
-    let buttonMedidas = crearBotonesIndex("Descargar medidas", "button-primary", producto.medidas)
-    let buttonManual = crearBotonesIndex("Descagar manual", "button-secondary", producto.manual);
-    buttonContainer.appendChild(buttonMedidas);
-    buttonContainer.appendChild(buttonManual);
+    if (producto.manual) {
+        let buttonManual = crearBotonesIndex("Descargar manual", "download", producto.manual);
+        buttonContainer.appendChild(buttonManual);
+    }
+
+    if (producto.medidas) {
+        let buttonMedidas = crearBotonesIndex("Ver medidas", "image", producto.medidas);
+        buttonContainer.appendChild(buttonMedidas);
+    }
 
     tarjetaTextDiv.appendChild(productheader);
     tarjetaTextDiv.appendChild(productId);
