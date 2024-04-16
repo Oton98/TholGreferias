@@ -15,7 +15,6 @@
         display: flex;
         flex-direction: column;
         background-color: $color-primary;
-        row-gap: 16px;
         height: 0;
         opacity: 0;
         transition: height 0.5s ease, opacity 0.5s ease;
@@ -24,8 +23,15 @@
             display: flex;
             flex-direction: column;
             row-gap: 8px;
-            padding: 8px 8px;
+            padding: 16px;
             display: none;
+
+            &-field{
+                display: flex;
+                flex-direction: row;
+                column-gap: 6px;
+                flex-wrap: wrap;
+            }
         }
     }
 
@@ -43,5 +49,11 @@
     .rotated-icon {
         transform: rotate(180deg);
         transition: transform 0.3s ease;
+    }
+
+    .link-distribuidor{
+        color: $color-four;
+        text-decoration: underline;
+        font-size: 14px;
     }
 }

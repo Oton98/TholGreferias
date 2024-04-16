@@ -5,9 +5,6 @@ export const selectTBodyAccesories = () => document.getElementById("tbodyAccesor
 export const selectTBodyCollections = document.getElementById("tbodyCollections");
 export const selectTBodyDistributors = document.getElementById("tbodyDistributors");
 
-// export const apiIp = "200.58.107.86";
-export const apiIp = "localhost";
-
 export const imagenMonomando = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2F06072021151229.png?alt=media&token=368f1a63-da95-4f6d-9248-d94fbe140e83"
 export const imagenBimando = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2FBUNKER%20-%20NORDELTA%2003%20(1).png?alt=media&token=7d942953-b08d-4f40-af4b-6a9029104071"
 export const imagenFreestanding = "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/coleccion%20id%20menu%2F23_A%201.png?alt=media&token=1c62d4d8-3178-457a-be1b-1082637103b6"

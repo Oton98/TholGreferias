@@ -2,7 +2,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from operator import itemgetter
 import smtplib
-import time
+import json
 from flask import Blueprint, jsonify, render_template, request
 from backend.controllers.productos_blueprint import producto_a_diccionario
 from fuzzywuzzy import process
@@ -89,7 +89,8 @@ def productoMenuTipo(nombre, tipo):
     coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
     productos = Producto.query.filter_by(coleccion_id=coleccion.id, tipo=tipo).all()
     productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "tipo": producto.tipo} for producto in productos]
-    return render_template('productMenu.html', coleccion=coleccion, productos_info=productos_info)
+    productos_encoded = json.dumps(productos_info, ensure_ascii=False)
+    return render_template('productMenu.html', coleccion=coleccion, productos_info=productos_encoded)
 
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>/product/<int:id>')
 def productSelection(nombre, tipo, id):
@@ -114,8 +115,8 @@ def enviarCorreo():
         mensaje = data.get('mensaje', '')
 
         # Tengo que ver como hacer las credenciales con Thol
-        remitente_correo = 'joaquindiago98@gmail.com'
-        remitente_password = 'qmat ghfn ezkj '
+        remitente_correo = 'infogriferiasthol@gmail.com'
+        remitente_password = 'kxri prmp vfrn hhtz '
         destinatario_correo = 'ventas@thol.com.ar'
         smtp_server = 'smtp.gmail.com'
         smtp_port = 587
@@ -136,6 +137,7 @@ def enviarCorreo():
 
         return jsonify({'mensaje': 'Correo enviado exitosamente'})
     except Exception as e:
+        print(f'Error en enviarCorreo: {e}')
         return jsonify({'error': str(e)}), 500
     
 def combinar_resultados(productos, colecciones):

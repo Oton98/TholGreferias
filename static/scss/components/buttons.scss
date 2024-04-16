@@ -100,3 +100,19 @@
     gap: 12px;
     height: 100%;
 }
+
+.sales-button{
+    color: white;
+    background-color: $color-five;
+    padding: 12px 24px;
+}
+
+.sales-button:hover{
+    background-color: $color-four;
+    cursor: pointer;
+}
+
+.sales-button:active{
+    background-color: $color-six;
+    color: white;
+}

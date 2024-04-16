@@ -24,6 +24,10 @@
                 flex-direction: column;
                 column-gap: 30%;
 
+                &-title{
+                    padding-bottom: 32px;
+                }
+
                 &-question {
                     display: flex;
                     box-sizing: border-box;
@@ -44,6 +48,15 @@
                     opacity: 0;
                     background-color: white;
                     padding: 16px;
+                    line-height: 1.5;
+
+                    &-ul {
+                        padding: 0 16px;
+                        li {
+                            list-style-type: disc;
+                            
+                        }
+                    }
                 }
             }
         }
@@ -77,7 +90,7 @@
 
     }
 
-    @include mobile-large{
+    @include mobile-large {
         padding: 5vw 20vw;
         flex-direction: column;
 
@@ -93,14 +106,20 @@
 
     @include mobile-small {
         padding: 5vw 2vw;
+
         &-menu {
             width: 100%;
 
         }
+
         &-img {
             display: none;
         }
     }
+}
+
+.black-font {
+    font-weight: bold;
 }
 
 .mostrar-respuesta {

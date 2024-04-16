@@ -38,6 +38,11 @@ export async function initMap() {
                     scaledSize: new google.maps.Size(40, 60)
                 }
             });
+
+            marker.addListener('click', () => {
+                map.setCenter({ lat: lat, lng: lng });
+                map.setZoom(17);
+            });
         } else {
             console.error('Latitud o longitud inválida:', distribuidor);
         }
