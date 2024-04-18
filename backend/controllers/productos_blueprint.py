@@ -1,10 +1,30 @@
 from backend.models.collection import Coleccion
 from backend.models.product import Producto
 from backend.shared import db
-import os
+import os, logging
 from flask import jsonify, request, redirect, url_for, Blueprint
+from sqlalchemy import exc
+from functools import wraps
 
 productos_blueprint = Blueprint('productos', __name__)
+
+def retry_on_error(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        max_retries = 3
+        retries = 0
+        while retries < max_retries:
+            try:
+                result = func(*args, **kwargs)
+                return result
+            except exc.SQLAlchemyError as e:
+                retries += 1
+                if retries == max_retries:
+                    # Print the error message
+                    print(f"Error occurred: {e}")
+                    return jsonify({"error": str(e)}), 500
+
+    return wrapper
 
 #Metodo Post para Productos    
 @productos_blueprint.route('/createProduct', methods=['POST'])
@@ -68,6 +88,7 @@ def add_product():
     
 #Metodo Get para 1 Producto en particular
 @productos_blueprint.route('/getProduct/<int:id>', methods=['GET'])
+@retry_on_error
 def get_producto(id):
     try:
         producto = Producto.query.get(id)
@@ -186,7 +207,8 @@ def update_producto(id):
     
 
 #Metodo Get para Accesorios
-@productos_blueprint.route('/getAllAccesories', methods=['GET'])    
+@productos_blueprint.route('/getAllAccesories', methods=['GET'])   
+@retry_on_error 
 def get_all_accesories():
     productos = Producto.query.filter_by(tipo='Accesorio').all()
 
@@ -195,7 +217,8 @@ def get_all_accesories():
     return jsonify(productos_json)
 
 #Metodo Get para Complementos
-@productos_blueprint.route('/getAlladdons', methods=['GET'])    
+@productos_blueprint.route('/getAlladdons', methods=['GET'])   
+@retry_on_error 
 def get_all_addons():
     productos = Producto.query.filter_by(tipo='Complemento').all()
 
@@ -205,6 +228,7 @@ def get_all_addons():
 
 #Metodo Get para Griferias
 @productos_blueprint.route('/getAllfaucets', methods=['GET'])    
+@retry_on_error
 def get_all_faucets():
     productos = Producto.query.filter(Producto.tipo.like('Grifería%')).all()
 
@@ -213,7 +237,8 @@ def get_all_faucets():
     return jsonify(productos_json)
 
 #Metodo Get para Productos Destacados
-@productos_blueprint.route('/getallfeatureproducts', methods=['GET'])    
+@productos_blueprint.route('/getallfeatureproducts', methods=['GET'])   
+@retry_on_error
 def get_all_featured_products():
     productos = Producto.query.filter_by(esDestacado = True).all()
 
@@ -239,6 +264,7 @@ def crear_json_producto(producto):
 
 #Metodo Get para Productos de una Coleccion
 @productos_blueprint.route('/getproductsbycollection/<id>', methods=['GET'])    
+@retry_on_error
 def getProductsByCollection(id):
     try:
         productos = Producto.query.filter_by(coleccion_id=id).all()
@@ -251,6 +277,7 @@ def getProductsByCollection(id):
     
 # Método Get para Productos de una Colección por tipo
 @productos_blueprint.route('/getproductsbytypebycollection/<int:id>/<tipo>', methods=['GET'])
+@retry_on_error
 def get_products_by_type_collection(id, tipo):
     try:
         productos = Producto.query.filter_by(coleccion_id=id, tipo=tipo, esta_disponible=True).all()

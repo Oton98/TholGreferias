@@ -1,3 +1,5 @@
+import sqlalchemy
+from time import sleep
 from backend.models.usuario import Usuario
 from flask import jsonify, render_template, request, Blueprint, session
 from itsdangerous import URLSafeTimedSerializer as Serializer
@@ -15,16 +17,25 @@ def login():
     pwd = request.json.get('userPassword')
 
     if nombre == 'BurgemeisterThol2024':
-        usuario = Usuario.query.filter_by(nombre=nombre).first()
+        usuario = None
+        retries = 3  # Número de reintentos permitidos
+        while retries > 0:
+            try:
+                usuario = Usuario.query.filter_by(nombre=nombre).first()
 
-        if usuario and bcrypt.checkpw(pwd.encode("utf-8"), usuario.password.encode("utf-8") ):
-            token = s.dumps({})
-            session["token"] = token
-            print("estoy entrando")
-            return jsonify({'redirect': '/interfaceProducts/interfaceProducts'})
-            
-        else:
-            return jsonify({'redirect': '/admin/login'})
+                if usuario and bcrypt.checkpw(pwd.encode("utf-8"), usuario.password.encode("utf-8")):
+                    token = s.dumps({})
+                    session["token"] = token
+                    return jsonify({'redirect': '/interfaceProducts/interfaceProducts'})
+                else:
+                    return jsonify({'redirect': '/admin/login'})
+
+            except sqlalchemy.exc.OperationalError as e:
+                retries -= 1
+                if retries > 0:
+                    sleep(1)  # Esperar 1 segundo antes de reintentar
+                else:
+                    return jsonify({'error': 'No se pudo conectar a la base de datos después de varios intentos.'})
 
     return jsonify({'success': False})
 

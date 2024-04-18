@@ -34,10 +34,8 @@ export function crearBotonesProvincia(provincias, distribuidores) {
             contenedorEmpresa.appendChild(tituloEmpresa);
 
             for (let campo in empresa) {
-                console.log(campo)
                 if (campo !== "Localidad" && campo !== "id" && campo !== "nombre" && campo !== "longitud" && campo !== "latitud" && empresa[campo]) {
                     let campoCapitalizado = campo.charAt(0).toUpperCase() + campo.slice(1);
-                    console.log(campoCapitalizado);
                     let etiquetaFinal = document.createElement("p");
                     etiquetaFinal.classList = "partnership-locations-regions-companys-company-field";
             

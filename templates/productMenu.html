@@ -56,7 +56,6 @@
     const coleccionNombre = "{{coleccion.nombre}}";
     const productos_info = JSON.parse('{{ productos_info | safe }}');
 
-    console.log(productos_info);
     const objeto = productos_info[0];
     if (objeto) {
         const tipo = objeto.tipo;

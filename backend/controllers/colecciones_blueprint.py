@@ -4,6 +4,7 @@ from backend.models.product import Producto
 from backend.shared import db
 import os
 from flask import jsonify, request, send_from_directory, redirect, url_for, Blueprint, current_app
+from backend.controllers.productos_blueprint import retry_on_error
 
 colecciones_blueprint = Blueprint('colecciones', __name__)
 
@@ -65,6 +66,7 @@ def delete_collection(id):
 #Metodo Get para colecciones
 
 @colecciones_blueprint.route('/getAllCollection', methods=['GET'])
+@retry_on_error
 def get_all_collection():
 
     colecciones = Coleccion.query.filter(not_(Coleccion.esta_eliminada)).all()
@@ -94,6 +96,7 @@ def get_all_collection():
     
 #Metodo Get para 1 Coleccion en particular
 @colecciones_blueprint.route('/getCollection/<int:id>', methods=['GET'])
+@retry_on_error
 def get_coleccion(id):
     try:
         coleccion = Coleccion.query.get(id)

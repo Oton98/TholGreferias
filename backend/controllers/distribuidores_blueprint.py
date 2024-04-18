@@ -3,6 +3,9 @@ from flask import current_app, jsonify, redirect, render_template, request, Blue
 from backend.models.distribuidores import Distribuidor
 from backend.shared import db
 from sqlalchemy import not_
+from time import sleep
+from sqlalchemy.exc import OperationalError
+from backend.controllers.productos_blueprint import retry_on_error
 
 distribuidores_blueprint = Blueprint('distribuidores', __name__)
 
@@ -94,26 +97,36 @@ def delete_distributor(id):
 # @distribuidores_blueprint.route("/getdistributor/<int:id>")
 
 @distribuidores_blueprint.route("/getalldistributors", methods=['GET'])
+@retry_on_error
 def get_all_distributors():
-
-    distribuidores = Distribuidor.query.filter(not_(Distribuidor.esta_eliminado)).all()
-    distribuidores_json = [
-        {   
-            'id': distribuidor.id,
-            'nombre': distribuidor.nombre,
-            'Dirección': distribuidor.direccion,
-            'Localidad': distribuidor.provincia,
-            'latitud': distribuidor.latitud,
-            'longitud': distribuidor.longitud,
-            'Web': distribuidor.web,
-            'Whatsapp': distribuidor.whatsapp,
-            'Teléfono': distribuidor.telefono
-        }
-        for distribuidor in distribuidores
-    ]
-    return jsonify(distribuidores_json)
+    retries = 3 
+    while retries > 0:
+        try:
+            distribuidores = Distribuidor.query.filter(not_(Distribuidor.esta_eliminado)).all()
+            distribuidores_json = [
+                {   
+                    'id': distribuidor.id,
+                    'nombre': distribuidor.nombre,
+                    'Dirección': distribuidor.direccion,
+                    'Localidad': distribuidor.provincia,
+                    'latitud': distribuidor.latitud,
+                    'longitud': distribuidor.longitud,
+                    'Web': distribuidor.web,
+                    'Whatsapp': distribuidor.whatsapp,
+                    'Teléfono': distribuidor.telefono
+                }
+                for distribuidor in distribuidores
+            ]
+            return jsonify(distribuidores_json)
+        except OperationalError as e:
+            retries -= 1
+            if retries > 0:
+                sleep(1)  # Esperar 1 segundo antes de reintentar
+            else:
+                return jsonify({'error': 'No se pudo conectar a la base de datos después de varios intentos.'})
 
 @distribuidores_blueprint.route("/getdistributor/<int:id>", methods=['GET'])
+@retry_on_error
 def get_distributor(id):
     distribuidor = Distribuidor.query.get(id)
 
