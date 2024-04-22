@@ -17,27 +17,18 @@ def login():
     pwd = request.json.get('userPassword')
 
     if nombre == 'BurgemeisterThol2024':
-        usuario = None
-        retries = 3  # Número de reintentos permitidos
-        while retries > 0:
-            try:
-                usuario = Usuario.query.filter_by(nombre=nombre).first()
+        usuario = Usuario.query.filter_by(nombre=nombre).first()
 
-                if usuario and bcrypt.checkpw(pwd.encode("utf-8"), usuario.password.encode("utf-8")):
-                    token = s.dumps({})
-                    session["token"] = token
-                    return jsonify({'redirect': '/interfaceProducts/interfaceProducts'})
-                else:
-                    return jsonify({'redirect': '/admin/login'})
+        if usuario and bcrypt.checkpw(pwd.encode("utf-8"), usuario.password.encode("utf-8")):
+            token = s.dumps({})
+            session["token"] = token
+            return jsonify({'redirect': '/interfaceProducts/interfaceProducts'})
 
-            except sqlalchemy.exc.OperationalError as e:
-                retries -= 1
-                if retries > 0:
-                    sleep(1)  # Esperar 1 segundo antes de reintentar
-                else:
-                    return jsonify({'error': 'No se pudo conectar a la base de datos después de varios intentos.'})
+        else:
+            return jsonify({'redirect': '/admin/login'})
 
-    return jsonify({'success': False})
+    else:
+        return jsonify({'redirect': '/admin/login'})
 
 def token_requerido(f):
     @wraps(f)

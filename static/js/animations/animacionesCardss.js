@@ -1,33 +1,36 @@
-export function agregarEventosHover(claseContenedor, claseTexto) {
-    
-    claseContenedor.forEach(card => {
-        const title = card.querySelector(claseTexto);
+export function agregarEventosHover(claseCarta, claseTexto) {
+    claseCarta.forEach(card => {
+        const textElement = card.querySelector(claseTexto);
 
         card.addEventListener('mouseover', () => {
-            title.classList.add('hovered');
+            card.classList.add('hovered');
+            textElement.classList.add('hovered');
         });
 
         card.addEventListener('mouseout', () => {
-            title.classList.remove('hovered');
+            card.classList.remove('hovered');
+            textElement.classList.remove('hovered');
         });
     });
 }
 
-export function agregaEventosClick(claseContenedor, claseTexto) {
-    claseContenedor.forEach(card => {
-        const title = card.querySelector(claseTexto);
+export function agregaEventosClick(claseCarta, claseTexto) {
+    claseCarta.forEach(card => {
+        const textElement = card.querySelector(claseTexto);
 
         card.addEventListener('mousedown', () => {
-            title.classList.add('clicked'); 
+            card.classList.add('clicked');
+            textElement.classList.add('clicked');
         });
 
         card.addEventListener('mouseup', () => {
-            title.classList.remove('clicked'); 
+            card.classList.remove('clicked');
+            textElement.classList.remove('clicked');
         });
 
         card.addEventListener('mouseleave', () => {
-            title.classList.remove('clicked'); 
+            card.classList.remove('clicked');
+            textElement.classList.remove('clicked');
         });
     });
 }
-

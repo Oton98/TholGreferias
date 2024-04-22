@@ -133,30 +133,36 @@
     @include tablet {}
 
     @include mobile-large {
-        &-card{
+        &-card {
             flex-direction: column;
-            &-sectionImage{
+
+            &-sectionImage {
                 width: auto;
             }
-            &-sectionText{
+
+            &-sectionText {
                 width: auto;
             }
         }
     }
 
     @include mobile-small {
-        &-card{
+        &-card {
             flex-direction: column;
-            &-sectionImage{
+
+            &-sectionImage {
                 width: 100%;
             }
-            &-sectionText{
+
+            &-sectionText {
                 width: auto;
-                &-id{
+
+                &-id {
                     flex-direction: column;
                     row-gap: 16px;
                 }
-                &-buttons{
+
+                &-buttons {
                     flex-direction: column;
                     row-gap: 8px;
                 }
@@ -205,8 +211,7 @@
         &-card {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            height: 100%;
+            justify-content: flex-start;
             flex-grow: 1;
             background-color: white;
             border-radius: 8px;
@@ -256,7 +261,7 @@
     text-decoration: underline;
 }
 
-.clicked{
+.clicked {
     background-color: $color-three;
     text-decoration: underline;
 }

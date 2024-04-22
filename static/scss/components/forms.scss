@@ -3,7 +3,9 @@
     flex-direction: column;
     row-gap: 32px;
 
-    &-subtitle {}
+    &-subtitle {
+        padding-top: 32px;
+    }
 
     &-form {
         padding: 32px 5vw;

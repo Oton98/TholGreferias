@@ -128,20 +128,6 @@ p {
   color: white;
 }
 
-.featured-product-cards-card-img img {
-  width: 80%;
-  height: 40vh;
-  object-fit: cover;
-}
-.featured-product-cards-card-text {
-  display: flex;
-  flex-direction: column;
-  background-color: #d7d7db;
-  padding: 24px;
-  row-gap: 8px;
-  border-radius: 4px;
-}
-
 .partnership-locations-regions {
   display: flex;
   flex-direction: column;
@@ -196,6 +182,9 @@ p {
   display: flex;
   flex-direction: column;
   row-gap: 32px;
+}
+.consultation-menu-contact-subtitle {
+  padding-top: 32px;
 }
 .consultation-menu-contact-form {
   padding: 32px 5vw;
@@ -342,7 +331,7 @@ gmpx-store-locator {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 32px 20vw;
+  padding: 72px 20vw 32px 20vw;
 }
 .footer-container-logo {
   max-width: 150px;
@@ -474,7 +463,8 @@ gmpx-store-locator {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 64px;
+  width: 64px;
+  padding: 8px;
 }
 .navbar-logo-mobile-open {
   display: none;
@@ -652,14 +642,15 @@ gmpx-store-locator {
 .pointsales {
   display: flex;
   flex-direction: row;
+  padding-left: 20vw;
+  justify-content: space-between;
   background-color: #D9D9D9;
 }
 .pointsales-text {
   width: 35%;
-  padding: 5vw;
 }
 .pointsales-text-title {
-  padding-bottom: 24px;
+  padding-top: 40px;
 }
 .pointsales-text-title h1 {
   margin: 0;
@@ -672,6 +663,7 @@ gmpx-store-locator {
   flex-direction: column;
   row-gap: 24px;
   margin: 0;
+  width: 75%;
 }
 .pointsales-text-description-button {
   display: flex;
@@ -686,11 +678,6 @@ gmpx-store-locator {
   margin-block-start: 1em;
   margin-block-end: 1em;
   line-height: 1.5;
-}
-.pointsales-img {
-  width: 65%;
-  display: flex;
-  justify-content: flex-end;
 }
 .pointsales-img img {
   display: flex;
@@ -736,7 +723,7 @@ gmpx-store-locator {
 
 .intro {
   height: 80vh;
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/Component%202.png?alt=media&token=ead86fa9-1db2-4a8c-b8b5-f7e38531f530");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Banner%20principal%2Fbanner-principal1.jpg?alt=media&token=30deea05-90c9-4271-b173-9cf5251e4d60");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -816,8 +803,7 @@ gmpx-store-locator {
 .featured-products-container-cards-card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
+  justify-content: flex-start;
   flex-grow: 1;
   background-color: white;
   border-radius: 8px;
@@ -862,19 +848,20 @@ gmpx-store-locator {
 .customized-products {
   background-color: #464646;
   color: #ffffff;
-  padding: 64px 0;
 }
 .customized-products-title {
-  padding: 0 20vw 64px 20vw;
+  padding-bottom: 64px;
+  padding: 64px 20vw;
 }
-.customized-products-videocontainer {
+.customized-products-video {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 64px;
 }
-.customized-products-videocontainer-video {
-  width: 90%;
+.customized-products-video iframe {
+  width: 94%;
+  height: 44vw;
 }
 .customized-products > div:nth-child(2) img {
   width: 100%;
@@ -894,6 +881,11 @@ gmpx-store-locator {
   justify-content: center;
   align-items: center;
   row-gap: 16px;
+}
+@media (max-width: 480px) {
+  .customized-products-video iframe {
+    height: 350px;
+  }
 }
 
 .partnership {
@@ -1208,7 +1200,6 @@ gmpx-store-locator {
   background-color: #464646;
   padding: 5vw 20vw;
   color: white;
-  row-gap: 88px;
 }
 .customization-sections-articles-sizes-title {
   font-size: 36px;
@@ -1219,6 +1210,7 @@ gmpx-store-locator {
   display: flex;
   flex-direction: row;
   column-gap: 50px;
+  padding-bottom: 7vw;
 }
 .customization-sections-articles-sizes-info-img {
   width: 70%;
@@ -1252,6 +1244,7 @@ gmpx-store-locator {
   display: flex;
   flex-direction: row;
   column-gap: 50px;
+  padding-bottom: 7vw;
 }
 .customization-sections-articles-selected-info-text {
   display: flex;
@@ -1284,6 +1277,7 @@ gmpx-store-locator {
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  padding-bottom: 2.5vw;
 }
 .customization-sections-articles-finished-title {
   display: flex;
@@ -1296,8 +1290,11 @@ gmpx-store-locator {
 .customization-sections-articles-finished-colors-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  padding: 0;
+  padding: 0 5vw;
   margin: 0;
+}
+.customization-sections-articles-finished-colors-list img {
+  width: 70px;
 }
 @media (max-width: 1120px) {
   .customization-sections-articles-finished-colors-list {
@@ -1325,6 +1322,7 @@ gmpx-store-locator {
   display: flex;
   flex-direction: row;
   column-gap: 50px;
+  padding-bottom: 7vw;
 }
 .customization-sections-articles-unique-info-imgs {
   display: flex;
@@ -1357,6 +1355,7 @@ gmpx-store-locator {
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  padding-bottom: 2.5vw;
 }
 .customization-sections-articles-specials-titles {
   display: flex;
@@ -1369,6 +1368,11 @@ gmpx-store-locator {
 .customization-sections-articles-specials-colors-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding: 0 16vw;
+  margin: 0;
+}
+.customization-sections-articles-specials-colors-list img {
+  width: 70px;
 }
 .customization-sections-articles-specials li {
   display: flex;
@@ -1722,8 +1726,7 @@ gmpx-store-locator {
 .collection-container-cards-card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
+  justify-content: flex-start;
   flex-grow: 1;
   background-color: white;
   border-radius: 8px;
@@ -1809,6 +1812,12 @@ gmpx-store-locator {
   }
 }
 .collections-body-container-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  background-color: white;
+  border-radius: 8px;
   min-width: 165px;
 }
 .collections-body-container-card-text {
@@ -1912,8 +1921,7 @@ gmpx-store-locator {
 .product-container-cards-card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
+  justify-content: flex-start;
   flex-grow: 1;
   background-color: white;
   border-radius: 8px;
@@ -2141,8 +2149,7 @@ gmpx-store-locator {
 .relationed-product-container-cards-card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
+  justify-content: flex-start;
   flex-grow: 1;
   background-color: white;
   border-radius: 8px;

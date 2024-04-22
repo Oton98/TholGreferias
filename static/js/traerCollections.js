@@ -1,4 +1,4 @@
-// const apiIp = "200.58.107.86";
+// const apiIp = "www.thol.com.ar";
 const apiIp = "192.168.100.3";
 
 
@@ -15,6 +15,9 @@ export async function traerColleciones() {
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
@@ -32,6 +35,9 @@ export async function traerColeccion(id){
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }

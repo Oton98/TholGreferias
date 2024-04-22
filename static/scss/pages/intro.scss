@@ -1,6 +1,6 @@
 .intro {
     height: 80vh;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/Component%202.png?alt=media&token=ead86fa9-1db2-4a8c-b8b5-f7e38531f530");
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Banner%20principal%2Fbanner-principal1.jpg?alt=media&token=30deea05-90c9-4271-b173-9cf5251e4d60");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -92,12 +92,11 @@
             &-card {
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-end;
-                height: 100%;
+                justify-content: flex-start;
                 flex-grow: 1;
                 background-color: white;
                 border-radius: 8px;
-    
+
                 &-img {
 
                     display: flex;
@@ -113,9 +112,9 @@
                     flex-grow: 1;
                     border-bottom: solid 2px rgb(237, 237, 237);
                 }
-    
+
                 &-text {
-    
+
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -126,11 +125,11 @@
                     border-bottom-left-radius: 8px;
                     border-bottom-right-radius: 8px;
                 }
-    
+
                 &-text p:nth-child(1) {
                     font-weight: bold;
                 }
-    
+
                 &-text p:nth-child(2) {
                     font-weight: 300;
                 }
@@ -138,9 +137,7 @@
         }
     }
 
-    @include tablet{
-
-    }
+    @include tablet {}
 
     @include mobile-small {
         &-container {
@@ -155,24 +152,22 @@
 .customized-products {
     background-color: $color-septenary;
     color: #ffffff;
-    padding: 64px 0;
 
     &-title {
-        padding: 0 20vw 64px 20vw;
+        padding-bottom: 64px;
+        padding: 64px 20vw;
     }
 
-    &-videocontainer {
+    &-video {
         display: flex;
         justify-content: center;
         align-items: center;
         padding-bottom: 64px;
-
-        &-video {
-            width: 90%;
-
+        iframe {
+            width: 94%;
+            height: 44vw;
         }
     }
-
 
 
     &>div:nth-child(2) {
@@ -196,6 +191,14 @@
             justify-content: center;
             align-items: center;
             row-gap: 16px;
+        }
+    }
+    
+    @include mobile-small{
+        &-video{
+            iframe{
+                height: 350px;
+            }
         }
     }
 }
@@ -232,7 +235,7 @@
 
     @include mobile-small {
         flex-direction: column;
-        
+
 
         &-text {
             width: auto;
@@ -241,14 +244,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            
-            &-description{
+
+            &-description {
                 display: flex;
                 flex-direction: column;
                 row-gap: 16px;
             }
 
-            &-button{
+            &-button {
                 display: flex;
                 justify-content: center;
                 width: 100%;
@@ -274,7 +277,7 @@
     text-decoration: underline;
 }
 
-.clicked{
+.clicked {
     background-color: $color-three;
     text-decoration: underline;
 }

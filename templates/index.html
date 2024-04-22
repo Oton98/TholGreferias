@@ -1,37 +1,75 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thol</title>
-    <link rel="stylesheet" href="/static/css/styletemp.css">
-</head>
-
-<body class="temporaly-index">
-    <div class="temporaly-index-banner">
-        <img class="img-banner-temp"
-            src="https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/1634390186.png?alt=media&token=b0cb5302-8ef0-45a5-b19c-86998c6847ae"
-            alt="banner-index-temporal">
-    </div>
-    <div class="temporaly-index-container">
-        <div class="temporaly-index-container-page">
-            <div class="temporaly-index-logo">
-                <img src="https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Group.png?alt=media&token=2a9bcd2c-dd3d-40c0-a10d-e1f8b8cf3873"
-                    alt="thol-logo">
+{% extends "layout.html" %}
+{% block content %}
+<section class="intro">
+    <div class="intro-container">
+        <div class="intro-container-text">
+            <div class="intro-container-text-title" id="indexTitulo">
+                <p class="intro-container-text-title-sub">CONOCÉ NUESTROS PUNTOS DE VENTA</p>
+                <h1 class="intro-container-text-title-main">Grifería de diseño, <br> de máxima calidad.</h1>
             </div>
-
-            <div class="temporaly-index-title">
-                <h1>Página en Mantenimiento.</h1>
-            </div>
-            <div class="temporaly-index-text">
-                <p>Puede contactarnos o conocer nuestro Instagram en el siguiente link: </p>
-                <a href="https://linktr.ee/griferias.thol">https://linktr.ee/griferias.thol</a>
+            <div class="intro-container-text-buttons">
+                <a href="{{ url_for('index.puntosDeVenta') }}"><button class="button-primary">Puntos de
+                        Venta</button></a>
+                <a href="{{ url_for('index.nuestroDisenio') }}"><button class="button-secondary">
+                        Colecciones</button></a>
             </div>
         </div>
     </div>
+</section>
 
+<section class="featured-products">
+    <div class="featured-products-title">
+        <h2>Productos Destacados</h2>
+    </div>
+    <div class="featured-products-container" id="productContainer">
+        <div class="featured-products-container-cards" id="featuredProducts">
 
-</body>
+        </div>
+        <div class="featured-products-container-button">
+            <a href="{{ url_for('index.nuestroDisenio') }}"><button class="button-primary">Conocer
+                    colecciones</button></a>
+        </div>
+    </div>
+</section>
 
-</html>
+<section class="customized-products">
+    <div class="customized-products-title">
+        <h1><strong>Productos personalizados</strong><br> y realizados a tu medida</h1>
+    </div>
+    <div class="customized-products-video">
+        <iframe src="https://www.youtube.com/embed/8cuW6Ij6kOE?si=DGxr5e76GHiu5wHL"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+</section>
+
+<section class="partnership">
+    <div class="partnership-text">
+        <div class="partnership-text-description">
+            <h1>¿Querés ser parte de nuestros distribuidores?</h1>
+            <p>Tenemos mas de 40 años trabajando en el mercado de griferías. Con amplia experiencia podemos asegurar que
+                brindamos productos de primera calidad, podes integrarte a nuestros puntos de venta enviandonos un mail
+                con este botón.</p>
+        </div>
+
+        <div class="partnership-text-button">
+            <a href="{{ url_for('index.consulta') }}"><button class="button-primary">Contactanos</button></a>
+        </div>
+    </div>
+
+    <div class="partnership-photo">
+        <img src="/static/img/representatives-img/dos-hombres-negocios-celebrando-trato 1.png"
+            alt="solicitud-de-socios">
+    </div>
+
+</section>
+{% endblock %}
+
+{% block end_scripts %}
+
+<script type="module" src="/static/js/index/cargarProductosDestacados.js"></script>
+<script type="module" src="/static/js/animations/animacionIndex.js"></script>
+<script src="/static/js/index/video.js"></script>
+{% endblock %}

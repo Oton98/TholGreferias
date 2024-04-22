@@ -33,13 +33,18 @@
 
 <section class="partnership">
     <div class="partnership-text">
-        <h1>¿Querés ser parte de nuestros distribuidores?</h1>
-        <p>Tenemos mas de 40 años trabajando en el mercado de griferías. Con amplia experiencia podemos asegurar que
-            brindamos productos de primera calidad, podes integrarte a nuestros puntos de venta enviandonos un mail
-            con este botón.</p>
-        <button class="button-primary">Contactanos</button>
+        <div class="partnership-text-description">
+            <h1>¿Querés ser parte de nuestros distribuidores?</h1>
+            <p>Tenemos mas de 40 años trabajando en el mercado de griferías. Con amplia experiencia podemos asegurar que
+                brindamos productos de primera calidad, podes integrarte a nuestros puntos de venta enviandonos un mail
+                con este botón.</p>
+        </div>
 
+        <div class="partnership-text-button">
+            <a href="{{ url_for('index.consulta') }}"><button class="button-primary">Contactanos</button></a>
+        </div>
     </div>
+
     <div class="partnership-photo">
         <img src="/static/img/representatives-img/dos-hombres-negocios-celebrando-trato 1.png"
             alt="solicitud-de-socios">

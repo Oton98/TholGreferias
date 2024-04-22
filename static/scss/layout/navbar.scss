@@ -20,7 +20,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 64px;
+            width: 64px;
+            padding: 8px;
         }
 
         &-mobile-open {
@@ -141,7 +142,7 @@
             column-gap: 1vw;
             justify-content: center;
 
-            &-item-searcher{
+            &-item-searcher {
                 width: 160px;
                 max-width: auto;
             }

@@ -47,23 +47,22 @@
         padding-bottom: 56px;
         gap: 24px;
 
-        @media (max-width: 1450px){
+        @media (max-width: 1450px) {
             grid-template-columns: repeat(3, 1fr);
         }
 
-        @media (max-width: 1050px){
+        @media (max-width: 1050px) {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        @media (max-width: 746px){
+        @media (max-width: 746px) {
             grid-template-columns: repeat(1, 1fr);
         }
 
         &-card {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            height: 100%;
+            justify-content: flex-start;
             flex-grow: 1;
             background-color: white;
             border-radius: 8px;

@@ -1,10 +1,7 @@
-// const apiIp = "200.58.107.86";
+// const apiIp = "www.thol.com.ar";
 const apiIp = "192.168.100.3";
 
-let searcher = document.getElementById('searcher');
-let animacionBuscando;
-
-searcher.addEventListener('keyup', async (event) => {
+async function handleSearchEvent(event) {
     let listaResultados = document.getElementById('results');
     let palabra = event.target.value.trim();
 
@@ -41,9 +38,7 @@ searcher.addEventListener('keyup', async (event) => {
                         contenedor.innerText = `${resultado.nombre} - ${resultado.tipo_producto} - ${resultado.coleccion}`;
                         a.appendChild(contenedor)
                         listaResultados.appendChild(a);
-                    }
-
-                    else {
+                    } else {
                         let contenedor = document.createElement('div');
                         let a = document.createElement('a');
                         a.href = `/nuestrodisenio/coleccion-buscada/${resultado.nombre}`;
@@ -63,12 +58,22 @@ searcher.addEventListener('keyup', async (event) => {
             }
 
         } catch (error) {
+
             if (animacionBuscando && listaResultados.contains(animacionBuscando)) {
                 listaResultados.removeChild(animacionBuscando);
             }
+
             console.error('Error:', error.message);
+            setTimeout(() => {
+                handleSearchEvent(event);
+            }, 1000);
         }
     } else {
         listaResultados.innerHTML = '';
     }
-});
+}
+
+
+let animacionBuscando;
+const searcher = document.getElementById('searcher');
+searcher.addEventListener('keyup', handleSearchEvent);

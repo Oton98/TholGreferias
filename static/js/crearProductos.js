@@ -1,4 +1,4 @@
-// const apiIp = "200.58.107.86";
+// const apiIp = "www.thol.com.ar";
 const apiIp = "192.168.100.3";
 
 async function crearProducto(productName, isAvailable, isFeaturedItem){

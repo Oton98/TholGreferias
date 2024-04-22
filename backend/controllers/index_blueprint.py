@@ -1,6 +1,6 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from operator import itemgetter
+from sqlalchemy.exc import OperationalError
 import smtplib
 import json
 from flask import Blueprint, jsonify, render_template, request
@@ -54,7 +54,6 @@ def coleccionIndex(nombre):
     if nombre_con_prefijo not in tipoTarjetasNombre:
         return "Tipo de producto no válido", 404
 
-    # Diccionario que mapea tipos de colección a columnas de imagen
     columnas_imagenes = {
         "Grifería Bimando": Coleccion.img_bimando,
         "Grifería Monocomando": Coleccion.img_monocomando,
@@ -63,20 +62,36 @@ def coleccionIndex(nombre):
         "Complemento": Coleccion.img_complemento,
     }
 
-    # Obtener la columna de imagen correspondiente al tipo de colección
     columna_imagen = columnas_imagenes[nombre_con_prefijo]
 
-    # Consulta para obtener las colecciones y sus imágenes
-    colecciones = (
-        Coleccion.query
-        .filter(Producto.tipo == nombre_con_prefijo, Coleccion.esta_eliminada == False)
-        .join(Producto)
-        .add_columns(columna_imagen.label("imagen"))  # Alias para la columna de imagen
-        .distinct()
-        .all()
-    )
+    # Intento inicial de consulta
+    try:
+        colecciones = (
+            Coleccion.query
+            .filter(Producto.tipo == nombre_con_prefijo, Coleccion.esta_eliminada == False)
+            .join(Producto)
+            .add_columns(columna_imagen.label("imagen"))
+            .distinct()
+            .all()
+        )
 
-    # Preparar datos para la plantilla
+    except OperationalError as e:
+        try:
+            colecciones = (
+                Coleccion.query
+                .filter(Producto.tipo == nombre_con_prefijo, Coleccion.esta_eliminada == False)
+                .join(Producto)
+                .add_columns(columna_imagen.label("imagen")) 
+                .distinct()
+                .all()
+            )
+
+            colecciones_data = [{"id": coleccion.id, "nombre": coleccion.nombre, "imgRepresentativa": getattr(coleccion, columna_imagen.key)} for coleccion, imagen in colecciones]
+            return render_template('collection.html', colecciones_data=colecciones_data, tipo=nombre_con_prefijo)
+
+        except OperationalError as e:
+            return "Error al obtener datos de la base de datos", e, 500
+
     colecciones_data = [{"id": coleccion.id, "nombre": coleccion.nombre, "imgRepresentativa": getattr(coleccion, columna_imagen.key)} for coleccion, imagen in colecciones]
     return render_template('collection.html', colecciones_data=colecciones_data, tipo=nombre_con_prefijo)
 

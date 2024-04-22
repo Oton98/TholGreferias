@@ -1,14 +1,15 @@
 .pointsales {
     display: flex;
     flex-direction: row;
+    padding-left: 20vw;
+    justify-content: space-between;
     background-color: $color-undenary;
 
     &-text {
         width: 35%;
-        padding: 5vw;
 
         &-title {
-            padding-bottom: 24px;
+            padding-top: 40px;
 
             h1 {
                 margin: 0;
@@ -23,6 +24,7 @@
             flex-direction: column;
             row-gap: 24px;
             margin: 0;
+            width: 75%;
 
             &-button {
                 display: flex;
@@ -44,9 +46,6 @@
     }
 
     &-img {
-        width: 65%;
-        display: flex;
-        justify-content: flex-end;
 
         img {
             display: flex;

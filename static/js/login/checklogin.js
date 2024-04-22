@@ -1,4 +1,4 @@
-// const apiIp = "200.58.107.86";
+// const apiIp = "www.thol.com.ar";
 const apiIp = "192.168.100.3";
 
 const loginbtn = document.getElementById('loginbtn');
@@ -21,7 +21,7 @@ async function checkIdentidad(e) {
     });
 
     const data = await response.json();
-
+    
     if (data.redirect) {
         window.location.href = data.redirect;
     }

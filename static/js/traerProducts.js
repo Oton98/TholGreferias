@@ -1,4 +1,4 @@
-// const apiIp = "200.58.107.86";
+// const apiIp = "www.thol.com.ar";
 const apiIp = "192.168.100.3";
 
 export async function traerAccesorios() {
@@ -13,6 +13,9 @@ export async function traerAccesorios() {
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
@@ -30,6 +33,9 @@ export async function traerGriferias() {
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
@@ -47,6 +53,9 @@ export async function traerComplementos() {
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
@@ -64,6 +73,9 @@ export async function traerProducto(id){
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
@@ -82,6 +94,9 @@ export async function traerTipoProducto(id){
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
@@ -99,6 +114,9 @@ export async function traerProdctoxTipo(id, tipo){
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
@@ -116,6 +134,9 @@ export async function traerProductoxColeccion(id){
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
@@ -133,6 +154,9 @@ export async function traerProductoDestacados(){
         return data;
 
     } catch (error) {
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
         console.error('Error:', error.message);
         throw error;
     }
