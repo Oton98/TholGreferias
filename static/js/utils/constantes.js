@@ -17,7 +17,7 @@ export const tipoTarjetasImg = [
     "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2Fpruebas%2FVector%20(2).png?alt=media&token=fb99e4da-8094-409d-bbba-ff54ecfb9378",
     "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FCapa_1%20(2).png?alt=media&token=ebe24488-61fc-4f43-af4d-9e7f9bf1b2bc",
     "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FCapa_1%20(1).png?alt=media&token=237d1b92-762f-49bb-8a31-aa4e4c422f5d",
-    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FVector%20(1).png?alt=media&token=34acf3e7-b9eb-44c3-bcac-cfd20c5a64b4"
+    "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Colecciones%2Ficonos%2FGroup%20313.png?alt=media&token=fac4236f-ef28-47ba-a4fa-79ba00612141"
 ];
 
 export const tipoTarjetasNombre = [

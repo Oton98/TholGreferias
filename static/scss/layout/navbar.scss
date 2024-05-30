@@ -26,10 +26,12 @@
 
         &-mobile-open {
             display: none;
+            font-size: 26px;
         }
 
         &-mobile-close {
             display: none;
+            font-size: 26px;
         }
 
     }
@@ -95,6 +97,7 @@
                 padding: 8px;
                 border: 2px solid $color-two;
                 border-radius: 4px;
+                line-height: normal;
             }
 
             &-list {
@@ -159,7 +162,6 @@
             justify-content: space-around;
             align-items: center;
             width: 100%;
-            padding-bottom: 8px;
 
             &-mobile-open {
                 display: block;
@@ -188,7 +190,6 @@
             justify-content: space-around;
             align-items: center;
             width: 100%;
-            padding-bottom: 8px;
 
             &-mobile-open {
                 display: block;

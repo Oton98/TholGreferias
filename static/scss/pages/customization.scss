@@ -11,7 +11,7 @@
         &-title {
             display: flex;
             flex-direction: row;
-            column-gap: 16px;
+            column-gap: 5vw;
             padding-bottom: 16px;
 
             &-h1 {
@@ -50,9 +50,9 @@
     &-articles {
         display: flex;
         flex-direction: column;
-        background-color: #464646;
+        background-color: $color-one;
         padding: 5vw 20vw;
-        color: white;
+        color: black;
 
         &-sizes {
             &-title {
@@ -261,6 +261,27 @@
                     grid-template-columns: repeat(3, 1fr);
                     padding: 0 16vw;
                     margin: 0;
+
+                    @media (max-width: 1550px) {
+                        padding: 0 13vw;
+
+                    }
+
+                    @media (max-width: 1550px) {
+                        padding: 0 13vw;
+
+                    }
+
+                    @media (max-width: 1300px) {
+                        padding: 0 8vw;
+
+                    }
+
+                    @media (max-width: 900px) {
+                        padding: 0 5vw;
+
+                    }
+
                     img{
                         width: 70px;
                     }

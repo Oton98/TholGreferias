@@ -177,9 +177,8 @@ def combinar_resultados(productos, colecciones):
 
 @index_blueprint.route('/searchword/<string:word>', methods=['GET'])
 def search_word(word):
-    colecciones = Coleccion.query.filter(Coleccion.esta_eliminada == False).all()
 
-    # Realizar la consulta para obtener productos disponibles
+    colecciones = Coleccion.query.filter(Coleccion.esta_eliminada == False).all()
     productos = Producto.query.filter(Producto.estaDisponible == True).all()
 
     # Obtener solo el nombre de productos y cambiar coleccion_id por nombre de colección

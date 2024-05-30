@@ -1,6 +1,7 @@
 .pointsales {
     display: flex;
     flex-direction: row;
+    column-gap: 24px;
     padding-left: 20vw;
     justify-content: space-between;
     background-color: $color-undenary;
@@ -10,6 +11,7 @@
 
         &-title {
             padding-top: 40px;
+            max-width: 400px;
 
             h1 {
                 margin: 0;
@@ -31,6 +33,7 @@
                 flex-wrap: row;
                 justify-content: flex-start;
                 text-decoration: none;
+                padding-bottom: 32px;
             }
 
             p {
@@ -60,17 +63,38 @@
         }
     }
 
-    @include tablet {}
-
-    @include mobile-large {
+    @include tablet {
         flex-direction: column;
+        padding: 0;
 
         &-text {
             width: auto;
+            padding: 64px 20vw;
 
             &-description {
                 &-button {
-                    justify-content: center;
+                    justify-content: flex-start;
+                }
+            }
+        }
+
+        &-img {
+            width: auto;
+        }
+
+    }
+
+    @include mobile-large {
+        flex-direction: column;
+        padding: 0;
+
+        &-text {
+            width: auto;
+            padding: 64px 20vw;
+
+            &-description {
+                &-button {
+                    justify-content: flex-start;
                 }
             }
         }
@@ -82,15 +106,17 @@
 
     @include mobile-small {
         flex-direction: column;
+        padding: 0;
 
         &-text {
+            padding: 0 10vw;
             justify-content: center;
             align-items: center;
             width: auto;
 
             &-description {
                 &-button {
-                    justify-content: center;
+                    justify-content: flex-start;
                 }
             }
         }

@@ -1,6 +1,6 @@
 .intro {
     height: 80vh;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Banner%20principal%2Fbanner-principal1.jpg?alt=media&token=30deea05-90c9-4271-b173-9cf5251e4d60");
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Banner%20principal%2Ffoto-inicio.jpg?alt=media&token=7a128232-f6e1-44b5-b3fa-03447a3f216d");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -52,7 +52,7 @@
 
         &-container {
             &-text {
-                padding: 16.11vw 5vw;
+                padding: 16.11vw 10vw;
             }
         }
     }
@@ -160,12 +160,13 @@
 
     &-video {
         display: flex;
-        justify-content: center;
-        align-items: center;
+
         padding-bottom: 64px;
+        padding: 0 20vw;
         iframe {
-            width: 94%;
+            width: 100%;
             height: 44vw;
+            padding-bottom: 64px;
         }
     }
 
@@ -208,6 +209,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    height: 20vw;
+
 
 
     &-text {
@@ -216,14 +219,20 @@
         justify-content: center;
         align-items: flex-start;
         padding: 48px 48px 48px 20vw;
-        width: 50%;
+        width: auto;
         row-gap: 24px;
+
+        &-description{
+            display: flex;
+            flex-direction: column;
+            row-gap: 24px;
+        }
+
     }
 
 
     &-photo {
-        width: 60%;
-
+        width: 200%;
         /* Ocupa el 50% del ancho del contenedor padre */
         img {
             width: 100%;
@@ -233,6 +242,10 @@
         }
     }
 
+    @include mobile-large{
+        
+    }
+
     @include mobile-small {
         flex-direction: column;
 
@@ -240,7 +253,7 @@
         &-text {
             width: auto;
             padding: 0;
-            padding: 48px 5vw;
+            padding: 48px 10vw;
             display: flex;
             justify-content: center;
             align-items: center;

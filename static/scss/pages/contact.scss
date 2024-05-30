@@ -1,13 +1,13 @@
 .consultation {
     display: flex;
     flex-direction: row;
-    padding: 0 0 0 20vw;
-    column-gap: 24px;
+    column-gap: 48px;
+    padding: 5vw 20vw;
     background-color: #ededed;
 
     &-menu {
+
         width: 50%;
-        padding: 5vw 0;
 
         &-title {
             padding-bottom: 40px;
@@ -24,7 +24,7 @@
                 flex-direction: column;
                 column-gap: 30%;
 
-                &-title{
+                &-title {
                     padding-bottom: 32px;
                 }
 
@@ -52,9 +52,10 @@
 
                     &-ul {
                         padding: 0 16px;
+
                         li {
                             list-style-type: disc;
-                            
+
                         }
                     }
                 }
@@ -63,13 +64,17 @@
     }
 
     &-img {
+        display: flex; 
+        flex-direction: column;
         width: 50%;
         height: 100%;
         overflow: hidden;
+        row-gap: 48px;
+        
 
         img {
-            width: auto;
-            height: 100%;
+            border-radius: 8px;
+            width: 100%;
             max-width: none;
             object-fit: cover;
         }
@@ -125,4 +130,8 @@
 .mostrar-respuesta {
     max-height: 500px;
     opacity: 1;
+}
+
+.white-color-blanck{
+    border: 1px solid #9d9d9d;
 }
