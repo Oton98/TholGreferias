@@ -9,6 +9,7 @@ from fuzzywuzzy import process
 from backend.models.collection import Coleccion
 from backend.models.product import Producto
 
+from backend.application import cargar_datos_en_cache
 
 index_blueprint = Blueprint('index', __name__)
 
@@ -177,9 +178,7 @@ def combinar_resultados(productos, colecciones):
 
 @index_blueprint.route('/searchword/<string:word>', methods=['GET'])
 def search_word(word):
-
-    colecciones = Coleccion.query.filter(Coleccion.esta_eliminada == False).all()
-    productos = Producto.query.filter(Producto.estaDisponible == True).all()
+    colecciones_cache, productos_cache = cargar_datos_en_cache()
 
     # Obtener solo el nombre de productos y cambiar coleccion_id por nombre de colección
     nombres_productos = [
@@ -187,9 +186,9 @@ def search_word(word):
             producto.id, 
             producto.nombre, 
             producto.tipo, 
-            next((coleccion.nombre for coleccion in colecciones if coleccion.id == producto.coleccion_id), None)
+            next((coleccion.nombre for coleccion in colecciones_cache if coleccion.id == producto.coleccion_id), None)
         )
-        for producto in productos
+        for producto in productos_cache
     ]
 
     # Obtener solo los nombres y tipos de productos para la búsqueda con process.extract
@@ -197,8 +196,6 @@ def search_word(word):
 
     # Encuentra las coincidencias más cercanas basadas solo en el nombre y tipo de productos
     coincidencias = process.extract(word, nombres_tipos_productos_para_busqueda, limit=5)
-
-    print(coincidencias)
 
     coincidencias_nombres_tipos = [coincidencia[0] for coincidencia in coincidencias if coincidencia[1] > 50]
     
@@ -208,7 +205,11 @@ def search_word(word):
         if (producto[1], producto[2]) in coincidencias_nombres_tipos
     ]
 
-    colecciones_coincidencias = Coleccion.query.filter(Coleccion.esta_eliminada == False, Coleccion.nombre.like(f'{word}%')).all()
+    # Usar el caché de colecciones para buscar coincidencias
+    colecciones_coincidencias = [
+        coleccion for coleccion in colecciones_cache 
+        if coleccion.nombre.startswith(word)
+    ]
 
     resultados_combinados = combinar_resultados(productos_coincidentes, colecciones_coincidencias)
 
