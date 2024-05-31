@@ -1,15 +1,15 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from functools import lru_cache, wraps
+from time import time
 from sqlalchemy.exc import OperationalError
 import smtplib
 import json
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, jsonify, render_template, request, current_app
 from backend.controllers.productos_blueprint import producto_a_diccionario
 from fuzzywuzzy import process
 from backend.models.collection import Coleccion
 from backend.models.product import Producto
-
-from backend.application import cargar_datos_en_cache
 
 index_blueprint = Blueprint('index', __name__)
 
@@ -176,19 +176,52 @@ def combinar_resultados(productos, colecciones):
 
     return resultados_combinados
 
+def timed_lru_cache(seconds: int, maxsize: int = 128):
+    def wrapper_cache(func):
+        @lru_cache(maxsize=maxsize)
+        @wraps(func)
+        def wrapped_func(*args, **kwargs):
+            return func(*args, **kwargs)
+
+        wrapped_func.lifetime = seconds
+        wrapped_func.expiration = time() + wrapped_func.lifetime
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if time() >= wrapped_func.expiration:
+                wrapped_func.cache_clear()
+                wrapped_func.expiration = time() + wrapped_func.lifetime
+            return wrapped_func(*args, **kwargs)
+
+        return wrapper
+    return wrapper_cache
+
+@timed_lru_cache(seconds=3600, maxsize=1)
+def obtener_colecciones():
+    return Coleccion.query.filter(Coleccion.esta_eliminada == False).all()
+
+@timed_lru_cache(seconds=3600, maxsize=1)
+def obtener_productos():
+    return Producto.query.filter(Producto.estaDisponible == True).all()
+
 @index_blueprint.route('/searchword/<string:word>', methods=['GET'])
 def search_word(word):
-    colecciones_cache, productos_cache = cargar_datos_en_cache()
 
-    # Obtener solo el nombre de productos y cambiar coleccion_id por nombre de colección
+    colecciones = obtener_colecciones()
+    productos = obtener_productos()
+
+    print(productos)
+    print(colecciones)
+    
+# Obtener solo el nombre de productos y cambiar coleccion_id por nombre de colección
     nombres_productos = [
         (
             producto.id, 
             producto.nombre, 
             producto.tipo, 
-            next((coleccion.nombre for coleccion in colecciones_cache if coleccion.id == producto.coleccion_id), None)
+            next((coleccion.nombre for coleccion in colecciones if coleccion.id == producto.coleccion_id), None)
         )
-        for producto in productos_cache
+        for producto in productos
     ]
 
     # Obtener solo los nombres y tipos de productos para la búsqueda con process.extract
@@ -207,7 +240,7 @@ def search_word(word):
 
     # Usar el caché de colecciones para buscar coincidencias
     colecciones_coincidencias = [
-        coleccion for coleccion in colecciones_cache 
+        coleccion for coleccion in colecciones
         if coleccion.nombre.startswith(word)
     ]
 
