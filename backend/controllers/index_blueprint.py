@@ -1,6 +1,5 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from functools import lru_cache, wraps
 from time import time
 from sqlalchemy.exc import OperationalError
 import smtplib
@@ -10,6 +9,8 @@ from backend.controllers.productos_blueprint import producto_a_diccionario
 from fuzzywuzzy import process
 from backend.models.collection import Coleccion
 from backend.models.product import Producto
+from backend.models.distribuidores import Distribuidor
+from backend.controllers.cache import Cache
 
 index_blueprint = Blueprint('index', __name__)
 
@@ -47,6 +48,66 @@ def consulta():
 def productoIndex():
     return render_template('producto.html')
 
+def obtener_colecciones():
+    cache = Cache()
+    colecciones = cache.get("colecciones")
+    if colecciones is None:
+        colecciones = Coleccion.query.filter(Coleccion.esta_eliminada == False).all()
+        cache.put("colecciones", colecciones, 28800)
+    else:
+        print("colecciones por cache")
+    return colecciones
+ 
+def obtener_productos():
+    cache = Cache()
+    productos = cache.get("productos")
+    if productos is None:
+        productos = Producto.query.filter(Producto.estaDisponible == True).all()
+        cache.put("productos", productos, 28800)
+    else:
+        print("productos por cache")
+    return productos
+
+def obtener_distribuidores():
+    cache = Cache()
+    distribuidores = cache.get("distribuidores")
+    if distribuidores is None:
+        distribuidores = Distribuidor.query.filter(Distribuidor.esta_eliminado == False).all()
+        cache.put("distribuidores", distribuidores, 28800)
+    return distribuidores
+
+def obtener_coleccion_por_nombre(nombre):
+    cache = Cache()
+    coleccion = cache.get("coleccion_" + nombre )
+    if coleccion is None:
+        coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
+        cache.put("coleccion_" + nombre, coleccion, 28800)
+    return coleccion
+
+def obtener_producto_por_coleccion_y_tipo(coleccion_id, tipo):
+    cache = Cache()
+    cache_key = f"productos_{coleccion_id}_{tipo}"
+    productos_info = cache.get(cache_key)
+
+    if productos_info is None:
+        productos = Producto.query.filter_by(coleccion_id=coleccion_id, tipo=tipo).all()
+        productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "tipo": producto.tipo} for producto in productos]
+        cache.put(cache_key, productos_info, 28800)
+    return productos_info
+
+def obtener_producto_coleccion_tipo_id(coleccion_id, tipo, id):
+    cache = Cache()
+    cache_key = f"producto_{coleccion_id}_{tipo}_{id}"
+    producto = cache.get(cache_key)
+
+    if producto is None:
+        producto_obj = Producto.query.filter_by(coleccion_id=coleccion_id, tipo=tipo, id=id).first()
+        if producto_obj is not None:
+            producto = {"id": producto_obj.id, "nombre": producto_obj.nombre, "imagen": producto_obj.imagen, "tipo": producto_obj.tipo}
+            cache.put(cache_key, producto, 28800)
+    
+    return producto
+    
 @index_blueprint.route('nuestrodisenio/coleccion/<string:nombre>')
 def coleccionIndex(nombre):
     tipoTarjetasNombre = ["Grifería Bimando", "Grifería Monocomando", "Grifería Freestanding", "Accesorio", "Complemento"]
@@ -56,45 +117,37 @@ def coleccionIndex(nombre):
         return "Tipo de producto no válido", 404
 
     columnas_imagenes = {
-        "Grifería Bimando": Coleccion.img_bimando,
-        "Grifería Monocomando": Coleccion.img_monocomando,
-        "Grifería Freestanding": Coleccion.img_freestanding,
-        "Accesorio": Coleccion.img_accesorio,
-        "Complemento": Coleccion.img_complemento,
+        "Grifería Bimando": "img_bimando",
+        "Grifería Monocomando": "img_monocomando",
+        "Grifería Freestanding": "img_freestanding",
+        "Accesorio": "img_accesorio",
+        "Complemento": "img_complemento",
     }
 
     columna_imagen = columnas_imagenes[nombre_con_prefijo]
 
-    # Intento inicial de consulta
     try:
-        colecciones = (
-            Coleccion.query
-            .filter(Producto.tipo == nombre_con_prefijo, Coleccion.esta_eliminada == False)
-            .join(Producto)
-            .add_columns(columna_imagen.label("imagen"))
-            .distinct()
-            .all()
-        )
+        colecciones = obtener_colecciones()
+        productos = obtener_productos()
 
-    except OperationalError as e:
-        try:
-            colecciones = (
-                Coleccion.query
-                .filter(Producto.tipo == nombre_con_prefijo, Coleccion.esta_eliminada == False)
-                .join(Producto)
-                .add_columns(columna_imagen.label("imagen")) 
-                .distinct()
-                .all()
-            )
+        # Filtra colecciones y productos en memoria
+        colecciones_filtradas = []
+        for coleccion in colecciones:
+            for producto in productos:
+                if producto.tipo.lower() == nombre_con_prefijo.lower() and not coleccion.esta_eliminada and producto.coleccion_id == coleccion.id:
+                    colecciones_filtradas.append({
+                        "id": coleccion.id,
+                        "nombre": coleccion.nombre,
+                        "imgRepresentativa": getattr(coleccion, columna_imagen)
+                    })
+                    break
 
-            colecciones_data = [{"id": coleccion.id, "nombre": coleccion.nombre, "imgRepresentativa": getattr(coleccion, columna_imagen.key)} for coleccion, imagen in colecciones]
-            return render_template('collection.html', colecciones_data=colecciones_data, tipo=nombre_con_prefijo)
+        return render_template('collection.html', colecciones_data=colecciones_filtradas, tipo=nombre_con_prefijo)
 
-        except OperationalError as e:
-            return "Error al obtener datos de la base de datos", e, 500
+    except Exception as e:
+        print(f"Error al obtener base de datos: {e}")
+        return f"Error al obtener datos", 500
 
-    colecciones_data = [{"id": coleccion.id, "nombre": coleccion.nombre, "imgRepresentativa": getattr(coleccion, columna_imagen.key)} for coleccion, imagen in colecciones]
-    return render_template('collection.html', colecciones_data=colecciones_data, tipo=nombre_con_prefijo)
 
 @index_blueprint.route('/nuestrodisenio/coleccion-buscada/<string:coleccion>')
 def coleccionBuscada(coleccion):
@@ -102,21 +155,18 @@ def coleccionBuscada(coleccion):
 
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>')
 def productoMenuTipo(nombre, tipo):
-    coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
-    productos = Producto.query.filter_by(coleccion_id=coleccion.id, tipo=tipo).all()
-    productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "tipo": producto.tipo} for producto in productos]
+    coleccion = obtener_coleccion_por_nombre(nombre)
+    productos_info = obtener_producto_por_coleccion_y_tipo(coleccion.id, tipo)
     productos_encoded = json.dumps(productos_info, ensure_ascii=False)
     return render_template('productMenu.html', coleccion=coleccion, productos_info=productos_encoded)
 
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>/product/<int:id>')
 def productSelection(nombre, tipo, id):
-    coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
-    producto = Producto.query.filter_by(coleccion_id=coleccion.id, tipo=tipo, id=id).first()
+    coleccion = obtener_coleccion_por_nombre(nombre)
+    producto = obtener_producto_coleccion_tipo_id(coleccion.id, tipo, id)
     
     if producto is not None:
-        # Crear un diccionario que solo contenga el id del producto
-        producto_dict = {"id": producto.id}
-        return render_template('product.html', coleccion=coleccion, producto=producto_dict)
+        return render_template('product.html', coleccion=coleccion, producto=producto)
     else:
         return "Producto no encontrado", 404
 
@@ -176,43 +226,12 @@ def combinar_resultados(productos, colecciones):
 
     return resultados_combinados
 
-def timed_lru_cache(seconds: int, maxsize: int = 128):
-    def wrapper_cache(func):
-        @lru_cache(maxsize=maxsize)
-        @wraps(func)
-        def wrapped_func(*args, **kwargs):
-            return func(*args, **kwargs)
-
-        wrapped_func.lifetime = seconds
-        wrapped_func.expiration = time() + wrapped_func.lifetime
-
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            if time() >= wrapped_func.expiration:
-                wrapped_func.cache_clear()
-                wrapped_func.expiration = time() + wrapped_func.lifetime
-            return wrapped_func(*args, **kwargs)
-
-        return wrapper
-    return wrapper_cache
-
-@timed_lru_cache(seconds=3600, maxsize=1)
-def obtener_colecciones():
-    return Coleccion.query.filter(Coleccion.esta_eliminada == False).all()
-
-@timed_lru_cache(seconds=3600, maxsize=1)
-def obtener_productos():
-    return Producto.query.filter(Producto.estaDisponible == True).all()
-
 @index_blueprint.route('/searchword/<string:word>', methods=['GET'])
 def search_word(word):
 
     colecciones = obtener_colecciones()
     productos = obtener_productos()
 
-    print(productos)
-    print(colecciones)
-    
 # Obtener solo el nombre de productos y cambiar coleccion_id por nombre de colección
     nombres_productos = [
         (

@@ -6,6 +6,7 @@ from sqlalchemy import not_
 from time import sleep
 from sqlalchemy.exc import OperationalError
 from backend.controllers.productos_blueprint import retry_on_error
+from backend.controllers.index_blueprint import obtener_distribuidores
 
 distribuidores_blueprint = Blueprint('distribuidores', __name__)
 
@@ -102,7 +103,7 @@ def get_all_distributors():
     retries = 3 
     while retries > 0:
         try:
-            distribuidores = Distribuidor.query.filter(not_(Distribuidor.esta_eliminado)).all()
+            distribuidores = obtener_distribuidores()
             distribuidores_json = [
                 {   
                     'id': distribuidor.id,
