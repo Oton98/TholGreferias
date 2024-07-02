@@ -2,7 +2,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from time import time
 from sqlalchemy.exc import OperationalError
+from sqlalchemy.orm import scoped_session, sessionmaker
+from flask_sqlalchemy import SQLAlchemy
+from backend.shared import db
 import smtplib
+import logging
 import json
 from flask import Blueprint, jsonify, render_template, request, current_app
 from backend.controllers.productos_blueprint import producto_a_diccionario
@@ -48,14 +52,36 @@ def consulta():
 def productoIndex():
     return render_template('producto.html')
 
+# Configura el logger
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("logs.log"),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
+def create_session():
+    session_factory = sessionmaker(bind=db.engine)
+    Session = scoped_session(session_factory)
+    return Session()
+
 def obtener_colecciones():
     cache = Cache()
     colecciones = cache.get("colecciones")
     if colecciones is None:
-        colecciones = Coleccion.query.filter(Coleccion.esta_eliminada == False).all()
-        cache.put("colecciones", colecciones, 28800)
+        session = create_session()
+        try: 
+            colecciones = session.query(Coleccion).filter(Coleccion.esta_eliminada == False).all()
+            cache.put("colecciones", colecciones, 28800)
+            logger.info("colecciones por db")
+        finally:
+            session.close()
     else:
-        print("colecciones por cache")
+        logger.info("colecciones por cache")
     return colecciones
  
 def obtener_productos():
@@ -64,8 +90,9 @@ def obtener_productos():
     if productos is None:
         productos = Producto.query.filter(Producto.estaDisponible == True).all()
         cache.put("productos", productos, 28800)
+        logger.info("productos por db")
     else:
-        print("productos por cache")
+        logger.info("productos por cache")
     return productos
 
 def obtener_distribuidores():
@@ -74,6 +101,9 @@ def obtener_distribuidores():
     if distribuidores is None:
         distribuidores = Distribuidor.query.filter(Distribuidor.esta_eliminado == False).all()
         cache.put("distribuidores", distribuidores, 28800)
+        logger.info("distribuidores por db")
+    else:
+        logger.info("distribuidores  por cache")
     return distribuidores
 
 def obtener_coleccion_por_nombre(nombre):
@@ -107,7 +137,7 @@ def obtener_producto_coleccion_tipo_id(coleccion_id, tipo, id):
             cache.put(cache_key, producto, 28800)
     
     return producto
-    
+
 @index_blueprint.route('nuestrodisenio/coleccion/<string:nombre>')
 def coleccionIndex(nombre):
     tipoTarjetasNombre = ["Grifería Bimando", "Grifería Monocomando", "Grifería Freestanding", "Accesorio", "Complemento"]
@@ -145,7 +175,7 @@ def coleccionIndex(nombre):
         return render_template('collection.html', colecciones_data=colecciones_filtradas, tipo=nombre_con_prefijo)
 
     except Exception as e:
-        print(f"Error al obtener base de datos: {e}")
+        logger.error(f"Error al obtener base de datos: {e}")
         return f"Error al obtener datos", 500
 
 
