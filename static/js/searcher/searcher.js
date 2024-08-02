@@ -1,5 +1,5 @@
-// const apiIp = "www.thol.com.ar";
-const apiIp = "192.168.100.3";
+const apiIp = "www.thol.com.ar";
+// const apiIp = "192.168.100.3";
 
 async function handleSearchEvent(event) {
     let listaResultados = document.getElementById('results');
@@ -13,7 +13,7 @@ async function handleSearchEvent(event) {
                 listaResultados.appendChild(animacionBuscando);
             }
 
-            const response = await fetch(`http://${apiIp}/searchword/${palabra}`);
+            const response = await fetch(`https://${apiIp}/searchword/${palabra}`);
 
             if (animacionBuscando && listaResultados.contains(animacionBuscando)) {
                 listaResultados.removeChild(animacionBuscando);

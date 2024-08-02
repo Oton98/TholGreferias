@@ -1,5 +1,5 @@
-// const apiIp = "www.thol.com.ar";
-const apiIp = "192.168.100.3";
+const apiIp = "www.thol.com.ar";
+// const apiIp = "192.168.100.3";
 
 const loginbtn = document.getElementById('loginbtn');
 loginbtn.addEventListener('click', checkIdentidad);
@@ -9,7 +9,7 @@ async function checkIdentidad(e) {
     const usuario = document.getElementById("userName").value;
     const pwd = document.getElementById("userPassword").value;
 
-    const response = await fetch(`http://${apiIp}/admin/login`, {
+    const response = await fetch(`https://${apiIp}/admin/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -1,6 +1,5 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from time import time
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import scoped_session, sessionmaker
 from flask_sqlalchemy import SQLAlchemy
@@ -74,44 +73,61 @@ def obtener_colecciones():
     colecciones = cache.get("colecciones")
     if colecciones is None:
         session = create_session()
-        try: 
+        try:
             colecciones = session.query(Coleccion).filter(Coleccion.esta_eliminada == False).all()
             cache.put("colecciones", colecciones, 28800)
-            logger.info("colecciones por db")
+            logger.info("colecciones obtenidas de la base de datos")
         finally:
-            session.close()
+                session.close()
     else:
-        logger.info("colecciones por cache")
+        logger.info("colecciones obtenidas de la caché")
     return colecciones
  
 def obtener_productos():
     cache = Cache()
     productos = cache.get("productos")
     if productos is None:
-        productos = Producto.query.filter(Producto.estaDisponible == True).all()
-        cache.put("productos", productos, 28800)
-        logger.info("productos por db")
+            session = create_session()
+            try:
+                productos = Producto.query.filter(Producto.estaDisponible == True).all()
+                cache.put("productos", productos, 28800)
+                logger.info("productos obtenidos de la base de datos")
+            finally:
+                session.close()
     else:
-        logger.info("productos por cache")
+        logger.info("productos obtenidos de la caché")
     return productos
 
 def obtener_distribuidores():
     cache = Cache()
     distribuidores = cache.get("distribuidores")
     if distribuidores is None:
-        distribuidores = Distribuidor.query.filter(Distribuidor.esta_eliminado == False).all()
-        cache.put("distribuidores", distribuidores, 28800)
-        logger.info("distribuidores por db")
+            session = create_session()
+            try:
+                distribuidores = Distribuidor.query.filter(Distribuidor.esta_eliminado == False).all()
+                cache.put("distribuidores", distribuidores, 28800)
+                logger.info("distribuidores obtenidos de la base de datos")
+            finally:
+                session.close()
     else:
-        logger.info("distribuidores  por cache")
+        logger.info("distribuidores obtenidos de la caché")
     return distribuidores
 
 def obtener_coleccion_por_nombre(nombre):
     cache = Cache()
-    coleccion = cache.get("coleccion_" + nombre )
+    cache_key = "coleccion_" + nombre
+    coleccion = cache.get(cache_key)
     if coleccion is None:
-        coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
-        cache.put("coleccion_" + nombre, coleccion, 28800)
+        session = create_session()
+        try:
+            coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
+            if coleccion is not None:
+                cache.put(cache_key, coleccion, 28800)
+                logger.info("colección obtenida de la base de datos")
+        finally:
+            session.close()
+    else:
+        logger.info("colección obtenida de la caché")
     return coleccion
 
 def obtener_producto_por_coleccion_y_tipo(coleccion_id, tipo):
@@ -120,9 +136,16 @@ def obtener_producto_por_coleccion_y_tipo(coleccion_id, tipo):
     productos_info = cache.get(cache_key)
 
     if productos_info is None:
-        productos = Producto.query.filter_by(coleccion_id=coleccion_id, tipo=tipo).all()
-        productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "tipo": producto.tipo} for producto in productos]
-        cache.put(cache_key, productos_info, 28800)
+            session = create_session()
+            try:
+                productos = Producto.query.filter_by(coleccion_id=coleccion_id, tipo=tipo).all()
+                productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "tipo": producto.tipo} for producto in productos]
+                cache.put(cache_key, productos_info, 28800)
+                logger.info("productos obtenidos de la base de datos")
+            finally:
+                session.close()
+    else:
+        logger.info("productos obtenidos de la caché")
     return productos_info
 
 def obtener_producto_coleccion_tipo_id(coleccion_id, tipo, id):
@@ -131,11 +154,17 @@ def obtener_producto_coleccion_tipo_id(coleccion_id, tipo, id):
     producto = cache.get(cache_key)
 
     if producto is None:
-        producto_obj = Producto.query.filter_by(coleccion_id=coleccion_id, tipo=tipo, id=id).first()
-        if producto_obj is not None:
-            producto = {"id": producto_obj.id, "nombre": producto_obj.nombre, "imagen": producto_obj.imagen, "tipo": producto_obj.tipo}
-            cache.put(cache_key, producto, 28800)
-    
+            session = create_session()
+            try:
+                producto_obj = Producto.query.filter_by(coleccion_id=coleccion_id, tipo=tipo, id=id).first()
+                if producto_obj is not None:
+                    producto = {"id": producto_obj.id, "nombre": producto_obj.nombre, "imagen": producto_obj.imagen, "tipo": producto_obj.tipo}
+                    cache.put(cache_key, producto, 28800)
+                logger.info("producto obtenido de la base de datos")
+            finally:
+                session.close()
+    else:
+        logger.info("producto obtenido de la caché")
     return producto
 
 @index_blueprint.route('nuestrodisenio/coleccion/<string:nombre>')
@@ -296,3 +325,4 @@ def search_word(word):
     resultados_combinados = combinar_resultados(productos_coincidentes, colecciones_coincidencias)
 
     return jsonify(resultados_combinados)
+

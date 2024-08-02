@@ -1,8 +1,8 @@
-// const apiIp = "www.thol.com.ar";
-const apiIp = "192.168.100.3";
+const apiIp = "www.thol.com.ar";
+// const apiIp = "192.168.100.3";
 
 async function crearProducto(productName, isAvailable, isFeaturedItem){
-    const response = await fetch(`http://${apiIp}/products`, {
+    const response = await fetch(`https://${apiIp}/products`, {
     method: 'POST', // Método HTTP
     headers: {
         'Content-Type': 'application/json' // Indica que el cuerpo de la solicitud es un JSON

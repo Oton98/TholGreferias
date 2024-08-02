@@ -1,9 +1,9 @@
-// const apiIp = "www.thol.com.ar";
-const apiIp = "192.168.100.3";
+const apiIp = "www.thol.com.ar";
+// const apiIp = "192.168.100.3";
 
 export async function traerAccesorios() {
     try {
-        const response = await fetch(`http://${apiIp}/productos/getAllAccesories`);
+        const response = await fetch(`https://${apiIp}/productos/getAllAccesories`);
         
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -23,7 +23,7 @@ export async function traerAccesorios() {
 
 export async function traerGriferias() {
     try {
-        const response = await fetch(`http://${apiIp}/productos/getAllfaucets`);
+        const response = await fetch(`https://${apiIp}/productos/getAllfaucets`);
         
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -43,7 +43,7 @@ export async function traerGriferias() {
 
 export async function traerComplementos() {
     try {
-        const response = await fetch(`http://${apiIp}/productos/getAlladdons`);
+        const response = await fetch(`https://${apiIp}/productos/getAlladdons`);
         
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -63,7 +63,7 @@ export async function traerComplementos() {
 
 export async function traerProducto(id){
     try{
-        const response = await fetch(`http://${apiIp}/productos/getProduct/${id}`)
+        const response = await fetch(`https://${apiIp}/productos/getProduct/${id}`)
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -84,7 +84,7 @@ export async function traerProducto(id){
 
 export async function traerTipoProducto(id){
     try {
-        const response = await fetch(`http://${apiIp}/productos/getproductsbycollection/${id}`);
+        const response = await fetch(`https://${apiIp}/productos/getproductsbycollection/${id}`);
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -104,7 +104,7 @@ export async function traerTipoProducto(id){
 
 export async function traerProdctoxTipo(id, tipo){
     try {
-        const response = await fetch(`http://${apiIp}/productos/getproductsbytypebycollection/${id}/${tipo}`);
+        const response = await fetch(`https://${apiIp}/productos/getproductsbytypebycollection/${id}/${tipo}`);
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -124,7 +124,7 @@ export async function traerProdctoxTipo(id, tipo){
 
 export async function traerProductoxColeccion(id){
     try {
-        const response = await fetch(`http://${apiIp}/productos/getproductsbycollection/${id}`);
+        const response = await fetch(`https://${apiIp}/productos/getproductsbycollection/${id}`);
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -144,7 +144,7 @@ export async function traerProductoxColeccion(id){
 
 export async function traerProductoDestacados(){
     try {
-        const response = await fetch(`http://${apiIp}/productos/getallfeatureproducts`);
+        const response = await fetch(`https://${apiIp}/productos/getallfeatureproducts`);
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');

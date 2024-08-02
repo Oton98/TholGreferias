@@ -1,10 +1,10 @@
-// const apiIp = "www.thol.com.ar";
-const apiIp = "192.168.100.3";
+const apiIp = "www.thol.com.ar";
+// const apiIp = "192.168.100.3";
 
 
 export async function traerColleciones() {
     try {
-        const response = await fetch(`http://${apiIp}/colecciones/getAllCollection`);
+        const response = await fetch(`https://${apiIp}/colecciones/getAllCollection`);
         
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');
@@ -25,7 +25,7 @@ export async function traerColleciones() {
 
 export async function traerColeccion(id){
     try{
-        const response = await fetch(`http://${apiIp}/colecciones/getCollection/${id}`)
+        const response = await fetch(`https://${apiIp}/colecciones/getCollection/${id}`)
 
         if (!response.ok) {
             throw new Error('Error de red al obtener datos');

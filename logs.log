@@ -114,3 +114,245 @@
 2024-06-26 21:02:45,215 - werkzeug - INFO - 192.168.100.3 - - [26/Jun/2024 21:02:45] "[36mGET /static/js/returnRoutes/volverProductoTipos.js HTTP/1.1[0m" 304 -
 2024-06-26 21:02:45,216 - werkzeug - INFO - 192.168.100.3 - - [26/Jun/2024 21:02:45] "[36mGET /static/js/index/cargarColeccion.js HTTP/1.1[0m" 304 -
 2024-06-26 21:02:45,228 - werkzeug - INFO - 192.168.100.3 - - [26/Jun/2024 21:02:45] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:01,410 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2024-07-01 21:04:01,411 - werkzeug - INFO -  * Running on http://192.168.100.3:80/ (Press CTRL+C to quit)
+2024-07-01 21:04:07,769 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET / HTTP/1.1" 200 -
+2024-07-01 21:04:07,836 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/css/style.css HTTP/1.1" 200 -
+2024-07-01 21:04:07,849 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/js/index/cargarProductosDestacados.js HTTP/1.1" 200 -
+2024-07-01 21:04:07,849 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/js/animations/animacionIndex.js HTTP/1.1" 200 -
+2024-07-01 21:04:07,850 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/js/animations/navbar.js HTTP/1.1" 200 -
+2024-07-01 21:04:07,861 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/js/index/video.js HTTP/1.1" 200 -
+2024-07-01 21:04:07,881 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/js/searcher/searcher.js HTTP/1.1" 200 -
+2024-07-01 21:04:07,891 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/js/cards/crearTarjetaProductoDestacado.js HTTP/1.1" 200 -
+2024-07-01 21:04:07,893 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/js/traerProducts.js HTTP/1.1" 200 -
+2024-07-01 21:04:07,900 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:07] "GET /static/js/animations/animacionesCardss.js HTTP/1.1" 200 -
+2024-07-01 21:04:08,751 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:08] "GET /productos/getallfeatureproducts HTTP/1.1" 200 -
+2024-07-01 21:04:11,338 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "GET / HTTP/1.1" 200 -
+2024-07-01 21:04:11,382 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/js/animations/animacionIndex.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,389 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,458 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/js/index/cargarProductosDestacados.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,561 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,651 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/js/index/video.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,684 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/js/traerProducts.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,684 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,692 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/js/cards/crearTarjetaProductoDestacado.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,725 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:11,747 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:11] "GET /productos/getallfeatureproducts HTTP/1.1" 200 -
+2024-07-01 21:04:12,313 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:12] "GET /nuestrodisenio HTTP/1.1" 200 -
+2024-07-01 21:04:12,356 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:12,358 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:12] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:12,360 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:12] "GET /static/js/index/cargarTarjetasColecciones.js HTTP/1.1" 200 -
+2024-07-01 21:04:12,362 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:12] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:12,401 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:12] "GET /static/js/utils/constantes.js HTTP/1.1" 200 -
+2024-07-01 21:04:12,423 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:12] "GET /static/js/utils/crearTarjetaColeccion.js HTTP/1.1" 200 -
+2024-07-01 21:04:12,436 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:12] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:13,173 - backend.controllers.index_blueprint - INFO - colecciones por db
+2024-07-01 21:04:13,178 - backend.controllers.index_blueprint - INFO - productos por db
+2024-07-01 21:04:13,185 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:13] "GET /nuestrodisenio/coleccion/Bimando HTTP/1.1" 200 -
+2024-07-01 21:04:13,227 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:13] "GET /static/js/index/cargarColeccion.js HTTP/1.1" 200 -
+2024-07-01 21:04:13,228 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:13] "GET /static/js/returnRoutes/volverProductoTipos.js HTTP/1.1" 200 -
+2024-07-01 21:04:13,232 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:13,241 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:13] "GET /static/js/index/cargarTituloProducto.js HTTP/1.1" 200 -
+2024-07-01 21:04:13,245 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:13] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:13,249 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:13] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:13,251 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:13] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:14,086 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "GET /nuestrodisenio/coleccion/Logic/productmenu/Grifería%20Bimando HTTP/1.1" 200 -
+2024-07-01 21:04:14,131 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "GET /static/js/index/cargarProductosxTipos.js HTTP/1.1" 200 -
+2024-07-01 21:04:14,133 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:14,138 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:14,143 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:14,146 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "GET /static/js/returnRoutes/volverProductosMenu.js HTTP/1.1" 200 -
+2024-07-01 21:04:14,159 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:14,174 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "GET /static/js/cards/crearTarjetasProductos.js HTTP/1.1" 200 -
+2024-07-01 21:04:14,963 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:14] "GET /nuestrodisenio/coleccion/Logic/productmenu/Grifería%20Bimando/product/2 HTTP/1.1" 200 -
+2024-07-01 21:04:15,007 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:15,008 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /static/js/returnRoutes/volverProductos.js HTTP/1.1" 200 -
+2024-07-01 21:04:15,009 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /static/js/index/cargarProducto.js HTTP/1.1" 200 -
+2024-07-01 21:04:15,015 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:15,018 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "[36mGET /static/js/traerProducts.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:15,021 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:15,024 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /static/js/cards/crearPantallaProducto.js HTTP/1.1" 200 -
+2024-07-01 21:04:15,034 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /static/js/utils/crearBotonesIndex.js HTTP/1.1" 200 -
+2024-07-01 21:04:15,053 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /static/js/cards/crearProductosRelacionados.js HTTP/1.1" 200 -
+2024-07-01 21:04:15,075 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /static/js/traerCollections.js HTTP/1.1" 200 -
+2024-07-01 21:04:15,077 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /static/js/utils/crearArrayRandom.js HTTP/1.1" 200 -
+2024-07-01 21:04:15,078 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:15,099 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /productos/getProduct/2 HTTP/1.1" 200 -
+2024-07-01 21:04:15,112 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /productos/getproductsbycollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:15,130 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:15,164 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "[33mGET /nuestrodisenio/coleccion/Logic/productmenu/Grifería%20Bimando/product/asd HTTP/1.1[0m" 404 -
+2024-07-01 21:04:15,187 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:15,217 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:15,245 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:15,311 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:15] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:16,617 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "GET /nuestrodisenio/coleccion/Logic/productmenu/Grifería%20monocomando/product/6 HTTP/1.1" 200 -
+2024-07-01 21:04:16,667 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/index/cargarProducto.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,667 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,669 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,670 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/returnRoutes/volverProductos.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,671 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/traerProducts.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,672 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,691 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/cards/crearPantallaProducto.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,719 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/utils/crearBotonesIndex.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,722 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/cards/crearProductosRelacionados.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,732 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/utils/crearArrayRandom.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,734 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/traerCollections.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,736 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:16,752 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "GET /productos/getProduct/6 HTTP/1.1" 200 -
+2024-07-01 21:04:16,762 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "GET /productos/getproductsbycollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:16,779 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:16,792 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:16,806 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:16,823 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:16,837 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:16] "GET /colecciones/getCollection/1 HTTP/1.1" 200 -
+2024-07-01 21:04:18,385 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "GET /nuestrodisenio HTTP/1.1" 200 -
+2024-07-01 21:04:18,421 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,424 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/index/cargarTarjetasColecciones.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,428 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,429 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,459 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/utils/constantes.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,466 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/utils/crearTarjetaColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,474 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,859 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "GET /puntosdeventa HTTP/1.1" 200 -
+2024-07-01 21:04:18,902 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,910 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "GET /static/js/googleMaps/puntosDeVenta.js HTTP/1.1" 200 -
+2024-07-01 21:04:18,910 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "GET /static/js/googleMaps/googlemaps.js HTTP/1.1" 200 -
+2024-07-01 21:04:18,912 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,914 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,949 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "[36mGET /static/js/utils/constantes.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:18,951 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "GET /static/js/traerDistributors.js HTTP/1.1" 200 -
+2024-07-01 21:04:18,966 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "GET /static/js/googleMaps/obtenerProvincias.js HTTP/1.1" 200 -
+2024-07-01 21:04:18,973 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "GET /static/js/googleMaps/cargarMenuProvincias.js HTTP/1.1" 200 -
+2024-07-01 21:04:18,981 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:18] "GET /static/js/animations/animacionesDistribuidores.js HTTP/1.1" 200 -
+2024-07-01 21:04:19,010 - backend.controllers.index_blueprint - INFO - distribuidores por db
+2024-07-01 21:04:19,014 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:19] "GET /distribuidores/getalldistributors HTTP/1.1" 200 -
+2024-07-01 21:04:19,029 - backend.controllers.index_blueprint - INFO - distribuidores  por cache
+2024-07-01 21:04:19,031 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:19] "GET /distribuidores/getalldistributors HTTP/1.1" 200 -
+2024-07-01 21:04:19,366 - backend.controllers.index_blueprint - INFO - distribuidores  por cache
+2024-07-01 21:04:19,367 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:19] "GET /distribuidores/getalldistributors HTTP/1.1" 200 -
+2024-07-01 21:04:20,003 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "GET /nuestrodisenio HTTP/1.1" 200 -
+2024-07-01 21:04:20,048 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:20,049 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:20,050 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "[36mGET /static/js/index/cargarTarjetasColecciones.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:20,051 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:20,090 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "[36mGET /static/js/utils/crearTarjetaColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:20,092 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "[36mGET /static/js/utils/constantes.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:20,096 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:20,963 - backend.controllers.index_blueprint - INFO - colecciones por cache
+2024-07-01 21:04:20,964 - backend.controllers.index_blueprint - INFO - productos por cache
+2024-07-01 21:04:20,966 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:20] "GET /nuestrodisenio/coleccion/Freestanding HTTP/1.1" 200 -
+2024-07-01 21:04:21,012 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:21] "[36mGET /static/js/index/cargarColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:21,013 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:21,014 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:21] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:21,014 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:21] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:21,015 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:21] "[36mGET /static/js/returnRoutes/volverProductoTipos.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:21,016 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:21] "[36mGET /static/js/index/cargarTituloProducto.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:21,034 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:21] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,032 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "GET /nuestrodisenio HTTP/1.1" 200 -
+2024-07-01 21:04:50,077 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/index/cargarTarjetasColecciones.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,081 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,081 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,082 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,121 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/utils/constantes.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,160 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,164 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/utils/crearTarjetaColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,870 - backend.controllers.index_blueprint - INFO - colecciones por cache
+2024-07-01 21:04:50,870 - backend.controllers.index_blueprint - INFO - productos por cache
+2024-07-01 21:04:50,871 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "GET /nuestrodisenio/coleccion/Monocomando HTTP/1.1" 200 -
+2024-07-01 21:04:50,916 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/returnRoutes/volverProductoTipos.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,917 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,918 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/index/cargarColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,921 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,925 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,927 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/index/cargarTituloProducto.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:50,930 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:50] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:52,317 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "GET /nuestrodisenio HTTP/1.1" 200 -
+2024-07-01 21:04:52,364 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:52,372 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:52,373 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:52,374 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "[36mGET /static/js/index/cargarTarjetasColecciones.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:52,432 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "[36mGET /static/js/utils/crearTarjetaColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:52,441 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "[36mGET /static/js/utils/constantes.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:52,447 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:52,979 - backend.controllers.index_blueprint - INFO - colecciones por cache
+2024-07-01 21:04:52,979 - backend.controllers.index_blueprint - INFO - productos por cache
+2024-07-01 21:04:52,981 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:52] "GET /nuestrodisenio/coleccion/Freestanding HTTP/1.1" 200 -
+2024-07-01 21:04:53,031 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:53] "[36mGET /static/js/index/cargarColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:53,032 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:53,034 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:53] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:53,041 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:53] "[36mGET /static/js/returnRoutes/volverProductoTipos.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:53,041 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:53] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:53,044 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:53] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:53,047 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:53] "[36mGET /static/js/index/cargarTituloProducto.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,023 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "GET /nuestrodisenio HTTP/1.1" 200 -
+2024-07-01 21:04:54,084 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,087 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/index/cargarTarjetasColecciones.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,093 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,097 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,155 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/utils/constantes.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,160 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/utils/crearTarjetaColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,162 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,741 - backend.controllers.index_blueprint - INFO - colecciones por cache
+2024-07-01 21:04:54,742 - backend.controllers.index_blueprint - INFO - productos por cache
+2024-07-01 21:04:54,744 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "GET /nuestrodisenio/coleccion/Accesorio HTTP/1.1" 200 -
+2024-07-01 21:04:54,791 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,792 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/index/cargarColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,801 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,818 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/returnRoutes/volverProductoTipos.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,859 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/index/cargarTituloProducto.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,860 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:54,869 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:54] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:56,947 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:56] "GET /nuestrodisenio HTTP/1.1" 200 -
+2024-07-01 21:04:56,996 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-01 21:04:56,999 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:56] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:57,000 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:57] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:57,001 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:57] "[36mGET /static/js/index/cargarTarjetasColecciones.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:57,069 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:57] "[36mGET /static/js/utils/constantes.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:57,081 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:57] "[36mGET /static/js/utils/crearTarjetaColeccion.js HTTP/1.1[0m" 304 -
+2024-07-01 21:04:57,084 - werkzeug - INFO - 192.168.100.3 - - [01/Jul/2024 21:04:57] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-08 03:06:52,929 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2024-07-08 03:06:52,940 - werkzeug - INFO -  * Running on http://192.168.100.3:80/ (Press CTRL+C to quit)
+2024-07-08 03:06:57,888 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:57] "GET / HTTP/1.1" 200 -
+2024-07-08 03:06:57,976 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:57] "GET /static/js/animations/animacionIndex.js HTTP/1.1" 200 -
+2024-07-08 03:06:58,007 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /static/js/animations/navbar.js HTTP/1.1" 200 -
+2024-07-08 03:06:58,009 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /static/js/searcher/searcher.js HTTP/1.1" 200 -
+2024-07-08 03:06:58,016 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /static/js/index/cargarProductosDestacados.js HTTP/1.1" 200 -
+2024-07-08 03:06:58,018 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /static/css/style.css HTTP/1.1" 200 -
+2024-07-08 03:06:58,020 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /static/js/index/video.js HTTP/1.1" 200 -
+2024-07-08 03:06:58,102 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /static/js/cards/crearTarjetaProductoDestacado.js HTTP/1.1" 200 -
+2024-07-08 03:06:58,105 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /static/js/traerProducts.js HTTP/1.1" 200 -
+2024-07-08 03:06:58,110 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /static/js/animations/animacionesCardss.js HTTP/1.1" 200 -
+2024-07-08 03:06:58,439 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:58] "GET /productos/getallfeatureproducts HTTP/1.1" 200 -
+2024-07-08 03:06:59,505 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:59] "GET /nuestrodisenio HTTP/1.1" 200 -
+2024-07-08 03:06:59,547 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-08 03:06:59,549 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:59] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-08 03:06:59,551 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:59] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-08 03:06:59,564 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:59] "GET /static/js/index/cargarTarjetasColecciones.js HTTP/1.1" 200 -
+2024-07-08 03:06:59,593 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:59] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-08 03:06:59,623 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:59] "GET /static/js/utils/constantes.js HTTP/1.1" 200 -
+2024-07-08 03:06:59,630 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:06:59] "GET /static/js/utils/crearTarjetaColeccion.js HTTP/1.1" 200 -
+2024-07-08 03:07:00,666 - backend.controllers.index_blueprint - INFO - colecciones obtenidas de la base de datos
+2024-07-08 03:07:00,671 - backend.controllers.index_blueprint - INFO - productos obtenidos de la base de datos
+2024-07-08 03:07:00,677 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:00] "GET /nuestrodisenio/coleccion/Monocomando HTTP/1.1" 200 -
+2024-07-08 03:07:00,723 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-08 03:07:00,730 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:00] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-08 03:07:00,735 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:00] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-08 03:07:00,737 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:00] "GET /static/js/returnRoutes/volverProductoTipos.js HTTP/1.1" 200 -
+2024-07-08 03:07:00,737 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:00] "GET /static/js/index/cargarTituloProducto.js HTTP/1.1" 200 -
+2024-07-08 03:07:00,742 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:00] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-08 03:07:00,743 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:00] "GET /static/js/index/cargarColeccion.js HTTP/1.1" 200 -
+2024-07-08 03:07:01,992 - backend.controllers.index_blueprint - INFO - colección obtenida de la base de datos
+2024-07-08 03:07:01,997 - backend.controllers.index_blueprint - INFO - productos obtenidos de la base de datos
+2024-07-08 03:07:02,005 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "GET /nuestrodisenio/coleccion/Logic/productmenu/Grifería%20Monocomando HTTP/1.1" 200 -
+2024-07-08 03:07:02,066 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2024-07-08 03:07:02,072 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "[36mGET /static/js/searcher/searcher.js HTTP/1.1[0m" 304 -
+2024-07-08 03:07:02,073 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "[36mGET /static/js/animations/navbar.js HTTP/1.1[0m" 304 -
+2024-07-08 03:07:02,088 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "[36mGET /static/js/animations/animacionesCardss.js HTTP/1.1[0m" 304 -
+2024-07-08 03:07:02,089 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "GET /static/js/index/cargarProductosxTipos.js HTTP/1.1" 200 -
+2024-07-08 03:07:02,095 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "GET /static/js/returnRoutes/volverProductosMenu.js HTTP/1.1" 200 -
+2024-07-08 03:07:02,129 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "GET /static/js/cards/crearTarjetasProductos.js HTTP/1.1" 200 -
+2024-07-08 03:07:02,136 - backend.controllers.index_blueprint - INFO - colección obtenida de la caché
+2024-07-08 03:07:02,141 - backend.controllers.index_blueprint - INFO - productos obtenidos de la base de datos
+2024-07-08 03:07:02,144 - werkzeug - INFO - 192.168.100.3 - - [08/Jul/2024 03:07:02] "GET /nuestrodisenio/coleccion/Logic/productmenu/asd HTTP/1.1" 200 -
