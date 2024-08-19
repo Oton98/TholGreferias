@@ -197,12 +197,14 @@ def get_all_faucets():
 @productos_blueprint.route('/getallfeatureproducts', methods=['GET'])   
 def get_all_featured_products():
     productos = ProductoRepository().get_destacados()
-
-    productos_json = [crear_json_producto(producto) for producto in productos]
+    productos_json = []
+    for producto in productos:
+        coleccion = ColeccionRepository().get_by_id(producto.coleccion_id)
+        productos_json.append(crear_json_producto(producto, coleccion.nombre))
 
     return jsonify(productos_json)
 
-def crear_json_producto(producto):
+def crear_json_producto(producto, coleccion):
     return {
         'id': producto.id,
         'nombre': producto.nombre,
@@ -215,7 +217,7 @@ def crear_json_producto(producto):
         'medidas': producto.medidas,
         'estaDisponible': producto.estaDisponible,
         'esDestacado': producto.esDestacado,
-        'coleccion': producto.coleccion.nombre if producto.coleccion else None
+        'coleccion': coleccion
     }
 
 #Metodo Get para Productos de una Coleccion

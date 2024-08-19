@@ -73,7 +73,7 @@ def obtener_distribuidores():
     cache = Cache()
     distribuidores = cache.get("distribuidores")
     if distribuidores is None: 
-        distribuidores = DistribuidorRepository.get_all()
+        distribuidores = DistribuidorRepository().get_all()
         cache.put("distribuidores", distribuidores, 28800)
         logger.info("distribuidores obtenidos de la base de datos")
     else:
