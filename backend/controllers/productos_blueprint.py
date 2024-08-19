@@ -1,7 +1,7 @@
 from backend.models.product import Producto
 from flask import jsonify, request, redirect, url_for, Blueprint
-from repository.producto_repository import ProductoRepository
-from repository.coleccion_repository import ColeccionRepository
+from backend.repository.producto_repository import ProductoRepository
+from backend.repository.coleccion_repository import ColeccionRepository
 
 
 productos_blueprint = Blueprint('productos', __name__)

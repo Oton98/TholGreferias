@@ -1,7 +1,7 @@
 from flask import jsonify, redirect, request, Blueprint, url_for
 from backend.models.distribuidores import Distribuidor
 from backend.controllers.index_blueprint import obtener_distribuidores
-from repository.distribuidor_repository import DistribuidorRepository
+from backend.repository.distribuidor_repository import DistribuidorRepository
 
 distribuidores_blueprint = Blueprint('distribuidores', __name__)
 

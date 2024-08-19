@@ -13,7 +13,7 @@ class UsuarioRepository:
 
     def __init_singleton(self, *args, **kwargs):
         self.db_connection = DatabaseConnection().connect()
-        self.logger = logger(self.__class__.__name__)
+        self.logger = logger
         
     def get_by_name(self, name):
         cursor = self.db_connection.cursor()

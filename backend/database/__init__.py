@@ -1,12 +1,12 @@
-import MySQLdb
+import pymysql as MySQLdb
 from backend.config import Config
 from backend.shared import logger
 
 class DatabaseConnection:
     def __init__(self):
         self.connection = None
-        self.logger = logger(self.__class__.__name__)
-    
+        self.logger = logger
+        
     def connect(self):
         if not self.connection:
             self.logger.info("Establishing new database connection...")

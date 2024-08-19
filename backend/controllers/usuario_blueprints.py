@@ -2,7 +2,7 @@ from backend.models.usuario import Usuario
 from flask import jsonify, render_template, request, Blueprint, session
 from itsdangerous import URLSafeTimedSerializer as Serializer
 from functools import wraps
-from repository.usuario_repository import UsuarioRepository
+from backend.repository.usuario_repository import UsuarioRepository
 import bcrypt
 
 usuarios_blueprint = Blueprint('usuarios', __name__)

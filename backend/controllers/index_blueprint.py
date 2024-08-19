@@ -6,9 +6,9 @@ import json
 from flask import Blueprint, jsonify, render_template, request
 from fuzzywuzzy import process
 from backend.controllers.cache import Cache
-from repository.coleccion_repository import ColeccionRepository
-from repository.distribuidor_repository import DistribuidorRepository
-from repository.producto_repository import ProductoRepository
+from backend.repository.coleccion_repository import ColeccionRepository
+from backend.repository.distribuidor_repository import DistribuidorRepository
+from backend.repository.producto_repository import ProductoRepository
 
 
 index_blueprint = Blueprint('index', __name__)

@@ -13,11 +13,11 @@ class ProductoRepository:
 
     def __init_singleton(self, *args, **kwargs):
         self.db_connection = DatabaseConnection().connect()
-        self.logger = logger(self.__class__.__name__)
+        self.logger = logger
         
     def get_all(self, include_unavailable=False):
         cursor = self.db_connection.cursor()
-        query = "SELECT * FROM producto" if include_unavailable else "SELECT * FROM producto WHERE esta_disponible = TRUE"
+        query = "SELECT * FROM producto" if include_unavailable else "SELECT * FROM producto WHERE estaDisponible = TRUE"
         cursor.execute(query)
         result = cursor.fetchall()
         cursor.close()
@@ -50,7 +50,7 @@ class ProductoRepository:
 
     def get_destacados(self):
         cursor = self.db_connection.cursor()
-        query = "SELECT * FROM producto WHERE es_destacado = TRUE"
+        query = "SELECT * FROM producto WHERE esDestacado = TRUE"
         cursor.execute(query)
         result = cursor.fetchall()
         cursor.close()
@@ -58,7 +58,7 @@ class ProductoRepository:
     
     def count_destacados(self):
         cursor = self.db_connection.cursor()
-        query = "SELECT COUNT(*) FROM producto WHERE es_destacado = TRUE"
+        query = "SELECT COUNT(*) FROM producto WHERE esDestacado = TRUE"
         cursor.execute(query)
         count = cursor.fetchone()[0]
         cursor.close()
@@ -82,7 +82,7 @@ class ProductoRepository:
     
     def get_by_coleccion_and_type_and_allowed(self, coleccion_id, tipo):
         cursor = self.db_connection.cursor()
-        query = "SELECT * FROM producto WHERE coleccion_id = %s AND tipo = %s AND esta_disponible = TRUE"
+        query = "SELECT * FROM producto WHERE coleccion_id = %s AND tipo = %s AND estaDisponible = TRUE"
         cursor.execute(query, (coleccion_id, tipo))
         result = cursor.fetchall()
         cursor.close()
@@ -100,7 +100,7 @@ class ProductoRepository:
         cursor = self.db_connection.cursor()
         query = """
             INSERT INTO producto (nombre, tipo, codigo, descripcion, imagen, colores, manual, medidas, 
-                                  esta_disponible, es_destacado, coleccion_id) 
+                                  estaDisponible, esDestacado, coleccion_id) 
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         try:
@@ -120,7 +120,7 @@ class ProductoRepository:
         query = """
             UPDATE producto 
             SET nombre=%s, tipo=%s, codigo=%s, descripcion=%s, imagen=%s, colores=%s, manual=%s, 
-                medidas=%s, esta_disponible=%s, es_destacado=%s, coleccion_id=%s 
+                medidas=%s, estaDisponible=%s, esDestacado=%s, coleccion_id=%s 
             WHERE id=%s
         """
         try:

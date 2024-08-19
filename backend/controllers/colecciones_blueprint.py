@@ -1,6 +1,6 @@
 from backend.models.collection import Coleccion
-from repository.coleccion_repository import ColeccionRepository
-from repository.producto_repository import ProductoRepository
+from backend.repository.coleccion_repository import ColeccionRepository
+from backend.repository.producto_repository import ProductoRepository
 import os
 from flask import jsonify, request, send_from_directory, redirect, url_for, Blueprint, current_app
 

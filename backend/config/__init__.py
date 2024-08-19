@@ -7,9 +7,9 @@ class Config:
     MYSQL_USER = os.getenv('MYSQL_USER', 'thol_thol')
     MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'Thol/97531')
     MYSQL_DB = os.getenv('MYSQL_DB', 'thol_thol')
-  # MYSQL_USER = os.getenv('MYSQL_USER', 'root')
-  # MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'firewall15')
-  # MYSQL_DB = os.getenv('MYSQL_DB', 'thol')
+    # MYSQL_USER = os.getenv('MYSQL_USER', 'root')
+    # MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'firewall15')
+    # MYSQL_DB = os.getenv('MYSQL_DB', 'thol')
     MYSQL_CONNECT_TIMEOUT = int(os.getenv('MYSQL_CONNECT_TIMEOUT', 10))
 
     # Additional MySQL Configuration for Reliability and Performance
