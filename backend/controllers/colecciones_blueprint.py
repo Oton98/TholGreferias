@@ -1,10 +1,8 @@
-from sqlalchemy import not_
 from backend.models.collection import Coleccion
-from backend.models.product import Producto
-from backend.shared import db
+from backend.repository.coleccion_repository import ColeccionRepository
+from backend.repository.producto_repository import ProductoRepository
 import os
 from flask import jsonify, request, send_from_directory, redirect, url_for, Blueprint, current_app
-from backend.controllers.productos_blueprint import retry_on_error
 
 colecciones_blueprint = Blueprint('colecciones', __name__)
 
@@ -12,7 +10,7 @@ colecciones_blueprint = Blueprint('colecciones', __name__)
 @colecciones_blueprint.route('/redirectCollection/<int:id>', methods=['GET'])
 def get_update_collection_page(id):
     try:
-        coleccion = db.session.get(Coleccion, id)
+        coleccion = ColeccionRepository().get_by_id(id)
 
         if not coleccion:
             return jsonify({"error": "Coleccion no encontrado"}), 404
@@ -31,12 +29,11 @@ def get_update_collection_page(id):
 @colecciones_blueprint.route('/updateCollection/<int:id>', methods=['PUT'])
 def update_collection(id):
     try:
-        coleccion = Coleccion.query.get(id)
+        coleccion = ColeccionRepository().get_by_id(id)
         if not coleccion:
             return jsonify({"error": "Producto no encontrado"}), 404
 
     except Exception as e:
-        db.session.rollback()
         return jsonify({"error": str(e)}), 500
 
     
@@ -44,19 +41,17 @@ def update_collection(id):
 @colecciones_blueprint.route('/deleteCollection/<int:id>', methods=['DELETE'])
 def delete_collection(id):
     try:
-        coleccion = Coleccion.query.get(id)
+        coleccion = ColeccionRepository().get_by_id(id)
 
         if not coleccion:
             return jsonify({"error": "Producto no encontrado"}), 404 
         
         if coleccion:
             coleccion.esta_eliminada = 1
-            Producto.query.filter_by(coleccion_id=id).delete()
-
-        db.session.commit()
+            ColeccionRepository().update(coleccion=coleccion, coleccion_id=coleccion.id)
+            ProductoRepository().delete_by_coleccion_id(coleccion_id=id)
 
     except Exception as e:
-        db.session.rollback()
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
     
@@ -66,10 +61,10 @@ def delete_collection(id):
 #Metodo Get para colecciones
 
 @colecciones_blueprint.route('/getAllCollection', methods=['GET'])
-@retry_on_error
 def get_all_collection():
 
-    colecciones = Coleccion.query.filter(not_(Coleccion.esta_eliminada)).all()
+    colecciones = ColeccionRepository().get_all()
+    
     colecciones_json = [
         {
             'nombre': coleccion.nombre,
@@ -78,14 +73,7 @@ def get_all_collection():
             'imgFreestanding': coleccion.img_freestanding,
             'imgAccesorio': coleccion.img_accesorio,
             'imgComplemento': coleccion.img_complemento,
-            'cant_Products': len(coleccion.productos),
-            'id': coleccion.id,
-            'productos': [
-                {
-                    'nombre_producto': producto.nombre,
-                }
-                for producto in coleccion.productos
-            ] 
+            'id': coleccion.id
         }
         for coleccion in colecciones
     ]
@@ -96,12 +84,13 @@ def get_all_collection():
     
 #Metodo Get para 1 Coleccion en particular
 @colecciones_blueprint.route('/getCollection/<int:id>', methods=['GET'])
-@retry_on_error
 def get_coleccion(id):
     try:
-        coleccion = Coleccion.query.get(id)
+        coleccion = ColeccionRepository().get_by_id(id)
         if not coleccion:
             return jsonify({"error": "Coleccion no encontrado"}), 404
+        
+        productos = ProductoRepository().get_by_coleccion(id)
         coleccion_data ={
             'id': coleccion.id,
             'imgMonocomando': coleccion.img_monocomando,
@@ -116,7 +105,7 @@ def get_coleccion(id):
                     'id': producto.id,
                     'nombre_producto': producto.nombre,
                 }
-                for producto in coleccion.productos
+                for producto in productos
             ]
 
         }
@@ -137,6 +126,7 @@ def add_Coleccion():
     imagen_accesorio = request.form.get('CollectionImgAccesorios')
 
     nueva_coleccion = Coleccion(
+        id=None,
         nombre=nombre,
         img_monocomando = imagen_monocomando,
         img_bimando = imagen_bimando,
@@ -147,7 +137,6 @@ def add_Coleccion():
         esta_eliminada=False
     )
 
-    db.session.add(nueva_coleccion)
-    db.session.commit()
+    ColeccionRepository().create(nueva_coleccion)
 
     return redirect(url_for('admin.createCollection'))

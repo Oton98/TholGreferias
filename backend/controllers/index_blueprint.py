@@ -1,21 +1,15 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from functools import wraps
-import time
-from sqlalchemy.exc import OperationalError
-from sqlalchemy.orm import scoped_session, sessionmaker
-from flask_sqlalchemy import SQLAlchemy
-from backend.shared import db
+from backend.shared import logger
 import smtplib
-import logging
 import json
-from flask import Blueprint, jsonify, render_template, request, current_app
-from backend.controllers.productos_blueprint import producto_a_diccionario
+from flask import Blueprint, jsonify, render_template, request
 from fuzzywuzzy import process
-from backend.models.collection import Coleccion
-from backend.models.product import Producto
-from backend.models.distribuidores import Distribuidor
 from backend.controllers.cache import Cache
+from backend.repository.coleccion_repository import ColeccionRepository
+from backend.repository.distribuidor_repository import DistribuidorRepository
+from backend.repository.producto_repository import ProductoRepository
+
 
 index_blueprint = Blueprint('index', __name__)
 
@@ -53,146 +47,81 @@ def consulta():
 def productoIndex():
     return render_template('producto.html')
 
-# Configura el logger
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("logs.log"),
-        logging.StreamHandler()
-    ]
-)
-
-logger = logging.getLogger(__name__)
-
-def retry_on_exception(retries=3, delay=5):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            attempt = 0
-            while attempt < retries:
-                try:
-                    return func(*args, **kwargs)
-                except Exception as e:
-                    attempt += 1
-                    logger.warning(f"Intento {attempt} de {retries} fallido: {e}")
-                    if attempt == retries:
-                        raise
-                    time.sleep(delay)
-        return wrapper
-    return decorator
-
-def create_session():
-    session_factory = sessionmaker(bind=db.engine)
-    Session = scoped_session(session_factory)
-    return Session()
-
-@retry_on_exception(retries=3, delay=5)
 def obtener_colecciones():
     cache = Cache()
     colecciones = cache.get("colecciones")
     if colecciones is None:
-        session = create_session()
-        try:
-            colecciones = session.query(Coleccion).filter(Coleccion.esta_eliminada == False).all()
-            cache.put("colecciones", colecciones, 28800)
-            logger.info("colecciones obtenidas de la base de datos")
-        finally:
-            session.close()
+        colecciones = ColeccionRepository().get_all()
+        cache.put("colecciones", colecciones, 28800)
+        logger.info("colecciones obtenidas de la base de datos")
     else:
         logger.info("colecciones obtenidas de la caché")
     return colecciones
  
-@retry_on_exception(retries=3, delay=5)
 def obtener_productos():
     cache = Cache()
     productos = cache.get("productos")
     if productos is None:
-        session = create_session()
-        try:
-            productos = Producto.query.filter(Producto.estaDisponible == True).all()
-            cache.put("productos", productos, 28800)
-            logger.info("productos obtenidos de la base de datos")
-        finally:
-            session.close()
+        productos = ProductoRepository().get_all()
+        cache.put("productos", productos, 28800)
+        logger.info("productos obtenidos de la base de datos")
     else:
         logger.info("productos obtenidos de la caché")
     return productos
 
-@retry_on_exception(retries=3, delay=5)
 def obtener_distribuidores():
     cache = Cache()
     distribuidores = cache.get("distribuidores")
-    if distribuidores is None:
-            session = create_session()
-            try:
-                distribuidores = Distribuidor.query.filter(Distribuidor.esta_eliminado == False).all()
-                cache.put("distribuidores", distribuidores, 28800)
-                logger.info("distribuidores obtenidos de la base de datos")
-            finally:
-                session.close()
+    if distribuidores is None: 
+        distribuidores = DistribuidorRepository().get_all()
+        cache.put("distribuidores", distribuidores, 28800)
+        logger.info("distribuidores obtenidos de la base de datos")
     else:
         logger.info("distribuidores obtenidos de la caché")
     return distribuidores
 
-@retry_on_exception(retries=3, delay=5)
 def obtener_coleccion_por_nombre(nombre):
     cache = Cache()
     cache_key = "coleccion_" + nombre
     coleccion = cache.get(cache_key)
     if coleccion is None:
-        session = create_session()
-        try:
-            coleccion = Coleccion.query.filter_by(nombre=nombre, esta_eliminada=False).first()
-            if coleccion is not None:
-                cache.put(cache_key, coleccion, 28800)
-                logger.info("colección obtenida de la base de datos")
-        finally:
-            session.close()
+        coleccion = ColeccionRepository().get_by_name(nombre)
+        if coleccion is not None:
+            cache.put(cache_key, coleccion, 28800)
+            logger.info("colección obtenida de la base de datos")
     else:
         logger.info("colección obtenida de la caché")
     return coleccion
 
-@retry_on_exception(retries=3, delay=5)
 def obtener_producto_por_coleccion_y_tipo(coleccion_id, tipo):
     cache = Cache()
     cache_key = f"productos_{coleccion_id}_{tipo}"
     productos_info = cache.get(cache_key)
 
     if productos_info is None:
-            session = create_session()
-            try:
-                productos = Producto.query.filter_by(coleccion_id=coleccion_id, tipo=tipo).all()
-                productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "tipo": producto.tipo} for producto in productos]
-                cache.put(cache_key, productos_info, 28800)
-                logger.info("productos obtenidos de la base de datos")
-            finally:
-                session.close()
+        productos = ProductoRepository().get_by_coleccion_and_type(coleccion_id, tipo)
+        productos_info = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "tipo": producto.tipo} for producto in productos]
+        cache.put(cache_key, productos_info, 28800)
+        logger.info("productos obtenidos de la base de datos")
     else:
         logger.info("productos obtenidos de la caché")
     return productos_info
 
-@retry_on_exception(retries=3, delay=5)
 def obtener_producto_coleccion_tipo_id(coleccion_id, tipo, id):
     cache = Cache()
     cache_key = f"producto_{coleccion_id}_{tipo}_{id}"
     producto = cache.get(cache_key)
 
     if producto is None:
-            session = create_session()
-            try:
-                producto_obj = Producto.query.filter_by(coleccion_id=coleccion_id, tipo=tipo, id=id).first()
-                if producto_obj is not None:
-                    producto = {"id": producto_obj.id, "nombre": producto_obj.nombre, "imagen": producto_obj.imagen, "tipo": producto_obj.tipo}
-                    cache.put(cache_key, producto, 28800)
-                logger.info("producto obtenido de la base de datos")
-            finally:
-                session.close()
+        producto_obj = ProductoRepository().get_by_coleccion_type_and_id(coleccion_id=coleccion_id, tipo=tipo, producto_id=id)
+        if producto_obj is not None:
+            producto = {"id": producto_obj.id, "nombre": producto_obj.nombre, "imagen": producto_obj.imagen, "tipo": producto_obj.tipo}
+            cache.put(cache_key, producto, 28800)
+            logger.info("producto obtenido de la base de datos")
     else:
         logger.info("producto obtenido de la caché")
     return producto
 
-@retry_on_exception(retries=3, delay=5)
 @index_blueprint.route('nuestrodisenio/coleccion/<string:nombre>')
 def coleccionIndex(nombre):
     tipoTarjetasNombre = ["Grifería Bimando", "Grifería Monocomando", "Grifería Freestanding", "Accesorio", "Complemento"]
@@ -238,7 +167,6 @@ def coleccionIndex(nombre):
 def coleccionBuscada(coleccion):
     return render_template('collectionSearch.html', coleccion=coleccion)
 
-@retry_on_exception(retries=3, delay=5)
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>')
 def productoMenuTipo(nombre, tipo):
     coleccion = obtener_coleccion_por_nombre(nombre)
@@ -246,7 +174,6 @@ def productoMenuTipo(nombre, tipo):
     productos_encoded = json.dumps(productos_info, ensure_ascii=False)
     return render_template('productMenu.html', coleccion=coleccion, productos_info=productos_encoded)
 
-@retry_on_exception(retries=3, delay=5)
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>/product/<int:id>')
 def productSelection(nombre, tipo, id):
     coleccion = obtener_coleccion_por_nombre(nombre)

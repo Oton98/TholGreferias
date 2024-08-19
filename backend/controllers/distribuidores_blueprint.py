@@ -1,12 +1,7 @@
-import os
-from flask import current_app, jsonify, redirect, render_template, request, Blueprint, send_from_directory, url_for
+from flask import jsonify, redirect, request, Blueprint, url_for
 from backend.models.distribuidores import Distribuidor
-from backend.shared import db
-from sqlalchemy import not_
-from time import sleep
-from sqlalchemy.exc import OperationalError
-from backend.controllers.productos_blueprint import retry_on_error
 from backend.controllers.index_blueprint import obtener_distribuidores
+from backend.repository.distribuidor_repository import DistribuidorRepository
 
 distribuidores_blueprint = Blueprint('distribuidores', __name__)
 
@@ -22,6 +17,7 @@ def add_Distribuidor():
     telefono = request.form.get('DistributorPhone')
 
     nuevo_distribuidor = Distribuidor(
+        id = None,
         nombre = nombre,
         direccion = direccion,
         provincia = provincia,
@@ -33,15 +29,14 @@ def add_Distribuidor():
         esta_eliminado = False
     )
 
-    db.session.add(nuevo_distribuidor)
-    db.session.commit()
+    DistribuidorRepository().create(nuevo_distribuidor)
 
     return redirect(url_for('admin.distributors'))
 
 @distribuidores_blueprint.route("/updatedistributor/<int:id>", methods=['PUT'])
 def update_distributor(id):
     try:
-        distribuidor = Distribuidor.query.get(id)
+        distribuidor = DistribuidorRepository().get_by_id(id)
 
         if not distribuidor:
             return jsonify({"error": "Distribuidor no encontrado"}), 404
@@ -67,29 +62,26 @@ def update_distributor(id):
             distribuidor.whatsapp = whatsapp
             distribuidor.telefono = telefono
 
-            db.session.commit()
+            DistribuidorRepository().update(distribuidor)
 
             return jsonify({"message": "Distribuidor actualizado correctamente"}), 200
 
     except Exception as e:
-        db.session.rollback()
         return jsonify({"error": str(e)}), 500
     
 @distribuidores_blueprint.route("/delatedistributor/<int:id>", methods=['DELETE'])
 def delete_distributor(id):
     try:
-        distribuidor = Distribuidor.query.get(id)
+        distribuidor = DistribuidorRepository().get_by_id(id)
 
         if not distribuidor:
             return jsonify({"error": "Distribuidor no encontrado"}), 404
         
         if distribuidor:
             distribuidor.esta_eliminado = 1
+            DistribuidorRepository().update(distribuidor)
 
-        db.session.commit()
-
-    except Distribuidor as e:
-        db.session.rollback()
+    except Exception as e:
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
     
@@ -98,38 +90,30 @@ def delete_distributor(id):
 # @distribuidores_blueprint.route("/getdistributor/<int:id>")
 
 @distribuidores_blueprint.route("/getalldistributors", methods=['GET'])
-@retry_on_error
 def get_all_distributors():
-    retries = 3 
-    while retries > 0:
-        try:
-            distribuidores = obtener_distribuidores()
-            distribuidores_json = [
-                {   
-                    'id': distribuidor.id,
-                    'nombre': distribuidor.nombre,
-                    'Dirección': distribuidor.direccion,
-                    'Localidad': distribuidor.provincia,
-                    'latitud': distribuidor.latitud,
-                    'longitud': distribuidor.longitud,
-                    'Web': distribuidor.web,
-                    'Whatsapp': distribuidor.whatsapp,
-                    'Teléfono': distribuidor.telefono
-                }
-                for distribuidor in distribuidores
-            ]
-            return jsonify(distribuidores_json)
-        except OperationalError as e:
-            retries -= 1
-            if retries > 0:
-                sleep(1)  # Esperar 1 segundo antes de reintentar
-            else:
-                return jsonify({'error': 'No se pudo conectar a la base de datos después de varios intentos.'})
+    try:
+        distribuidores = obtener_distribuidores()
+        distribuidores_json = [
+            {   
+                'id': distribuidor.id,
+                'nombre': distribuidor.nombre,
+                'Dirección': distribuidor.direccion,
+                'Localidad': distribuidor.provincia,
+                'latitud': distribuidor.latitud,
+                'longitud': distribuidor.longitud,
+                'Web': distribuidor.web,
+                'Whatsapp': distribuidor.whatsapp,
+                'Teléfono': distribuidor.telefono
+            }
+            for distribuidor in distribuidores
+        ]
+        return jsonify(distribuidores_json)
+    except Exception as e:
+        return jsonify({'error': 'No se pudo conectar a la base de datos después de varios intentos.', "msg": str(e)})
 
 @distribuidores_blueprint.route("/getdistributor/<int:id>", methods=['GET'])
-@retry_on_error
 def get_distributor(id):
-    distribuidor = Distribuidor.query.get(id)
+    distribuidor = DistribuidorRepository().get_by_id(id)
 
     if distribuidor is None:
         return jsonify({'error': 'Distribuidor no encontrado'}), 404

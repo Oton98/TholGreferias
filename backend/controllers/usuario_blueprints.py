@@ -1,9 +1,8 @@
-import sqlalchemy
-from time import sleep
 from backend.models.usuario import Usuario
 from flask import jsonify, render_template, request, Blueprint, session
 from itsdangerous import URLSafeTimedSerializer as Serializer
 from functools import wraps
+from backend.repository.usuario_repository import UsuarioRepository
 import bcrypt
 
 usuarios_blueprint = Blueprint('usuarios', __name__)
@@ -17,7 +16,7 @@ def login():
     pwd = request.json.get('userPassword')
 
     if nombre == 'BurgemeisterThol2024':
-        usuario = Usuario.query.filter_by(nombre=nombre).first()
+        usuario = UsuarioRepository().get_by_name(nombre)
 
         if usuario and bcrypt.checkpw(pwd.encode("utf-8"), usuario.password.encode("utf-8")):
             token = s.dumps({})
