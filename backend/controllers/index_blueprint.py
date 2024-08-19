@@ -1,5 +1,7 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from functools import wraps
+import time
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import scoped_session, sessionmaker
 from flask_sqlalchemy import SQLAlchemy
@@ -63,11 +65,29 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+def retry_on_exception(retries=3, delay=5):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            attempt = 0
+            while attempt < retries:
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    attempt += 1
+                    logger.warning(f"Intento {attempt} de {retries} fallido: {e}")
+                    if attempt == retries:
+                        raise
+                    time.sleep(delay)
+        return wrapper
+    return decorator
+
 def create_session():
     session_factory = sessionmaker(bind=db.engine)
     Session = scoped_session(session_factory)
     return Session()
 
+@retry_on_exception(retries=3, delay=5)
 def obtener_colecciones():
     cache = Cache()
     colecciones = cache.get("colecciones")
@@ -78,26 +98,28 @@ def obtener_colecciones():
             cache.put("colecciones", colecciones, 28800)
             logger.info("colecciones obtenidas de la base de datos")
         finally:
-                session.close()
+            session.close()
     else:
         logger.info("colecciones obtenidas de la caché")
     return colecciones
  
+@retry_on_exception(retries=3, delay=5)
 def obtener_productos():
     cache = Cache()
     productos = cache.get("productos")
     if productos is None:
-            session = create_session()
-            try:
-                productos = Producto.query.filter(Producto.estaDisponible == True).all()
-                cache.put("productos", productos, 28800)
-                logger.info("productos obtenidos de la base de datos")
-            finally:
-                session.close()
+        session = create_session()
+        try:
+            productos = Producto.query.filter(Producto.estaDisponible == True).all()
+            cache.put("productos", productos, 28800)
+            logger.info("productos obtenidos de la base de datos")
+        finally:
+            session.close()
     else:
         logger.info("productos obtenidos de la caché")
     return productos
 
+@retry_on_exception(retries=3, delay=5)
 def obtener_distribuidores():
     cache = Cache()
     distribuidores = cache.get("distribuidores")
@@ -113,6 +135,7 @@ def obtener_distribuidores():
         logger.info("distribuidores obtenidos de la caché")
     return distribuidores
 
+@retry_on_exception(retries=3, delay=5)
 def obtener_coleccion_por_nombre(nombre):
     cache = Cache()
     cache_key = "coleccion_" + nombre
@@ -130,6 +153,7 @@ def obtener_coleccion_por_nombre(nombre):
         logger.info("colección obtenida de la caché")
     return coleccion
 
+@retry_on_exception(retries=3, delay=5)
 def obtener_producto_por_coleccion_y_tipo(coleccion_id, tipo):
     cache = Cache()
     cache_key = f"productos_{coleccion_id}_{tipo}"
@@ -148,6 +172,7 @@ def obtener_producto_por_coleccion_y_tipo(coleccion_id, tipo):
         logger.info("productos obtenidos de la caché")
     return productos_info
 
+@retry_on_exception(retries=3, delay=5)
 def obtener_producto_coleccion_tipo_id(coleccion_id, tipo, id):
     cache = Cache()
     cache_key = f"producto_{coleccion_id}_{tipo}_{id}"
@@ -167,6 +192,7 @@ def obtener_producto_coleccion_tipo_id(coleccion_id, tipo, id):
         logger.info("producto obtenido de la caché")
     return producto
 
+@retry_on_exception(retries=3, delay=5)
 @index_blueprint.route('nuestrodisenio/coleccion/<string:nombre>')
 def coleccionIndex(nombre):
     tipoTarjetasNombre = ["Grifería Bimando", "Grifería Monocomando", "Grifería Freestanding", "Accesorio", "Complemento"]
@@ -205,13 +231,14 @@ def coleccionIndex(nombre):
 
     except Exception as e:
         logger.error(f"Error al obtener base de datos: {e}")
-        return f"Error al obtener datos", 500
+        return "Error al obtener datos", 500
 
 
 @index_blueprint.route('/nuestrodisenio/coleccion-buscada/<string:coleccion>')
 def coleccionBuscada(coleccion):
     return render_template('collectionSearch.html', coleccion=coleccion)
 
+@retry_on_exception(retries=3, delay=5)
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>')
 def productoMenuTipo(nombre, tipo):
     coleccion = obtener_coleccion_por_nombre(nombre)
@@ -219,6 +246,7 @@ def productoMenuTipo(nombre, tipo):
     productos_encoded = json.dumps(productos_info, ensure_ascii=False)
     return render_template('productMenu.html', coleccion=coleccion, productos_info=productos_encoded)
 
+@retry_on_exception(retries=3, delay=5)
 @index_blueprint.route('/nuestrodisenio/coleccion/<string:nombre>/productmenu/<tipo>/product/<int:id>')
 def productSelection(nombre, tipo, id):
     coleccion = obtener_coleccion_por_nombre(nombre)
