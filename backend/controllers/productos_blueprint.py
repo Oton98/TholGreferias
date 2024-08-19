@@ -1,30 +1,10 @@
-from backend.models.collection import Coleccion
 from backend.models.product import Producto
-from backend.shared import db
-import os, logging
 from flask import jsonify, request, redirect, url_for, Blueprint
-from sqlalchemy import exc
-from functools import wraps
+from repository.producto_repository import ProductoRepository
+from repository.coleccion_repository import ColeccionRepository
+
 
 productos_blueprint = Blueprint('productos', __name__)
-
-def retry_on_error(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        max_retries = 3
-        retries = 0
-        while retries < max_retries:
-            try:
-                result = func(*args, **kwargs)
-                return result
-            except exc.SQLAlchemyError as e:
-                retries += 1
-                if retries == max_retries:
-                    # Print the error message
-                    print(f"Error occurred: {e}")
-                    return jsonify({"error": str(e)}), 500
-
-    return wrapper
 
 #Metodo Post para Productos    
 @productos_blueprint.route('/createProduct', methods=['POST'])
@@ -43,7 +23,7 @@ def add_product():
     esta_disponible = request.form.get('isAvailable') == 'on'
     coleccion = request.form.get('collection')
 
-    cantidadProductoDestacado = Producto.query.filter_by(esDestacado=True).count()
+    cantidadProductoDestacado = ProductoRepository().count_destacados()
 
     if cantidadProductoDestacado >= 3 and es_destacado:
         return ('error: cantidad maxima de productos destacados superada')
@@ -59,13 +39,14 @@ def add_product():
             "complemento": "admin.addons"
         }
 
-        coleccion_obj = Coleccion.query.filter_by(nombre=coleccion, esta_eliminada=False).first()
+        coleccion_obj = ColeccionRepository().get_by_name(coleccion)
 
 
         if coleccion_obj is None:
             return "La colección especificada no existe", 404
         else:
             nuevo_producto = Producto(
+                id = None,
                 nombre=nombre,
                 tipo=tipo,
                 codigo=codigo,
@@ -76,11 +57,10 @@ def add_product():
                 medidas=linkManualDetalles,
                 esta_disponible=esta_disponible,
                 es_destacado=es_destacado,
-                coleccion=coleccion_obj 
+                coleccion_id=coleccion_obj.id,
             )
 
-            db.session.add(nuevo_producto)
-            db.session.commit()
+            ProductoRepository().create(nuevo_producto)
 
             ruta = ruta_actions.get(tipo.lower(), 'default')
             
@@ -88,10 +68,9 @@ def add_product():
     
 #Metodo Get para 1 Producto en particular
 @productos_blueprint.route('/getProduct/<int:id>', methods=['GET'])
-@retry_on_error
 def get_producto(id):
     try:
-        producto = Producto.query.get(id)
+        producto = ProductoRepository().get_by_id(id)
 
         if not producto:
             return jsonify({"error": "Producto no encontrado"}), 404
@@ -120,29 +99,16 @@ def get_producto(id):
 @productos_blueprint.route('/deleteProduct/<int:id>', methods=['DELETE'])
 def delete_producto(id):
     try:
-        producto = Producto.query.get(id)
+        producto = ProductoRepository().get_by_id(id)
         if not producto:
             return jsonify({"error": "Producto no encontrado"}), 404
-
-        # Obtén la colección asociada al producto
-        coleccion = producto.coleccion
-        print(coleccion)
-        # Decrementa la columna cantidad_Productos en uno
-        if coleccion:
-            print(coleccion)
-            print(coleccion.cantidad_productos)
-            if coleccion.cantidad_productos > 0:
-                coleccion.cantidad_productos -= 1
-                print(coleccion.cantidad_productos)
-
+    
         # Elimina el producto
-        db.session.delete(producto)
-        db.session.commit()
+        ProductoRepository().delete(id)
 
         return jsonify({"message": "Producto eliminado exitosamente"}), 200
 
     except Exception as e:
-        db.session.rollback()
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
     
@@ -150,7 +116,7 @@ def delete_producto(id):
 @productos_blueprint.route('/updateProduct/<int:id>', methods=['PUT'])
 def update_producto(id):
     try:
-        producto = Producto.query.get(id)
+        producto = ProductoRepository().get_by_id(id)
 
         if not producto:
             return jsonify({"error": "Producto no encontrado"}), 404
@@ -173,18 +139,13 @@ def update_producto(id):
 
         if nombre_nueva_coleccion is not None:
             # Buscar la colección por nombre
-            nueva_coleccion = Coleccion.query.filter_by(nombre=nombre_nueva_coleccion, esta_eliminada=False).first()
+            nueva_coleccion = ColeccionRepository().get_by_name(nombre_nueva_coleccion)
 
             if not nueva_coleccion:
                 return jsonify({"error": "Colección no encontrada"}), 404
 
-            # Actualizar la cantidad de productos en la colección actual
-            if producto.coleccion:
-                producto.coleccion.cantidad_productos -= 1
-
             # Asignar la nueva colección al producto
-            producto.coleccion = nueva_coleccion
-            nueva_coleccion.cantidad_productos += 1
+            producto.coleccion_id = nueva_coleccion.id
 
         producto.nombre = nombre
         producto.tipo = tipo
@@ -197,20 +158,18 @@ def update_producto(id):
         producto.estaDisponible = estaDisponible
         producto.esDestacado = esDestacado
 
-        db.session.commit()
+        ProductoRepository().update(producto)
 
         return "producto subido exitosamente"
 
     except Exception as e:
-        db.session.rollback()
         return jsonify({"error": str(e)}), 500
     
 
 #Metodo Get para Accesorios
 @productos_blueprint.route('/getAllAccesories', methods=['GET'])   
-@retry_on_error 
 def get_all_accesories():
-    productos = Producto.query.filter_by(tipo='Accesorio').all()
+    productos = ProductoRepository().get_by_type('Accesorio')
 
     productos_json = [crear_json_producto(producto) for producto in productos]
 
@@ -218,9 +177,8 @@ def get_all_accesories():
 
 #Metodo Get para Complementos
 @productos_blueprint.route('/getAlladdons', methods=['GET'])   
-@retry_on_error 
 def get_all_addons():
-    productos = Producto.query.filter_by(tipo='Complemento').all()
+    productos = ProductoRepository().get_by_type('Complemento')
 
     productos_json = [crear_json_producto(producto) for producto in productos]
 
@@ -228,9 +186,8 @@ def get_all_addons():
 
 #Metodo Get para Griferias
 @productos_blueprint.route('/getAllfaucets', methods=['GET'])    
-@retry_on_error
 def get_all_faucets():
-    productos = Producto.query.filter(Producto.tipo.like('Grifería%')).all()
+    productos = ProductoRepository().get_by_type_like('Grifería%')
 
     productos_json = [crear_json_producto(producto) for producto in productos]
 
@@ -238,9 +195,8 @@ def get_all_faucets():
 
 #Metodo Get para Productos Destacados
 @productos_blueprint.route('/getallfeatureproducts', methods=['GET'])   
-@retry_on_error
 def get_all_featured_products():
-    productos = Producto.query.filter_by(esDestacado = True).all()
+    productos = ProductoRepository().get_destacados()
 
     productos_json = [crear_json_producto(producto) for producto in productos]
 
@@ -264,10 +220,9 @@ def crear_json_producto(producto):
 
 #Metodo Get para Productos de una Coleccion
 @productos_blueprint.route('/getproductsbycollection/<id>', methods=['GET'])    
-@retry_on_error
 def getProductsByCollection(id):
     try:
-        productos = Producto.query.filter_by(coleccion_id=id).all()
+        productos = ProductoRepository().get_by_coleccion(id)
         productos_json = [{"id": producto.id, "tipo": producto.tipo, "nombre": producto.nombre, "imagen": producto.imagen, "coleccion": producto.coleccion_id} for producto in productos]
 
         return jsonify({"productos": productos_json})
@@ -277,11 +232,9 @@ def getProductsByCollection(id):
     
 # Método Get para Productos de una Colección por tipo
 @productos_blueprint.route('/getproductsbytypebycollection/<int:id>/<tipo>', methods=['GET'])
-@retry_on_error
 def get_products_by_type_collection(id, tipo):
     try:
-        productos = Producto.query.filter_by(coleccion_id=id, tipo=tipo, esta_disponible=True).all()
-
+        productos = ProductoRepository().get_by_coleccion_and_type_and_allowed(coleccion_id=id, tipo=tipo)
         # Crear lista de diccionarios para la respuesta JSON
         productos_json = [{"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen} for producto in productos]
 
