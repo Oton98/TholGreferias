@@ -1,11 +1,11 @@
 import MySQLdb
-from config.config import Config
-from config.logger import get_logger
+from backend.config import Config
+from backend.shared import logger
 
 class DatabaseConnection:
     def __init__(self):
         self.connection = None
-        self.logger = get_logger(self.__class__.__name__)
+        self.logger = logger(self.__class__.__name__)
     
     def connect(self):
         if not self.connection:
@@ -17,7 +17,8 @@ class DatabaseConnection:
                     passwd=Config.MYSQL_PASSWORD,
                     db=Config.MYSQL_DB,
                     port=Config.MYSQL_PORT,
-                    connect_timeout=Config.MYSQL_CONNECT_TIMEOUT
+                    connect_timeout=Config.MYSQL_CONNECT_TIMEOUT,
+                    autocommit=Config.MYSQL_AUTOCOMMIT
                 )
                 self.logger.info("Database connection established successfully.")
             except MySQLdb.MySQLError as e:
