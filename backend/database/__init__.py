@@ -8,7 +8,7 @@ class DatabaseConnection:
         self.logger = logger
         
     def connect(self):
-        if not self.connection:
+        if not self.connection or not self.connection.open:
             self.logger.info("Establishing new database connection...")
             try:
                 self.connection = MySQLdb.connect(

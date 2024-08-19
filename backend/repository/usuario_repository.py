@@ -12,11 +12,12 @@ class UsuarioRepository:
         return cls._instance
 
     def __init_singleton(self, *args, **kwargs):
-        self.db_connection = DatabaseConnection().connect()
+        self.db_connection = DatabaseConnection()
         self.logger = logger
         
     def get_by_name(self, name):
-        cursor = self.db_connection.cursor()
+        conn = self.db_connection.connect()
+        cursor = conn.cursor()
         query = "SELECT * FROM usuario WHERE nombre = %s"
         cursor.execute(query, (name))
         result = cursor.fetchone()
