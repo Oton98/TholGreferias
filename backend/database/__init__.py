@@ -18,7 +18,8 @@ class DatabaseConnection:
                     db=Config.MYSQL_DB,
                     port=Config.MYSQL_PORT,
                     connect_timeout=Config.MYSQL_CONNECT_TIMEOUT,
-                    autocommit=Config.MYSQL_AUTOCOMMIT
+                    autocommit=Config.MYSQL_AUTOCOMMIT,
+                    cursorclass=MySQLdb.cursors.DictCursor
                 )
                 self.logger.info("Database connection established successfully.")
             except MySQLdb.MySQLError as e:

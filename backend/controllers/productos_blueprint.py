@@ -2,6 +2,7 @@ from backend.models.product import Producto
 from flask import jsonify, request, redirect, url_for, Blueprint
 from backend.repository.producto_repository import ProductoRepository
 from backend.repository.coleccion_repository import ColeccionRepository
+from backend.controllers.index_blueprint import obtener_colecciones
 
 
 productos_blueprint = Blueprint('productos', __name__)
@@ -198,11 +199,18 @@ def get_all_faucets():
 def get_all_featured_products():
     productos = ProductoRepository().get_destacados()
     productos_json = []
+    colleciones = obtener_colecciones()
     for producto in productos:
-        coleccion = ColeccionRepository().get_by_id(producto.coleccion_id)
+        coleccion = foundCollectionById(colleciones, producto.coleccion_id)
         productos_json.append(crear_json_producto(producto, coleccion.nombre))
 
     return jsonify(productos_json)
+
+def foundCollectionById(collections, id):
+    for collection in collections:
+        if collection.id == id:
+            return collection
+    return None
 
 def crear_json_producto(producto, coleccion):
     return {
