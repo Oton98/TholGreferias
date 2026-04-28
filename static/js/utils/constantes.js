@@ -13,11 +13,11 @@ export const imagenAccesorios = "https://firebasestorage.googleapis.com/v0/b/tho
 export const imagenMarker = "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Puntos%20de%20Venta%2Ficono%20thol_Mesa%20de%20trabajo%201.png?alt=media&token=0444833a-4ca2-41a0-8657-d723c24984ed"
 
 export const tipoTarjetasImg = [
-    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2Fpruebas%2FCapa_1%20(3).png?alt=media&token=1d5a4a3f-f532-41d9-96fc-64713944e7ac",
-    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2Fpruebas%2FVector%20(2).png?alt=media&token=fb99e4da-8094-409d-bbba-ff54ecfb9378",
-    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FCapa_1%20(2).png?alt=media&token=ebe24488-61fc-4f43-af4d-9e7f9bf1b2bc",
-    "https://firebasestorage.googleapis.com/v0/b/tholgriferias2024.appspot.com/o/index%2FCapa_1%20(1).png?alt=media&token=237d1b92-762f-49bb-8a31-aa4e4c422f5d",
-    "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Colecciones%2Ficonos%2FGroup%20313.png?alt=media&token=fac4236f-ef28-47ba-a4fa-79ba00612141"
+    "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Colecciones%2Ficonos%2FSVG%2Fbimando.svg?alt=media&token=3bbd2091-ea4a-4617-b34b-edb99a173d7e",
+    "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Colecciones%2Ficonos%2FSVG%2Fmonocomando.svg?alt=media&token=688abea8-7877-445b-9dfb-956b0dca0888",
+    "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Colecciones%2Ficonos%2FSVG%2Ffreestanding2.svg?alt=media&token=c1324bd8-7307-464c-b13a-a8451c6ba0fc",
+    "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Colecciones%2Ficonos%2FSVG%2Faccesorios2.svg?alt=media&token=3cf9dc78-4c37-4ede-95ae-1b22275912a4",
+    "https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Colecciones%2Ficonos%2FSVG%2Fcomplementos2.svg?alt=media&token=7f578867-f064-4e6f-8a6e-230e254be6d8"
 ];
 
 export const tipoTarjetasNombre = [

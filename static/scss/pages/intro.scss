@@ -1,10 +1,10 @@
 .intro {
     height: 80vh;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Banner%20principal%2Ffoto-inicio.jpg?alt=media&token=7a128232-f6e1-44b5-b3fa-03447a3f216d");
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Banner%20principal%2FBanner2.png?alt=media&token=7c7ebf62-63d3-4cd0-bb83-3b141076d7b8");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    color: $color-primary;
+    color: $color-six;
 
     &-container {
 
@@ -27,14 +27,19 @@
                 flex-direction: column;
                 row-gap: 16px;
 
-                &-sub {
-                    font-size: 16px;
+                &-sub1 {
+                    font-size: clamp(24px, 2.3vw, 44px);
                     font-weight: 300;
                 }
 
+                &-sub2 {
+                    font-size: clamp(32px, 3.7vw, 71px);
+                    font-weight: 500;
+                }
+
                 &-main {
-                    font-size: 50px;
-                    font-weight: bold;
+                    font-size: clamp(32px, 3.7vw, 71px);
+                    font-weight: 700;
                 }
             }
 
@@ -48,13 +53,33 @@
     }
 
     @include mobile-small {
-        height: 100vh;
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Banner%20principal%2FVersion%20Mobile%20imagen.png?alt=media&token=d575f8fc-faa5-445c-a1bd-d05a8fe1cad8");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top center;
+        min-height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
 
         &-container {
             &-text {
                 padding: 16.11vw 10vw;
             }
         }
+    }
+
+    @include mobile-large {
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Banner%20principal%2FVersion%20Mobile%20imagen.png?alt=media&token=d575f8fc-faa5-445c-a1bd-d05a8fe1cad8");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top center;
+        min-height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 }
 
@@ -163,6 +188,7 @@
 
         padding-bottom: 64px;
         padding: 0 20vw;
+
         iframe {
             width: 100%;
             height: 44vw;
@@ -194,10 +220,10 @@
             row-gap: 16px;
         }
     }
-    
-    @include mobile-small{
-        &-video{
-            iframe{
+
+    @include mobile-small {
+        &-video {
+            iframe {
                 height: 350px;
             }
         }
@@ -222,7 +248,7 @@
         width: auto;
         row-gap: 24px;
 
-        &-description{
+        &-description {
             display: flex;
             flex-direction: column;
             row-gap: 24px;
@@ -233,6 +259,7 @@
 
     &-photo {
         width: 200%;
+
         /* Ocupa el 50% del ancho del contenedor padre */
         img {
             width: 100%;
@@ -242,9 +269,7 @@
         }
     }
 
-    @include mobile-large{
-        
-    }
+    @include mobile-large {}
 
     @include mobile-small {
         flex-direction: column;

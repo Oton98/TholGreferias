@@ -1,7 +1,8 @@
 from werkzeug.security import check_password_hash
 
 class Usuario:
-    def __init__(self, nombre, password):
+    def __init__(self, id, nombre, password):
+        self.id = id
         self.nombre = nombre
         self.password = password
     

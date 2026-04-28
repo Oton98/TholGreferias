@@ -46,6 +46,31 @@
 }
 
 
+.button-terciary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 26px;
+    border-radius: 6px;
+    font-size: 14px;
+    border: 1px solid black;
+    background: none;
+    background-color: none;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-terciary:hover {
+    background-color: $color-decenary;
+    cursor: pointer;
+}
+
+.button-terciary:active {
+    background-color: $color-two;
+    color: black;
+}
+
+
 
 
 .consultation-menu-contact-buttons-btn {
@@ -69,17 +94,15 @@
 
     }
 
-    @include mobile-small{
+    @include mobile-small {
         &-link {
-         
-            i {
-               
-            }
 
-            p{
+            i {}
+
+            p {
                 display: none;
             }
-    
+
         }
     }
 }
@@ -101,18 +124,18 @@
     height: 100%;
 }
 
-.sales-button{
+.sales-button {
     color: white;
     background-color: $color-five;
     padding: 12px 24px;
 }
 
-.sales-button:hover{
+.sales-button:hover {
     background-color: $color-four;
     cursor: pointer;
 }
 
-.sales-button:active{
+.sales-button:active {
     background-color: $color-six;
     color: white;
 }

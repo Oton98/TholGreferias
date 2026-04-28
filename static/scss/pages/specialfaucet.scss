@@ -1,0 +1,407 @@
+.special {}
+
+.special-banner1 {
+    height: 80vh;
+    // background-image: url("https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Colecciones%2FMonocomando_articulado%2FBanners%2FBanner1.png?alt=media&token=3307e970-dda6-4455-84be-259e8c42525b");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: black;
+    display: flex;
+    align-items: end;
+    padding: 0 20vw;
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vw;
+        width: clamp(280px, 40vw, 600px);
+        padding-bottom: 5vw;
+
+        &-title {
+            width: 100%;
+            font-size: 4.5rem;
+        }
+
+        button {
+            width: 50%;
+        }
+    }
+
+    @include mobile-small {
+        & {
+            height: auto;
+            padding: 24px;
+            align-items: center;
+            background-image: none;
+            display: flex;
+            flex-direction: column;
+            row-gap: 24px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        &-container {
+            width: 100%;
+            padding-bottom: 0;
+            row-gap: 16px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            &-title {
+                font-size: 28px;
+                width: 50%;
+            }
+
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+
+    @include mobile-large {
+        & {
+            height: auto;
+            padding: 24px;
+            align-items: center;
+            background-image: none;
+            display: flex;
+            flex-direction: row;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        &-container {
+            width: 100%;
+            padding-bottom: 0;
+            row-gap: 16px;
+            display: flex;
+            flex-direction: column;
+
+            &-title {
+                font-size: 28px;
+                width: 50%;
+            }
+
+
+            button {
+                width: auto;
+            }
+        }
+    }
+
+}
+
+.special-banner2 {
+    padding: 24px 20vw;
+
+    &-img {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        height: 46.3vh;
+    }
+
+    @include mobile-small {
+        padding: 24px;
+
+        &-img {
+            flex-direction: column;
+            height: auto;
+        }
+    }
+
+    @include mobile-large {
+        padding: 24px;
+
+        &-img {
+            flex-direction: column;
+            height: auto;
+        }
+    }
+}
+
+.special-description {
+    background-color: #F6F4F4;
+    font-size: clamp(18px, 2.3vw, 34px);
+    padding: 5vw 20vw;
+
+    display: flex;
+    justify-content: center;
+    /* 🔥 centra horizontal */
+
+    &-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /* 🔥 centra texto */
+
+        width: clamp(300px, 60%, 900px);
+
+        /* 🔥 más grande y controlado */
+        strong {
+
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 2.0rem;
+        }
+    }
+
+    @include mobile-small {
+        padding: 24px;
+        p {font-size: 25px;}
+
+    }
+
+    @include mobile-large {
+        padding: 24px;
+
+    }
+
+}
+
+.special-colors {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 20vw;
+    row-gap: 24px;
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+
+        &-div {
+            display: flex;
+            flex-direction: column;
+            row-gap: 16px;
+        }
+    }
+
+    &-div-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        margin: 0;
+        gap: 16px;
+
+        img {
+            width: 100%;
+        }
+
+        @media (max-width: 1120px) {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, auto);
+
+        }
+
+        @media (max-width: 720px) {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, auto);
+
+        }
+    }
+
+    @include mobile-small {
+        padding: 24px;
+
+    }
+
+    @include mobile-large {
+        padding: 24px;
+
+    }
+
+
+}
+
+.special-carousel {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20vw;
+    row-gap: 24px;
+
+    &-section {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        row-gap: 16px;
+
+        .carousel-title {
+            font-size: 1.5rem;
+            margin-top: 12px;
+            font-weight: 500;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+
+        }
+
+        /* animaciones */
+        .fade-out {
+            opacity: 0;
+        }
+
+        .fade-in {
+            opacity: 1;
+        }
+    }
+
+    .carousel {
+        width: 100%;
+        max-width: 900px;
+    }
+
+    .carousel-inner {
+        height: 400px;
+        /* 🔥 clave: evita saltos */
+    }
+
+    .carousel-item {
+        height: 100%;
+    }
+
+    .img-wrapper {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carousel-item img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    @include mobile-small {
+        padding: 24px;
+
+    }
+
+    @include mobile-large {
+        padding: 24px;
+
+    }
+}
+
+/* ❌ eliminamos iconos de bootstrap */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: none;
+}
+
+/* contenedor del botón */
+.custom-control {
+    width: 40px;
+    height: 40px;
+    padding: 12px;
+
+    border: 2px solid #a0a0a0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+}
+
+/* hover pro */
+.custom-control:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+.chevron {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1;
+    /* 👈 elimina desfasajes verticales */
+}
+
+.special-end {
+    display: flex;
+    flex-direction: row;
+    background-image: url("");
+    padding: 24px 20vw 48px 20vw;
+
+    &-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        h1 {
+            font-weight: 500;
+        }
+
+        h3 {
+            font-weight: 300;
+        }
+
+
+    }
+
+    img {
+        max-height: 500px;
+    }
+
+    @include mobile-small {
+        padding: 24px;
+        flex-direction: column;
+        row-gap: 24px;
+
+        &-text {
+            row-gap: 16px;
+
+            &-button {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+    }
+
+    @include mobile-large {
+        padding: 24px;
+        flex-direction: column;
+        row-gap: 24px;
+
+        &-text {
+            row-gap: 16px;
+
+            &-button {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+    }
+
+}
+
+.bootstrapne {
+    text-decoration: none;
+
+}

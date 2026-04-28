@@ -15,43 +15,43 @@
 
 <body>
 
-    <nav class="navbar" id="navbar">
-        <div class="navbar-logo">
+    <nav class="mynavbar" id="navbar">
+        <div class="mynavbar-logo">
             <a href="/"><img src="https://firebasestorage.googleapis.com/v0/b/thol-web.appspot.com/o/Logo-thol-svg-01.svg?alt=media&token=e1559aa6-4d6d-4aed-bbc1-2193d75c9364" alt="logo_thol"></a>
 
-            <div class="navbar-logo-mobile-open" id="icon-open">
+            <div class="mynavbar-logo-mobile-open" id="icon-open">
                 <i class="fa-solid fa-bars"></i>
             </div>
 
-            <div class="navbar-logo-mobile-close" id="icon-close">
+            <div class="mynavbar-logo-mobile-close" id="icon-close">
                 <i class="fa-solid fa-x"></i>
             </div>
 
-            <div class="navbar-logo-mobile-searcher" id="mobile-searcher">
+            <div class="mynavbar-logo-mobile-searcher" id="mobile-searcher">
 
             </div>
 
         </div>
 
-        <ul class="navbar-items">
+        <ul class="mynavbar-items">
             <a href="/">
-                <li class="navbar-items-item">Inicio</li>
+                <li class="mynavbar-items-item">Inicio</li>
             </a>
             <a href="{{ url_for('index.nuestroDisenio') }}">
-                <li class="navbar-items-item">Nuestra serie de Diseño</li>
+                <li class="mynavbar-items-item">Nuestra serie de Diseño</li>
             </a>
             <a href="{{ url_for('index.puntosDeVenta') }}">
-                <li class="navbar-items-item">Puntos de Venta</li>
+                <li class="mynavbar-items-item">Puntos de Venta</li>
             </a>
             <a href="{{ url_for('index.personalizacion') }}">
-                <li class="navbar-items-item">Personalización</li>
+                <li class="mynavbar-items-item">Personalización</li>
             </a>
             <a href="{{ url_for('index.consulta') }}">
-                <li class="navbar-items-item">Consulta</li>
+                <li class="mynavbar-items-item">Consulta</li>
             </a>
-            <li class="navbar-items-item-searcher" id="searcher">
-                <input class="navbar-items-item-searcher-input" type="search" placeholder="Buscar">
-                <div class="navbar-items-item-searcher-list" id="results">
+            <li class="mynavbar-items-item-searcher" id="searcher">
+                <input class="mynavbar-items-item-searcher-input" type="search" placeholder="Buscar">
+                <div class="mynavbar-items-item-searcher-list" id="results">
                 
                 </div>
             </li>

@@ -19,6 +19,10 @@ index_blueprint = Blueprint('index', __name__)
 def index():
     return render_template('index.html')
 
+@index_blueprint.route('/special')
+def special():
+    return render_template('special.html')
+
 @index_blueprint.route('/admin-login')
 def interno():
     return render_template('admin/login.html')

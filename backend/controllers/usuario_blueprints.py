@@ -17,9 +17,11 @@ def login():
 
     if nombre == 'BurgemeisterThol2024':
         usuario = UsuarioRepository().get_by_name(nombre)
+        print(usuario, usuario.password)
 
         if usuario and bcrypt.checkpw(pwd.encode("utf-8"), usuario.password.encode("utf-8")):
             token = s.dumps({})
+            
             session["token"] = token
             return jsonify({'redirect': '/interfaceProducts/interfaceProducts'})
 

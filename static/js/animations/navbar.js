@@ -1,6 +1,6 @@
 const iconOpen = document.getElementById('icon-open');
 const iconClose = document.getElementById('icon-close');
-const navbarLinks = document.querySelector('.navbar-items');
+const navbarLinks = document.querySelector('.mynavbar-items');
 const navbar = document.getElementById('navbar');
 
 let isIconOpenVisible = true;
